@@ -1,27 +1,22 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+let mode = 'development';
+if (process.env.NODE_ENV === 'production') {
+  mode = 'production';
+}
+
 module.exports = {
-    mode: 'development',
-    entry: {
-        main: path.join(__dirname, 'src', 'index.js')
-    },
+    mode,
+    target: 'web',
+    entry: path.join(__dirname, 'src', 'index.js'),
     output: {
         filename: 'main.js',
         path: path.join(__dirname, 'dist'),
         clean: true,
     },
-    devServer: {
-        static: path.join(__dirname, 'dist')
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src', 'index.html'),
-            title: 'Weather',
-        },
-        new MiniCssExtractPlugin())
-    ],
     module: {
         rules: [
             {
@@ -35,7 +30,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.s[a|c]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'style-loader',
@@ -49,7 +44,20 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        static: path.join(__dirname, 'dist'),
+        open: true,
+        hot: true,
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'src', 'index.html'),
+            title: 'Weather',
+        }),
+        new MiniCssExtractPlugin()
+    ],
     resolve: {
-        extensions: ["*", ".js", ".jsx", ".scss"],
-    }
+        extensions: ["*", ".js", ".jsx"],
+    },
 }

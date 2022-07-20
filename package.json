@@ -2,13 +2,13 @@
   "name": "weather",
   "version": "1.0.0",
   "description": "weather with Gismeteo API",
-  "type": "module",
   "main": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "start": "webpack serve --open",
+    "start": "webpack serve",
     "build": "webpack",
+    "build-prod": "webpack --mode=production",
     "lint": "npx eslint src",
     "fixLintErrors": "npx eslint --fix src"
   },
@@ -36,6 +36,8 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "i18next": "^21.8.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

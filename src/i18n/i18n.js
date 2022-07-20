@@ -1,6 +1,6 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import { resources } from "./resources.js"
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import resources from './resources';
 
 i18n.use(initReactI18next)
   .init({
@@ -8,6 +8,6 @@ i18n.use(initReactI18next)
     fallbackLng: 'ru',
     resources,
     interpolation: {
-    escapeValue: false,
-  },
-});
+      escapeValue: false,
+    },
+  });

@@ -1,9 +1,12 @@
-import "./index.css";
+import './index.css';
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { App } from './App.jsx';
+import * as ReactDOM from 'react-dom';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-console.log(document.getElementById('root'));
 root.render(<App />);
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept('./App');
+}
