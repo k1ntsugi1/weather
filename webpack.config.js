@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+
 let mode = 'development';
 if (process.env.NODE_ENV === 'production') {
   mode = 'production';
@@ -47,7 +48,8 @@ module.exports = {
     devServer: {
         static: {
             directory: path.join(__dirname, 'dist'),
-        }, 
+        },
+        liveReload: false,
         open: true,
         hot: true,
     },

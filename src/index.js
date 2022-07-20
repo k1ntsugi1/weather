@@ -7,6 +7,4 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept('./App');
-}
+if (import.meta.webpackHot) import.meta.webpackHot.accept();
