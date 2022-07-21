@@ -1,11 +1,8 @@
 import React from 'react';
-
+import SpinnerWeather from './components/SpinnerWeather';
 function App() {
   return (
-    <div>
-      <h1>helloasdfasdfas</h1>
-      <p>world</p>
-    </div>
+    <SpinnerWeather/>
   );
 }
 export default App;

@@ -30,10 +30,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.s[a|c]ss$/i,
+                test: /\.(c|s[ac])ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'style-loader',
                     'css-loader',
                     'sass-loader'
                 ],
