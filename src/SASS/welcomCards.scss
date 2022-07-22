@@ -1,0 +1,84 @@
+
+.container-cities {
+    max-width: 620px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 10px;
+        .container-img {
+            position: relative;
+            width: 300px;
+            height: 100px;
+            cursor: pointer;
+            border-radius: 50px;
+            .city-item {
+                width: 100%;
+                height: 100%;
+                border-radius: 50px;
+                object-fit: cover;
+                opacity: 0;
+                animation: showTopImg 3s ease 2.5s forwards;
+            }
+            &::before {
+                content: attr(data-name-city);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 280px;
+                height: 80px;
+                text-align: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                font-size: 20px;
+                font-weight: bold;
+                white-space: nowrap;
+                color: black;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255 ,255, .4);
+                backdrop-filter: blur(1px);
+                border-radius: 50px;
+                z-index: 3;
+                opacity: 0;
+                animation: opacityName 3s ease 5s forwards;
+            }
+            &:hover {
+                box-shadow: 0 0 5px 5px $color-blue;
+             }
+        }
+        .backface {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 80px;
+            background: rgba(255, 255, 255, .4);
+            border-radius: 50px;
+            z-index: 2;
+            opacity: 0;
+            animation: opacityName 3s ease 5s forwards;
+        }
+}
+
+
+@keyframes showTopImg {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes opacityName {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+

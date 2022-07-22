@@ -1,6 +1,7 @@
 @import 'colors';
+@import 'fontSizes';
 @import 'spinnerCube';
-
+@import 'welcom';
 .wrap__inner {
     position: relative;
     width: 200px;
@@ -48,4 +49,9 @@
     left: 10px;
     background: rgba(255, 255 ,255, .4);
     backdrop-filter: blur(10px);
+  }
+
+  .keyfr-showTop {
+    opacity: 0;
+    animation: showTopImg 3s ease 2.5s forwards;
   }
