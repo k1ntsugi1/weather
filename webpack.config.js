@@ -14,7 +14,7 @@ module.exports = {
     entry: path.join(__dirname, 'src', 'index.js'),
     output: {
         filename: 'main.js',
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'public'),
         clean: true,
     },
     module: {
@@ -45,7 +45,7 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, 'dist'),
+            directory: path.join(__dirname, 'public'),
         },
         liveReload: false,
         open: true,
