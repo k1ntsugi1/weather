@@ -15,7 +15,7 @@ function Welcom() {
                 <Title />
             </div>
             <Cards />
-            <div className="searchFiled">
+            <div className="searchFiled keyfr-showTop">
                 <SearchField />
                 <Prompt/>
             </div>

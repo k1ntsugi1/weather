@@ -4,7 +4,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 function SearchField() {
     
     return (
-        <Form novalidate className="keyfr-showTop">
+        <Form novalidate>
             <Form.Group>
                 <InputGroup>
                 <Form.Control
