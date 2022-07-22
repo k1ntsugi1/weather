@@ -1,8 +1,6 @@
 import React from 'react';
 import SpinnerWeather from './components/SpinnerWeather';
-import Nav from './components/Nav';
-import Cardmy from './components/Card';
-import Welcom from './components/Welcom';
+import Welcom from './components/WelcomField/Welcom';
 
 function App() {
   return (

@@ -1,133 +1,20 @@
-@import 'welcomCards';
-$sizeHashtag: 150px;
-
 .container-welcom {
+    width: 80%;
     position: absolute;
     top: 10%;
     left: 10%;
-    width: 80%;
+
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    animation: rightShowWelcom ease 3s 1 forwards;
-    .container-hashtag {
-        display: grid;
-        grid-template-columns: repeat(5, calc($sizeHashtag/8));
-        grid-template-rows: repeat(5, calc($sizeHashtag/8));
-        transform: skewX(-5deg);
-    
-        .line1 {
-            grid-column: 2 / 3;
-            grid-row: 1 / 6;
-            background-color: black;
-            animation: topShow ease 2s 1 2.5s forwards;
-            opacity: 0;
-        }
-    
-        .line2 {
-            grid-column: 4 / 5;
-            grid-row: 1 / 6;
-            background-color: black;
-            animation: bottomShow ease 2s 1 2.5s forwards;
-            opacity: 0;
-        }
-    
-        .line3 {
-            grid-column: 1 / 6;
-            grid-row-start: 2;
-            background-color: black;
-            animation: leftShow ease 2s 1 2.5s forwards;
-            opacity: 0;
-        }
-    
-        .line4 {
-            grid-column: 1 / 6;
-            grid-row-start: 4;
-            background-color: black;
-            animation: rightShow ease 2s 1 2.5s forwards;
-            opacity: 0;
-        }
-    }
-    .container-title {
+
+    opacity: 0;
+    animation: rightShow ease 3s 1 forwards;
+    .searchFiled {
+        flex-grow: 2;
         display: flex;
         flex-direction: column;
-        span{
-            text-transform: uppercase;
-            font-size: 64px;
-            line-height: 70px;
-            font-weight: bold;
-        }
-    }
-    .container-spinner {
-        position: relative;
-        width: 100px;
-    }
-}
-
-
-@keyframes topShow {
-    0% {
-        transform: translateY(-200%);
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes bottomShow {
-    0% {
-        transform: translateY(200%);
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes rightShow {
-    0% {
-        transform: translateX(200%);
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes leftShow {
-    0% {
-        transform: translateX(-200%);
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-
-@keyframes rightShowWelcom {
-    0% {
-        opacity: 0;
-        transform: translateX(200%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes opacityCity  {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
+        row-gap: 20px;
     }
 }
