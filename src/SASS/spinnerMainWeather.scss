@@ -7,6 +7,8 @@
     height: 100%;
     background: linear-gradient(45deg, pink, lightblue);
     z-index: 5;
+    opacity: 0;
+    animation: rotateX 3s ease 3.5s forwards;
     .first-block {
         height: 150px;
         width: 20%;
