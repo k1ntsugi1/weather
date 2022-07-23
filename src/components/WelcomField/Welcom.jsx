@@ -6,20 +6,19 @@ import Hashtag from "./Hashtag";
 import Title from "./Title";
 import Prompt from "./Prompt";
 
+
 function Welcom() {
     return (
         <section className="container-welcom">
-            <div className="mainField">
+            <div className="mainFiled">
                 <SpinnerWeather styles={{ left: "140px", top: "-5px" }} size='medium' />
                 <Hashtag />
                 <Title />
             </div>
-            <Cards />
-            <div className="searchFiled keyfr-showTop">
-                <SearchField />
-                <Prompt/>
+            <div className="searchField keyfr-showTop">
+                <SearchField/>
+                <Cards />
             </div>
-
         </section>
 
     )

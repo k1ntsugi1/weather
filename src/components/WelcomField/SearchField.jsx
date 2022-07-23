@@ -4,7 +4,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 function SearchField() {
     
     return (
-        <Form novalidate>
+        <Form noValidate className='w-100'>
             <Form.Group>
                 <InputGroup>
                 <Form.Control

@@ -1,0 +1,40 @@
+.rotate-container {
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    color: white;
+    .rotate-card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transition: transform 1s;
+        .front-face-of-card {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, lightblue, pink);
+        }
+        .back-face-of-card {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, pink, lightblue);
+            transform: rotateX(180deg);
+        }
+    }
+    
+    &:hover {
+        .rotate-card {
+            transform: rotateX(180deg);
+            .back-face-of-card {
+                transform: rotateX(180deg);
+            }
+        }
+        
+    }
+}

@@ -1,20 +1,17 @@
 .container-welcom {
-    width: 80%;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
 
     opacity: 0;
     animation: rightShow ease 3s 1 forwards;
-    .searchFiled {
+    .searchField {
         flex-grow: 2;
         display: flex;
         flex-direction: column;
-        row-gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 }
