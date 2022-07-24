@@ -5,9 +5,9 @@
     background-color: white;
     border-radius: 50px;
     border: 2px solid grey;
-
     label {
         position: absolute;
+        cursor: pointer;
         top: 0.9px;
         right: 0;
         width: 15px;
@@ -15,9 +15,11 @@
     }
 
     .checkbox {
-        opacity: 0;
+
         margin-top: 0;
         margin-bottom: 0;
+        opacity: 0;
+        cursor: pointer;
     }
 
     .checkbox+label:before {

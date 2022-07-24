@@ -331,15 +331,17 @@
 }
 .custom-checkbox label {
   position: absolute;
+  cursor: pointer;
   top: 0.9px;
   right: 0;
   width: 15px;
   height: 10px;
 }
 .custom-checkbox .checkbox {
-  opacity: 0;
   margin-top: 0;
   margin-bottom: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 .custom-checkbox .checkbox + label:before {
   content: "";
@@ -351,12 +353,26 @@
   height: 14px;
   border: 1px solid grey;
   border-radius: 50px;
-  background-color: white;
   transition: 0.5s;
 }
 .custom-checkbox .checkbox:checked + label:before {
   left: -2px;
-  background-color: black;
+}
+
+.brand-container {
+  display: flex;
+}
+.brand-container .brand-item {
+  margin: 0 3px 0 3px;
+  width: 23px;
+  text-transform: uppercase;
+  text-align: center;
+  transform: skew(-10deg);
+}
+.brand-container .brand-item span {
+  display: inline-block;
+  font-weight: bold;
+  transform: skew(10deg);
 }
 
 .container-title {
@@ -572,14 +588,28 @@ html[data-theme=dark] .custom-checkbox .checkbox + label:before {
 html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
   background-color: #434b4f;
 }
+html[data-theme=dark] #nav-container .navbar-toggler {
+  background-color: dimgrey;
+}
+html[data-theme=dark] #nav-container .navbar-toggler .navbar-toggler-icon {
+  filter: invert(1);
+}
+html[data-theme=dark] #nav-container .brand-container .brand-item {
+  background-color: dimgrey;
+}
+html[data-theme=dark] #nav-container .brand-container .brand-item span {
+  color: white;
+}
 
 html[data-theme=light] {
   background-color: lavender;
 }
-html[data-theme=light] .line1, html[data-theme=light] .line2 {
+html[data-theme=light] .line1,
+html[data-theme=light] .line2 {
   background-color: cornflowerblue;
 }
-html[data-theme=light] .line3, html[data-theme=light] .line4 {
+html[data-theme=light] .line3,
+html[data-theme=light] .line4 {
   background-color: lightblue;
 }
 html[data-theme=light] .container-title span {
@@ -594,9 +624,44 @@ html[data-theme=light] .custom-checkbox .checkbox + label:before {
 html[data-theme=light] .custom-checkbox .checkbox:checked + label:before {
   background-color: cornflowerblue;
 }
+html[data-theme=light] #nav-container .navbar-toggler {
+  background-color: lightblue;
+}
+html[data-theme=light] #nav-container .navbar-toggler .navbar-toggler-icon {
+  filter: invert(1);
+}
+html[data-theme=light] #nav-container .brand-container .brand-item {
+  background-color: lightblue;
+}
+html[data-theme=light] #nav-container .brand-container .brand-item span {
+  color: cornflowerblue;
+}
 
 body {
   background-color: inherit;
+}
+
+@media (max-width: 991px) {
+  #nav-container {
+    position: relative;
+    flex-direction: row-reverse;
+  }
+  .navbar-collapse {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    z-index: 10;
+  }
+  .navbar-collapse .navbar-nav {
+    margin-top: 10px;
+    max-width: 200px;
+    border-radius: 10px;
+    background-color: white;
+    align-items: flex-start;
+  }
+  .navbar-collapse .navbar-nav .custom-checkbox {
+    margin: 0 auto 0 0.5rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

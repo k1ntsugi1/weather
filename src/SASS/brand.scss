@@ -1,0 +1,15 @@
+.brand-container {
+    display: flex;
+    .brand-item {
+        margin: 0 3px 0 3px;
+        width: 23px;
+        text-transform: uppercase;
+        text-align: center;
+        transform: skew(-10deg);
+        span {
+            display: inline-block;
+            font-weight: bold;
+            transform: skew(10deg);
+        }
+    }
+}

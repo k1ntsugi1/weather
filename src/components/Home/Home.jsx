@@ -1,13 +1,12 @@
 import React from "react";
-import SpinnerWeather from "../SpinnerWeather";
+import SpinnerWeather from "../spinners/SpinnerWeather";
 import Cards from "./Cards";
 import SearchField from "./SearchField";
 import Hashtag from "./Hashtag";
 import Title from "./Title";
-import Prompt from "./Prompt";
 
 
-function Welcom() {
+function Home() {
     return (
         <section className="container-welcom container">
             <div className="mainFiled">
@@ -24,4 +23,4 @@ function Welcom() {
     )
 }
 
-export default Welcom;
+export default Home;

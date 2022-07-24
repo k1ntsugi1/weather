@@ -1,0 +1,19 @@
+{
+    "home": {
+        "navbar": {
+            "brand": "weather",
+            "aboutProject": "About project",
+            "randomPoint": "Random point",
+            "lang": {
+                "currentLang": "Language",
+                "ru":"Russians",
+                "en":"English"
+            },
+            "currentPoint": "Current point"
+        },
+        "title": "find your weather",
+        "searchField": {
+            "placeholder": "Search"
+        }
+    }
+}

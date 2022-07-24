@@ -1,7 +1,8 @@
 import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
+import { withTranslation } from "react-i18next";
 
-function SearchField() {
+function SearchField({t}) {
     
     return (
         <Form noValidate className='w-100'>
@@ -11,7 +12,7 @@ function SearchField() {
                             id="searchField"
                             name="searchField"
                             aria-label="searchField"
-                            placeholder="Поиск" 
+                            placeholder={t("home.searchField.placeholder")} 
                             className="border-black"/>
                 <Form.Control.Feedback type="invalid" tooltip>
                     sdgsadg
@@ -25,4 +26,4 @@ function SearchField() {
     )
 }
 
-export default SearchField;
+export default withTranslation()(SearchField);

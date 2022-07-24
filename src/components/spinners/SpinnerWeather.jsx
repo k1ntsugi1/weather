@@ -1,10 +1,10 @@
 import React from "react";
-import ImgLightning from '../gismeteo-icons/new/c3_r1_st.svg';
-import ImgLightning2 from '../gismeteo-icons/new/c3_rs3.svg';
-import ImgLightning3 from '../gismeteo-icons/new/c3.svg';
-import ImgSun from '../gismeteo-icons/new/d.svg';
-import ImgSun2 from '../gismeteo-icons/new/d_c2_r1.svg'
-import ImgSun3 from '../gismeteo-icons/new/d_c1_rs1.svg';
+import ImgLightning from '../../gismeteo-icons/new/c3_r1_st.svg';
+import ImgLightning2 from '../../gismeteo-icons/new/c3_rs3.svg';
+import ImgLightning3 from '../../gismeteo-icons/new/c3.svg';
+import ImgSun from '../../gismeteo-icons/new/d.svg';
+import ImgSun2 from '../../gismeteo-icons/new/d_c2_r1.svg'
+import ImgSun3 from '../../gismeteo-icons/new/d_c1_rs1.svg';
 
 function SpinnerWeather({styles, size}) {
     const mapSize = {

@@ -6,8 +6,8 @@ function SwitchTheme() {
     const changeTheme = useTheme();
     return (
         <div className="mt-1 custom-checkbox align-self-center">
-            <input type="checkbox" class="checkbox" id="id" onClick={changeTheme}/>
-            <label for="id"></label>
+            <input type="checkbox" className="checkbox" id="checkbox" onClick={changeTheme}/>
+            <label htmlFor="checkbox"></label>
         </div>
     )
 }
