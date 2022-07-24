@@ -8,7 +8,6 @@ $sizeHashtag: 150px;
     .line1 {
         grid-column: 2 / 3;
         grid-row: 1 / 6;
-        background-color: cornflowerblue;
         opacity: 0;
         animation: topShow ease 2s 1 2.5s forwards;
     }
@@ -16,7 +15,6 @@ $sizeHashtag: 150px;
     .line2 {
         grid-column: 4 / 5;
         grid-row: 1 / 6;
-        background-color: cornflowerblue;
         opacity: 0;
         animation: bottomShow ease 2s 1 2.5s forwards;
     }
@@ -24,7 +22,6 @@ $sizeHashtag: 150px;
     .line3 {
         grid-column: 1 / 6;
         grid-row-start: 2;
-        background-color: lightblue;
         opacity: 0;
         animation: leftShow ease 2s 1 2.5s forwards;
     }
@@ -32,7 +29,6 @@ $sizeHashtag: 150px;
     .line4 {
         grid-column: 1 / 6;
         grid-row-start: 4;
-        background-color: lightblue;
         opacity: 0;
         animation: rightShow ease 2s 1 2.5s forwards;
     }

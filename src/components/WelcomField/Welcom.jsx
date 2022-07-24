@@ -9,7 +9,7 @@ import Prompt from "./Prompt";
 
 function Welcom() {
     return (
-        <section className="container-welcom">
+        <section className="container-welcom container">
             <div className="mainFiled">
                 <SpinnerWeather styles={{ left: "140px", top: "-5px" }} size='medium' />
                 <Hashtag />

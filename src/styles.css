@@ -182,7 +182,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lavender;
   box-sizing: border-box;
   border: 1.5px solid black;
   opacity: 0.8;
@@ -239,7 +238,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lavender;
   box-sizing: border-box;
   border: 1.5px solid black;
   opacity: 0.8;
@@ -296,7 +294,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lavender;
   box-sizing: border-box;
   border: 1.5px solid black;
   opacity: 0.8;
@@ -324,6 +321,44 @@
   transform: rotateX(90deg) translateZ(100px);
 }
 
+.custom-checkbox {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid grey;
+}
+.custom-checkbox label {
+  position: absolute;
+  top: 0.9px;
+  right: 0;
+  width: 15px;
+  height: 10px;
+}
+.custom-checkbox .checkbox {
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.custom-checkbox .checkbox + label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -17px;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid grey;
+  border-radius: 50px;
+  background-color: white;
+  transition: 0.5s;
+}
+.custom-checkbox .checkbox:checked + label:before {
+  left: -2px;
+  background-color: black;
+}
+
 .container-title {
   display: flex;
   flex-direction: column;
@@ -333,7 +368,6 @@
   line-height: 70px;
   font-weight: bold;
   text-transform: uppercase;
-  color: cornflowerblue;
 }
 
 .container-hashtag {
@@ -345,28 +379,24 @@
 .container-hashtag .line1 {
   grid-column: 2/3;
   grid-row: 1/6;
-  background-color: cornflowerblue;
   opacity: 0;
   animation: topShow ease 2s 1 2.5s forwards;
 }
 .container-hashtag .line2 {
   grid-column: 4/5;
   grid-row: 1/6;
-  background-color: cornflowerblue;
   opacity: 0;
   animation: bottomShow ease 2s 1 2.5s forwards;
 }
 .container-hashtag .line3 {
   grid-column: 1/6;
   grid-row-start: 2;
-  background-color: lightblue;
   opacity: 0;
   animation: leftShow ease 2s 1 2.5s forwards;
 }
 .container-hashtag .line4 {
   grid-column: 1/6;
   grid-row-start: 4;
-  background-color: lightblue;
   opacity: 0;
   animation: rightShow ease 2s 1 2.5s forwards;
 }
@@ -465,7 +495,6 @@
 }
 
 .container-welcom {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -520,8 +549,54 @@
   opacity: 0;
 }
 
-body {
+html[data-theme=dark] {
+  background-color: #434b4f;
+}
+html[data-theme=dark] .line1,
+html[data-theme=dark] .line2,
+html[data-theme=dark] .line3,
+html[data-theme=dark] .line4,
+html[data-theme=dark] .cube > .side {
+  background-color: whitesmoke;
+}
+html[data-theme=dark] .container-title > span {
+  color: whitesmoke;
+}
+html[data-theme=dark] .nav-link,
+html[data-theme=dark] .navbar-text {
+  color: darkgrey;
+}
+html[data-theme=dark] .custom-checkbox .checkbox + label:before {
+  background-color: #434b4f;
+}
+html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
+  background-color: #434b4f;
+}
+
+html[data-theme=light] {
   background-color: lavender;
+}
+html[data-theme=light] .line1, html[data-theme=light] .line2 {
+  background-color: cornflowerblue;
+}
+html[data-theme=light] .line3, html[data-theme=light] .line4 {
+  background-color: lightblue;
+}
+html[data-theme=light] .container-title span {
+  color: cornflowerblue;
+}
+html[data-theme=light] .cube > .side {
+  background-color: lavender;
+}
+html[data-theme=light] .custom-checkbox .checkbox + label:before {
+  background-color: cornflowerblue;
+}
+html[data-theme=light] .custom-checkbox .checkbox:checked + label:before {
+  background-color: cornflowerblue;
+}
+
+body {
+  background-color: inherit;
 }
 
 /*# sourceMappingURL=styles.css.map */
