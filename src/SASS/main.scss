@@ -1,154 +1,22 @@
-@import 'colors', 'fontSizes', 'keyframes', 'defaultMixins', 'default';
-@import 'spinnerCube';
-@import 'customCheckbox';
-@import "brand";
-@import 'title', 'hashtag', 'cards', 'rotatingCard', 'glassEffect', 'home';
-@import 'spinnerMainWeather';
+@import 'colors', 'fontSizes', 'keyframes', 'default';
+@import 'themes';
+@import './stylesOfCard/glassEffect', './stylesOfCard/rotatingCard';
 
-$color-dark-1: #434b4f;
-$color-dark-2: whitesmoke;
-$color-dark-3: darkgrey;
+@import './spinners/spinnerCube', './spinners/spinnerMainWeather';
 
-$color-light-1: lavender;
-$color-light-2: lightblue;
-$color-light-3: cornflowerblue;
+@import './nav/customCheckbox';
 
+@import './home/brand', './home/title', './home/hashtag', './home/cards',  './home/homePage';
 
-html[data-theme="dark"] {
-  background-color: $color-dark-1;
-
-  .line1,
-  .line2,
-  .line3,
-  .line4,
-  .cube>.side {
-    background-color: $color-dark-2;
-  }
-
-  .container-title>span {
-    color: $color-dark-2;
-  }
-
-  .nav-link,
-  .navbar-text {
-    color: $color-dark-3
-  }
-
-  .custom-checkbox {
-    .checkbox+label:before {
-      background-color: $color-dark-1;
-    }
-
-    .checkbox:checked+label:before {
-      background-color: $color-dark-1;
-    }
-  }
-
-  #nav-container {
-    .navbar-toggler {
-      background-color: dimgrey;
-
-      .navbar-toggler-icon {
-        filter: invert(1);
-      }
-    }
-
-    .brand-container {
-      .brand-item {
-        background-color: dimgrey;
-
-        span {
-          color: white
-        }
-      }
-    }
-  }
-}
-
-
-html[data-theme="light"] {
-  background-color: $color-light-1;
-
-  .line1,
-  .line2 {
-    background-color: $color-light-3;
-  }
-
-  .line3,
-  .line4 {
-    background-color: $color-light-2;
-  }
-
-  .container-title {
-    span {
-      color: $color-light-3;
-    }
-  }
-
-  .cube>.side {
-    background-color: $color-light-1;
-  }
-
-  .custom-checkbox {
-    .checkbox+label:before {
-      background-color: $color-light-3;
-    }
-
-    .checkbox:checked+label:before {
-      background-color: $color-light-3;
-    }
-  }
-
-  #nav-container {
-    .navbar-toggler {
-      background-color: lightblue;
-
-      .navbar-toggler-icon {
-        filter: invert(1);
-      }
-    }
-
-    .brand-container {
-      .brand-item {
-        background-color: lightblue;
-
-        span {
-          color: cornflowerblue
-        }
-      }
-    }
-  }
-}
-
-
+@import "media";
 
 
 body {
+  height: 100vh;
   background-color: inherit;
+  color: inherit;
 }
 
-@media (max-width: 991px) {
-  #nav-container {
-    position: relative;
-    flex-direction: row-reverse;
-  }
-
-  .navbar-collapse {
-    position: absolute;
-    top: 35px;
-    left: 10px;
-    z-index: 10;
-
-    .navbar-nav {
-      margin-top: 10px;
-      max-width: 200px;
-      border-radius: 10px;
-      background-color: white;
-      align-items: flex-start;
-
-      .custom-checkbox {
-        margin: 0 auto 0 0.5rem;
-      }
-    }
-  }
+#root {
+  height: 100%;
 }

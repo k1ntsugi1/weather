@@ -128,21 +128,16 @@
     transform: rotateY(-270deg);
   }
 }
-.bg-black {
-  background-color: black;
+.nav-link:hover,
+.nav-item:hover,
+.nav-link:focus,
+.nav-item:focus {
+  text-decoration: underline;
 }
 
 .keyfr-showTop {
   opacity: 0;
   animation: topShow 3s ease 2.5s forwards;
-}
-
-.border-black {
-  border: 1px solid black;
-}
-
-.btn:hover {
-  background-color: cornflowerblue;
 }
 
 .border-radius-50 {
@@ -151,6 +146,165 @@
 
 .b-rad-10 {
   border-radius: 10px;
+}
+
+html[data-theme=dark] {
+  background-color: #434b4f;
+  color: whitesmoke;
+}
+html[data-theme=dark] .brand-item {
+  color: whitesmoke;
+}
+html[data-theme=dark] .nav-link,
+html[data-theme=dark] .navbar-text {
+  color: darkgrey;
+}
+html[data-theme=dark] .navbar {
+  --bs-navbar-active-color: darkgrey;
+}
+html[data-theme=dark] .line1,
+html[data-theme=dark] .line2,
+html[data-theme=dark] .line3,
+html[data-theme=dark] .line4,
+html[data-theme=dark] .cube > .side {
+  background-color: whitesmoke;
+}
+html[data-theme=dark] .custom-checkbox .checkbox + label:before {
+  background-color: darkgrey;
+}
+html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
+  background-color: #434b4f;
+}
+html[data-theme=dark] #nav-container .navbar-toggler {
+  background-color: darkgrey;
+}
+html[data-theme=dark] #nav-container .navbar-toggler .navbar-toggler-icon {
+  filter: invert(1);
+}
+html[data-theme=dark] #nav-container .brand-container .brand-item {
+  background-color: darkgrey;
+}
+html[data-theme=dark] .btn:hover,
+html[data-theme=dark] .form-control:focus,
+html[data-theme=dark] .form-select:focus {
+  box-shadow: 0 0 5px 2px #434b4f inset;
+}
+html[data-theme=dark] .btn {
+  border: 1px solid whitesmoke;
+  filter: invert(1);
+}
+
+html[data-theme=light] {
+  background-color: lavender;
+  color: cornflowerblue;
+}
+html[data-theme=light] .brand-item {
+  color: cornflowerblue;
+}
+html[data-theme=light] .navbar {
+  --bs-navbar-active-color: #434b4f;
+}
+html[data-theme=light] .line1,
+html[data-theme=light] .line2 {
+  background-color: cornflowerblue;
+}
+html[data-theme=light] .line3,
+html[data-theme=light] .line4 {
+  background-color: lightblue;
+}
+html[data-theme=light] .cube > .side {
+  background-color: lavender;
+}
+html[data-theme=light] .custom-checkbox .checkbox + label:before {
+  background-color: cornflowerblue;
+}
+html[data-theme=light] .custom-checkbox .checkbox:checked + label:before {
+  background-color: cornflowerblue;
+}
+html[data-theme=light] #nav-container .navbar-toggler {
+  background-color: lightblue;
+}
+html[data-theme=light] #nav-container .navbar-toggler .navbar-toggler-icon {
+  filter: invert(1);
+}
+html[data-theme=light] #nav-container .brand-container .brand-item {
+  background-color: lightblue;
+}
+html[data-theme=light] .btn:hover,
+html[data-theme=light] .form-control:focus,
+html[data-theme=light] .form-select:focus {
+  box-shadow: 0 0 5px 1px cornflowerblue inset;
+}
+html[data-theme=light] .btn {
+  border: 1px solid #434b4f;
+}
+
+.container-glass {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.container-glass .back-face-of-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(147, 161, 255, 0.4);
+  z-index: 2;
+}
+.container-glass .front-face-of-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
+
+.rotate-container {
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  color: white;
+}
+.rotate-container .rotate-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transition: transform 1s;
+}
+.rotate-container .rotate-card .front-face-of-card {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, lightblue, pink);
+}
+.rotate-container .rotate-card .back-face-of-card {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, pink, lightblue);
+  transform: rotateX(180deg);
+}
+.rotate-container:hover .rotate-card {
+  transform: rotateX(180deg);
+}
+.rotate-container:hover .rotate-card .back-face-of-card {
+  transform: rotateX(180deg);
 }
 
 .container-smallCube {
@@ -321,6 +475,45 @@
   transform: rotateX(90deg) translateZ(100px);
 }
 
+.container-spinner-main-weather {
+  margin-top: 20px;
+  padding: 20px;
+  min-height: 200px;
+  min-width: 300px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, pink, lightblue);
+  z-index: 5;
+  opacity: 0;
+  animation: rotateX 3s ease 3.5s forwards;
+}
+.container-spinner-main-weather .first-block {
+  height: 150px;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.container-spinner-main-weather .second-block {
+  width: 50%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.container-spinner-main-weather .item-spinner {
+  height: 15%;
+  width: 100%;
+  background: lavender;
+}
+.container-spinner-main-weather .item-spinner .spinner {
+  height: 100%;
+  width: 20%;
+  animation: leftShowSmall linear 1s infinite alternate;
+  background-color: aliceblue;
+  opacity: 0;
+}
+
 .custom-checkbox {
   position: relative;
   width: 38px;
@@ -442,74 +635,6 @@
   object-fit: cover;
 }
 
-.rotate-container {
-  width: 100%;
-  height: 100%;
-  font-weight: bold;
-  color: white;
-}
-.rotate-container .rotate-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  transition: transform 1s;
-}
-.rotate-container .rotate-card .front-face-of-card {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, lightblue, pink);
-}
-.rotate-container .rotate-card .back-face-of-card {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, pink, lightblue);
-  transform: rotateX(180deg);
-}
-.rotate-container:hover .rotate-card {
-  transform: rotateX(180deg);
-}
-.rotate-container:hover .rotate-card .back-face-of-card {
-  transform: rotateX(180deg);
-}
-
-.container-glass {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.container-glass .back-face-of-glass {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(147, 161, 255, 0.4);
-  z-index: 2;
-}
-.container-glass .front-face-of-glass {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
-  font-size: 20px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(4px);
-  z-index: 3;
-}
-
 .container-welcom {
   display: flex;
   flex-wrap: wrap;
@@ -526,142 +651,42 @@
   gap: 20px;
 }
 
-.container-spinner-main-weather {
-  margin-top: 20px;
-  padding: 20px;
-  min-height: 200px;
-  min-width: 300px;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, pink, lightblue);
-  z-index: 5;
-  opacity: 0;
-  animation: rotateX 3s ease 3.5s forwards;
-}
-.container-spinner-main-weather .first-block {
-  height: 150px;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-.container-spinner-main-weather .second-block {
-  width: 50%;
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-.container-spinner-main-weather .item-spinner {
-  height: 15%;
-  width: 100%;
-  background: lavender;
-}
-.container-spinner-main-weather .item-spinner .spinner {
-  height: 100%;
-  width: 20%;
-  animation: leftShowSmall linear 1s infinite alternate;
-  background-color: aliceblue;
-  opacity: 0;
-}
-
-html[data-theme=dark] {
-  background-color: #434b4f;
-}
-html[data-theme=dark] .line1,
-html[data-theme=dark] .line2,
-html[data-theme=dark] .line3,
-html[data-theme=dark] .line4,
-html[data-theme=dark] .cube > .side {
-  background-color: whitesmoke;
-}
-html[data-theme=dark] .container-title > span {
-  color: whitesmoke;
-}
-html[data-theme=dark] .nav-link,
-html[data-theme=dark] .navbar-text {
-  color: darkgrey;
-}
-html[data-theme=dark] .custom-checkbox .checkbox + label:before {
-  background-color: #434b4f;
-}
-html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
-  background-color: #434b4f;
-}
-html[data-theme=dark] #nav-container .navbar-toggler {
-  background-color: dimgrey;
-}
-html[data-theme=dark] #nav-container .navbar-toggler .navbar-toggler-icon {
-  filter: invert(1);
-}
-html[data-theme=dark] #nav-container .brand-container .brand-item {
-  background-color: dimgrey;
-}
-html[data-theme=dark] #nav-container .brand-container .brand-item span {
-  color: white;
-}
-
-html[data-theme=light] {
-  background-color: lavender;
-}
-html[data-theme=light] .line1,
-html[data-theme=light] .line2 {
-  background-color: cornflowerblue;
-}
-html[data-theme=light] .line3,
-html[data-theme=light] .line4 {
-  background-color: lightblue;
-}
-html[data-theme=light] .container-title span {
-  color: cornflowerblue;
-}
-html[data-theme=light] .cube > .side {
-  background-color: lavender;
-}
-html[data-theme=light] .custom-checkbox .checkbox + label:before {
-  background-color: cornflowerblue;
-}
-html[data-theme=light] .custom-checkbox .checkbox:checked + label:before {
-  background-color: cornflowerblue;
-}
-html[data-theme=light] #nav-container .navbar-toggler {
-  background-color: lightblue;
-}
-html[data-theme=light] #nav-container .navbar-toggler .navbar-toggler-icon {
-  filter: invert(1);
-}
-html[data-theme=light] #nav-container .brand-container .brand-item {
-  background-color: lightblue;
-}
-html[data-theme=light] #nav-container .brand-container .brand-item span {
-  color: cornflowerblue;
-}
-
-body {
-  background-color: inherit;
-}
-
 @media (max-width: 991px) {
   #nav-container {
     position: relative;
     flex-direction: row-reverse;
   }
-  .navbar-collapse {
+  #nav-container .navbar-collapse {
     position: absolute;
-    top: 35px;
+    top: 33px;
     left: 10px;
     z-index: 10;
   }
-  .navbar-collapse .navbar-nav {
+  #nav-container .navbar-collapse .navbar-nav {
     margin-top: 10px;
     max-width: 200px;
     border-radius: 10px;
     background-color: white;
     align-items: flex-start;
   }
-  .navbar-collapse .navbar-nav .custom-checkbox {
-    margin: 0 auto 0 0.5rem;
+}
+@media (max-width: 767px) {
+  #nav-container {
+    flex-direction: row;
   }
+  #nav-container .navbar-collapse {
+    right: 10px;
+    left: auto;
+  }
+}
+body {
+  height: 100vh;
+  background-color: inherit;
+  color: inherit;
+}
+
+#root {
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

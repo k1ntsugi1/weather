@@ -13,7 +13,17 @@
         },
         "title": "найди свою погоду",
         "searchField": {
-            "placeholder": "Поиск"
+            "placeholder": "Поиск",
+            "selectField": {
+                "currentWeather": "Текущая",
+                "forecastWeather": "На 5 дней"
+            },
+            "errorEmptyField": "Введите что-нибудь :)"
         }
+    },
+    "undefindPage": {
+        "haveNotFoundPage": "Страница не найдена",
+        "suggestion": "Но вы можете перейти на",
+        "toHome": " домашнюю страницы"
     }
 }

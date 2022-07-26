@@ -1,0 +1,31 @@
+@media (max-width: 991px) {
+    #nav-container {
+      position: relative;
+      flex-direction: row-reverse;
+      .navbar-collapse {
+        position: absolute;
+        top: 33px;
+        left: 10px;
+        z-index: 10;
+        .navbar-nav {
+          margin-top: 10px;
+          max-width: 200px;
+          border-radius: 10px;
+          background-color: white;
+          align-items: flex-start;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 767px) {
+    #nav-container {
+      flex-direction: row;
+      .navbar-collapse {
+        right: 10px;
+        left: auto;
+      }
+    }
+  
+  }
+  

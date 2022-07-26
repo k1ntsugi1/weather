@@ -6,14 +6,24 @@
             "randomPoint": "Random point",
             "lang": {
                 "currentLang": "Language",
-                "ru":"Russians",
+                "ru":"Russian",
                 "en":"English"
             },
             "currentPoint": "Current point"
         },
         "title": "find your weather",
         "searchField": {
-            "placeholder": "Search"
+            "placeholder": "Search",
+            "selectField": {
+                "currentWeather": "Current",
+                "forecastWeather": "For 5 days"
+            },
+            "errorEmptyField": "Enter something :)"
         }
+    },
+    "undefindPage": {
+        "haveNotFoundPage": "Page not found",
+        "suggestion": "But you can go to",
+        "toHome": " home page"
     }
 }

@@ -1,18 +1,23 @@
-.bg-black {
-    background-color: black;
+@mixin pos-center {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.nav-link:hover,
+.nav-item:hover,
+.nav-link:focus,
+.nav-item:focus {
+  text-decoration: underline;
+}
+
 .keyfr-showTop {
     opacity: 0;
     animation: topShow 3s ease 2.5s forwards;
 }
 
-.border-black {
-    border: 1px solid black
-}
 
-.btn:hover {
-    background-color: cornflowerblue;
-}
 
 .border-radius-50 {
     border-radius: 50px;

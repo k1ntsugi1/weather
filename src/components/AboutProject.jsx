@@ -1,9 +1,10 @@
 import React from "react";
+import axios from "axios";
 
-function AboutProject() {
+const  AboutProject = () => {
         return (
-            <div className="mt-5 container">
-                <div>
+            <section className="mt-5 p-5 container-about-projectPage border border-dark rounded">
+                <div className="d-flex flex-wrap">
                     <div>
                         <h3>О проекте</h3>
                         <p className="m-0">Задачами этого проекта является:</p>
@@ -27,8 +28,11 @@ function AboutProject() {
                             </li>
                         </ul>
                     </div>
+                    <div className="max-w-50">
+                        Избражение проекта
+                    </div>
                 </div>
-            </div>
+            </section>
     )
 }
 

@@ -5,7 +5,7 @@ import resources from './resources';
 i18n.use(initReactI18next)
   .init({
     debug: true,
-    fallbackLng: 'ru',
+    fallbackLng: localStorage.getItem('current-lang') ?? 'ru',
     resources,
     interpolation: {
       escapeValue: false,

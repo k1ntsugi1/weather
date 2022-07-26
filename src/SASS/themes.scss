@@ -1,0 +1,124 @@
+html[data-theme="dark"] {
+  background-color: $color-dark-1;
+  color: $color-dark-2;
+
+  .brand-item {
+    color: $color-dark-2;
+  }
+
+  .nav-link,
+  .navbar-text {
+    color: $color-dark-3;
+  }
+
+  .navbar {
+    --bs-navbar-active-color: darkgrey;
+  }
+
+  .line1,
+  .line2,
+  .line3,
+  .line4,
+  .cube>.side {
+    background-color: $color-dark-2;
+  }
+
+  .custom-checkbox {
+    .checkbox+label:before {
+      background-color: $color-dark-3;
+    }
+
+    .checkbox:checked+label:before {
+      background-color: $color-dark-1;
+    }
+  }
+
+  #nav-container {
+    .navbar-toggler {
+      background-color: $color-dark-3;
+
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+    }
+
+    .brand-container {
+      .brand-item {
+        background-color: $color-dark-3;
+      }
+    }
+  }
+
+  .btn:hover,
+  .form-control:focus,
+  .form-select:focus {
+    box-shadow: 0 0 5px 2px $color-dark-1 inset;
+  }
+  .btn {
+    border: 1px solid $color-dark-2;
+    filter: invert(1);
+  }
+}
+
+
+html[data-theme="light"] {
+  background-color: $color-light-1;
+  color: $color-light-3;
+
+  .brand-item {
+    color: $color-light-3;
+  }
+
+  .navbar {
+    --bs-navbar-active-color: #434b4f;
+  }
+
+  .line1,
+  .line2 {
+    background-color: $color-light-3;
+  }
+
+  .line3,
+  .line4 {
+    background-color: $color-light-2;
+  }
+
+  .cube>.side {
+    background-color: $color-light-1;
+  }
+
+  .custom-checkbox {
+    .checkbox+label:before {
+      background-color: $color-light-3;
+    }
+
+    .checkbox:checked+label:before {
+      background-color: $color-light-3;
+    }
+  }
+
+  #nav-container {
+    .navbar-toggler {
+      background-color: $color-light-2;
+
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+    }
+
+    .brand-container {
+      .brand-item {
+        background-color: $color-light-2;
+      }
+    }
+  }
+
+  .btn:hover,
+  .form-control:focus,
+  .form-select:focus {
+    box-shadow: 0 0 5px 1px $color-light-3 inset;
+  }
+  .btn {
+    border: 1px solid $color-dark-1;
+  }
+}
