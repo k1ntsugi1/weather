@@ -2,21 +2,39 @@ import { useFormik } from "formik";
 import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
+import { batch, useDispatch, useSelector } from "react-redux";
+import { actionsDataOfSearching } from "../../slices/dataOfSearchingSlice";
+import { selectorsDataResultOfSearching, actionsDataResultOfSearching, fetchDataOfWeather } from "../../slices/dataResultOfSearchingSlice";
 
 function SearchField({ t }) {
+    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             point: '',
-            selectByCategory: 'weather'
+            type: 'weather'
+        },
+        validateOnBlur: false,
+        validateOnChange: false,
+        onSubmit: (values) => {
+            const currentPoint =  values.point.trim();
+            const currentType =  values.type.trim();
+            const idsForRemoving = ids.filter((id) => id.includes(`${values.type}_${values.point}`));
+            batch(() => {
+                dispatch(actionsDataOfSearching.setCurrentPoint({currentPoint}));
+                dispatch(actionsDataOfSearching.setCurrentType({currentType}));
+                dispatch(actionsDataResultOfSearching.removeItems({idsForRemoving}));
+                dispatch(fetchDataOfWeather())
+            })
         }
     })
     return (
-        <Form noValidate className='w-100 d-flex'>
+        <Form noValidate className='w-100 d-flex' onSubmit={formik.handleSubmit}>
             <InputGroup>
                 <Form.Control
                     id="point"
                     name="point"
-                    aria-label="searchField"
+                    aria-label="search-field"
                     placeholder={t("home.searchField.placeholder")}
                     className="border-dark"
                     onChange={formik.handleChange} />
@@ -31,8 +49,8 @@ function SearchField({ t }) {
 
             <Form.Select
                 size="sm"
-                id="selectByCategory"
-                name="selectByCategory"
+                id="type"
+                name="type"
                 aria-label="Select type of search"
                 value={formik.type}
                 onChange={formik.handleChange}

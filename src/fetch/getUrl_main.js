@@ -1,5 +1,5 @@
-const getUrl_main = (type, currentPoint, currentLang) => {
-    const mainUrl = `https://api.openweathermap.org/data/2.5/${type}?`;
+const getUrl_main = (currentType, currentPoint, currentLang) => {
+    const mainUrl = `https://api.openweathermap.org/data/2.5/${currentType}?`;
     const point = `q=${currentPoint}`
     const lang=`&lang=${currentLang}`;
     const units = currentLang === 'ru' ? `&units=metric` : '';

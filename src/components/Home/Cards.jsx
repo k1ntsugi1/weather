@@ -9,6 +9,9 @@ import ImgRayzan from '../../images/cities/rayzan.jpg';
 import ImgEkaterinburg from '../../images/cities/ekaterinburg.jpg';
 import ImgUfa from '../../images/cities/ufa.jpg';
 function Cards() {
+    const images = require.context('../../images/cities', true, /\.(jpg|png)$/i);
+    const paths = images.keys();
+    console.log(images(paths[0]))
     return (
         <div className="container-cities">
             <div className="container-img rotate-container">

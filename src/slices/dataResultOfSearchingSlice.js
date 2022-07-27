@@ -10,14 +10,14 @@ import parseData from "../fetch/parseData";
 
 export const fetchDataOfWeather = createAsyncThunk(
     'weather/fetchData',
-    async (_, thunkAPI) => {
+    async (defaultPoint, thunkAPI) => {
         const state = thunkAPI.getState();
-        const { currentPoint, currentLang, type } = state.dataOfSearching;
-
-        const url = getUrl_main(type, currentPoint, currentLang);
+        const { currentPoint,  currentType } = defaultPoint ? defaultPoint : state.dataOfSearching;
+        const { currentLang} = state.dataOfSearching;
+        const url = getUrl_main(currentType, currentPoint, currentLang);
         const response = await axios.get(url);
-        const parsedData = parseData(response.data);
-        return {type, parsedData};
+        const parsedData = parseData(currentType, currentPoint, response.data);
+        return { parsedData };
     }
 );
 
@@ -28,7 +28,10 @@ const dataResultOfSearchingSlice = createSlice({
     name: 'data-result-of-searching-slice',
     initialState,
     reducers: {
-
+        removeItems(state, {payload: {idsForRemoving}}) {
+            weatherAdapter.removeMany(state, idsForRemoving);
+        },
+        removeAllWeathers: weatherAdapter.removeAll,
     },
     extraReducers: (builder) => {
         builder
@@ -37,11 +40,13 @@ const dataResultOfSearchingSlice = createSlice({
             state.error = null;
         })
         .addCase(fetchDataOfWeather.fulfilled, (state, { payload: { parsedData } }) => {
+            console.log(parsedData, 'parsedData1')
             state.loading = 'fulfilled';
             state.error = null;
-            booksAdapter.upsertMany(state, parsedData);
+            weatherAdapter.addMany(state, parsedData);
         })
         .addCase(fetchDataOfWeather.rejected, (state, {error}) => {
+            console.log(error)
             state.loading = 'error';  
             state.error = error;  
         })

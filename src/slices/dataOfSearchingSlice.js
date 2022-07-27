@@ -5,21 +5,21 @@ const dataOfSearchingSlice = createSlice({
     initialState: {
         currentPoint: null,
         currentLang: localStorage.getItem('current-lang') ?? 'ru',
-        type: null,
+        currentType: null,
     },
     reducers: {
-        setCurrentPoint(state, { payload: {currentPoint}}) {
+        setCurrentPoint(state, { payload: { currentPoint }}) {
             state.currentPoint = currentPoint;
         },
-        setCurrentLang(state, { payload: {currentLang}}) {
+        setCurrentLang(state, { payload: { currentLang }}) {
             state.currentLang = currentLang;
         },
-        setCurrentType(state, { payload: {currentType}}) {
+        setCurrentType(state, { payload: { currentType }}) {
             state.currentType = currentType;
         }
     },
 });
 
-export const actionsOfSearchingData = dataOfSearchingSlice.actions;
+export const actionsDataOfSearching = dataOfSearchingSlice.actions;
 
 export default dataOfSearchingSlice.reducer;

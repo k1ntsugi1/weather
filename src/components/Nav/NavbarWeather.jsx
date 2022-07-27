@@ -4,16 +4,20 @@ import SwitchTheme from "./SwitchTheme";
 import { Link } from "react-router-dom";
 import Brand from "../Home/Brand";
 import { withTranslation } from "react-i18next";
-import { actionsOfSearchingData } from "../../slices/dataOfSearchingSlice";
-import { useDispatch } from "react-redux";
+import { actionsDataOfSearching } from "../../slices/dataOfSearchingSlice";
+import { batch, useDispatch, useSelector } from "react-redux";
+import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 
 function NavbarWeather({ t, i18n }) {
     const dispatch = useDispatch();
-
+    const { currentPoint } = useSelector((state) => state.dataOfSearching)
     const changeLang = (lang) => {
         localStorage.setItem('current-lang', lang);
         i18n.changeLanguage(lang);
-        dispatch(actionsOfSearchingData.setCurrentLang({currentLang: lang}));
+        batch(() => {
+            dispatch(actionsDataResultOfSearching.removeAllWeathers());
+            dispatch(actionsDataOfSearching.setCurrentLang({ currentLang: lang }));
+        })
     }
     return (
         <Navbar expand="lg">
@@ -29,9 +33,12 @@ function NavbarWeather({ t, i18n }) {
                             <NavDropdown.Item as="button" onClick={() => changeLang('en')}>{t("home.navbar.lang.en")}</NavDropdown.Item>
                         </NavDropdown>
                         <SwitchTheme />
-                        <Navbar.Text className="mx-2">
-                            {t("home.navbar.currentPoint")}: Москва
-                        </Navbar.Text>
+                        {
+                            currentPoint &&
+                            <Navbar.Text className="mx-2">
+                                { t("home.navbar.currentPoint")}: {currentPoint} 
+                            </Navbar.Text>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Container>

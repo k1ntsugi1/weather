@@ -1,6 +1,8 @@
-const parseData = (data, type) => {
+import _ from 'lodash'
+const parseData = (type, point, data) => {
     const parser = {
         weather(data) {
+            console.log(data);
             const { dt, weather, main, wind, clouds = null, rain = null, snow = null } = data;
             const date = new Date(dt * 1000);
             const percentOfClouds = clouds ? clouds.all : null;
@@ -8,8 +10,10 @@ const parseData = (data, type) => {
             const mmSnowLast3H = snow ? snow['3h'] : null;
             return [
                 {
+                    id: _.uniqueId(`${type}_${point}_`),
+                    city: point,
                     date: date.toString(),
-                    weather,
+                    weather: weather[0],
                     main,
                     wind,
                     percentOfClouds,
@@ -20,9 +24,10 @@ const parseData = (data, type) => {
         },
         forecast(data) {
             const { list } = data;
-            return list.flatMap((item) => this.weather[item]);
+            return list.flatMap((item) => this.weather(item));
         },
-    }
+    };
+
     return parser[type](data);
 }
 
