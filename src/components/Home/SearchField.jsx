@@ -8,6 +8,7 @@ import { selectorsDataResultOfSearching, actionsDataResultOfSearching, fetchData
 
 function SearchField({ t }) {
     const ids = useSelector(selectorsDataResultOfSearching.selectIds);
+    const previousPoint = useSelector(state => state.dataOfSearching.currentPoint)
     const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
@@ -17,13 +18,18 @@ function SearchField({ t }) {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: (values) => {
-            const currentPoint =  values.point.trim();
-            const currentType =  values.type.trim();
-            const idsForRemoving = ids.filter((id) => id.includes(`${values.type}_${values.point}`));
+            const currentPoint = values
+                .point
+                .trim()
+                .split('')
+                .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
+                .join('');
+            const currentType = values.type.trim();
+            const idsForRemoving = ids.filter((id) => id.includes(`${values.type}_${values.point}`) ||  id.includes(`${values.type}_${previousPoint}`));
             batch(() => {
-                dispatch(actionsDataOfSearching.setCurrentPoint({currentPoint}));
-                dispatch(actionsDataOfSearching.setCurrentType({currentType}));
-                dispatch(actionsDataResultOfSearching.removeItems({idsForRemoving}));
+                dispatch(actionsDataOfSearching.setCurrentPoint({ currentPoint }));
+                dispatch(actionsDataOfSearching.setCurrentType({ currentType }));
+                dispatch(actionsDataResultOfSearching.removeItems({ idsForRemoving }));
                 dispatch(fetchDataOfWeather())
             })
         }
@@ -39,7 +45,7 @@ function SearchField({ t }) {
                     className="border-dark"
                     onChange={formik.handleChange} />
                 <Form.Control.Feedback type="invalid" tooltip>
-                {t("home.searchField.errorEmptyField")}
+                    {t("home.searchField.errorEmptyField")}
                 </Form.Control.Feedback>
                 <Button variant="" type="submit" className="rounded-right">
                     <i className="fa-solid fa-magnifying-glass"></i>

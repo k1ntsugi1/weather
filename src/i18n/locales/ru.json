@@ -25,5 +25,16 @@
         "haveNotFoundPage": "Страница не найдена",
         "suggestion": "Но вы можете перейти на",
         "toHome": " домашнюю страницы"
+    },
+    "defaultPoints": {
+        "moscow": "Москва",
+        "saintP": "Санкт-Петербург",
+        "chelyabinsk": "Челябинск",
+        "ekaterinburg": "Екатеринбург",
+        "kaliningrad": "Калининград",
+        "kazan": "Казань",
+        "rayzan": "Рязань",
+        "sochi": "Сочи",
+        "ufa": "Уфа"
     }
 }

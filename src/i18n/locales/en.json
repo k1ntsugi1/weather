@@ -25,5 +25,16 @@
         "haveNotFoundPage": "Page not found",
         "suggestion": "But you can go to",
         "toHome": " home page"
+    },
+    "defaultPoints": {
+        "moscow": "Moscow",
+        "saintP": "Saint-Peterburg",
+        "chelyabinsk": "Chelyabinsk",
+        "ekaterinburg": "Ekaterinburg",
+        "kaliningrad": "Kaliningrad",
+        "kazan": "Kazan",
+        "rayzan": "Rayzan",
+        "sochi": "Sochi",
+        "ufa": "Ufa"
     }
 }

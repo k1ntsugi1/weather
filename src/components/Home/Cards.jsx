@@ -1,173 +1,57 @@
-import React from "react";
-import ImgMoscow from '../../images/cities/moscow.jpg';
-import ImgSaintP from '../../images/cities/saintP.jpg';
-import ImgKazan from '../../images/cities/kazan.png'
-import ImgKaliningrad from '../../images/cities/kaliningrad.jpg'
-import ImgChelyabinsk from '../../images/cities/chelyabinsk.jpg'
-import ImgSochi from '../../images/cities/sochi.jpg'
-import ImgRayzan from '../../images/cities/rayzan.jpg';
-import ImgEkaterinburg from '../../images/cities/ekaterinburg.jpg';
-import ImgUfa from '../../images/cities/ufa.jpg';
+import React, { useEffect } from "react";
+import { batch, useDispatch, useSelector } from "react-redux";
+import { useDefaultPoints } from "../../hooks/useDefaultPoints";
+import { fetchDataOfWeather, selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
+import getUrl_img from "../../fetch/getUrl_img";
+
 function Cards() {
+    const dispatch = useDispatch();
+    const { points, currentType } = useDefaultPoints();
+
+    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
+    const idsCurrentType = ids.filter((id) => id.includes(`${currentType}`));
+    const idsDefaultPoints = idsCurrentType.slice(0, idsCurrentType.length - 1);
+
+    const allPoints = useSelector(selectorsDataResultOfSearching.selectEntities);
+
     const images = require.context('../../images/cities', true, /\.(jpg|png)$/i);
     const paths = images.keys();
-    console.log(images(paths[0]))
+    console.log(paths)
+    useEffect(() => {
+        points.forEach((point) => dispatch(fetchDataOfWeather({ currentPoint: point, currentType })))
+
+    }, [points])
     return (
         <div className="container-cities">
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
+            {idsDefaultPoints.map((id) => {
+                const { city, weather, main } = allPoints[id];
+                const imgPath = paths.find((path) => path.includes(city))
+                return (
+                    <div className="container-img rotate-container" key={id}>
+                        <div className="rotate-card">
+                            <div className="back-face-of-card container-glass b-rad-10">
+                                <div className="back-face-of-glass b-rad-10"></div>
+                                <div className="front-face-of-glass b-rad-10 d-flex">
+                                    <div className="d-flex flex-column">
+                                        <img src={getUrl_img(weather.icon)} alt="" width='50px' height='50px'/>
+                                        <small>{main.temp}</small>
+                                        <small>{main.feels_like}</small>
+                                    </div>
+                                     
+                                    <div className="d-flex flex-column text-end">
+                                        <small>{city}</small>
+                                        <small>{weather.description}</small>
+                                    </div>
+                                </div>
                             </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="moscow" src={ImgMoscow} alt="ImgMoscow" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
+                            <div className="front-face-of-card b-rad-10">
+                                <img id="moscow" src={images(imgPath)} alt="ImgMoscow" className="city-img b-rad-10" />
                             </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="saintP" src={ImgSaintP} alt="ImgSaintP" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="kazan" src={ImgKazan} alt="ImgKazan" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="kaliningrad" src={ImgKaliningrad} alt="ImgKaliningrad" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="chelyabinsk" src={ImgChelyabinsk} alt="ImgChelyabinsk" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="sochi" src={ImgSochi} alt="ImgSochi" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="sochi" src={ImgEkaterinburg} alt="ImgEkaterinburg" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="sochi" src={ImgRayzan} alt="ImgRayzan" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-            <div className="container-img rotate-container">
-                <div className="rotate-card">
-                    <div className="back-face-of-card container-glass b-rad-10">
-                        <div className="back-face-of-glass b-rad-10"></div>
-                        <div className="front-face-of-glass b-rad-10 d-flex">
-                            <div className="d-flex flex-column text-center">
-                                <div className="h2">+23</div>
-                                <div>Москва</div>
-                            </div>
-                            <img src={require('../../gismeteo-icons/new/d_c1_rs1.svg')} alt="" width='80px' height='80px' />
-                        </div>
-                    </div>
-                    <div className="front-face-of-card b-rad-10">
-                        <img id="sochi" src={ImgUfa} alt="ImgUfa" className="city-img b-rad-10" />
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div >
+                    </div >
+                )
+            })}
+        </div >
     )
 }
 

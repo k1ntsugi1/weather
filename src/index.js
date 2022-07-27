@@ -9,12 +9,17 @@ import store from './slices/index.js';
 import { BrowserRouter } from "react-router-dom"
 import App from './App';
 
+import DefaultPointsProvider from './DefaultPointsProvider';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Provider store={store}>
-            <App />
+            <DefaultPointsProvider>
+                <App />
+            </DefaultPointsProvider>
         </Provider>
     </BrowserRouter>
 );
