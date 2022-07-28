@@ -1,51 +1,3 @@
-.fs-7 {
-  font-size: 64px;
-  line-height: 96px;
-}
-
-.fs-6 {
-  font-size: 56px;
-  line-height: 84px;
-}
-
-.fs-5 {
-  font-size: 48px;
-  line-height: 72px;
-}
-
-.fs-4 {
-  font-size: 40px;
-  line-height: 60px;
-}
-
-.fs-3 {
-  font-size: 32px;
-  line-height: 48px;
-}
-
-.fs-2 {
-  font-size: 23px;
-  line-height: 36px;
-}
-
-.fs-1 {
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.fs-small {
-  font-size: 12.8px;
-  line-height: 19.2px;
-}
-
-.fw-bold {
-  font-weight: bold;
-}
-
-.fw-normal {
-  font-weight: normal;
-}
-
 @keyframes topShow {
   0% {
     transform: translateY(-200%);
@@ -623,7 +575,7 @@ html[data-theme=light] .btn {
   position: relative;
   width: 100%;
   min-width: 230px;
-  height: 80px;
+  height: 100px;
   cursor: pointer;
 }
 .container-cities .container-img .city-img {
@@ -633,6 +585,15 @@ html[data-theme=light] .btn {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.container-cities .container-img .icon-weather {
+  position: absolute;
+  right: -8px;
+  top: 10px;
+}
+.container-cities .container-img .deg {
+  font-size: 10px;
+  vertical-align: top;
 }
 
 .container-welcom {

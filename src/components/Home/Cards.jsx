@@ -31,16 +31,17 @@ function Cards() {
                         <div className="rotate-card">
                             <div className="back-face-of-card container-glass b-rad-10">
                                 <div className="back-face-of-glass b-rad-10"></div>
-                                <div className="front-face-of-glass b-rad-10 d-flex">
-                                    <div className="d-flex flex-column">
-                                        <img src={getUrl_img(weather.icon)} alt="" width='50px' height='50px'/>
-                                        <small>{main.temp}</small>
-                                        <small>{main.feels_like}</small>
+                                <div className="px-3 front-face-of-glass b-rad-10 d-flex justify-content-between">
+                                <div className="w-50 d-flex flex-column text-start">
+                                        <p className="m-0 h4">{city}</p>
+                                        <p className="m-0 fs-6">Температура:</p>
+                                        <p className="m-0 fs-6">Ощущается как:</p>
+                                        <p className="m-0 fs-6 fw-light text-muted">{weather.description}</p>
                                     </div>
-                                     
-                                    <div className="d-flex flex-column text-end">
-                                        <small>{city}</small>
-                                        <small>{weather.description}</small>
+                                    <img src={getUrl_img(weather.icon)} alt="icon-weather" className="icon-weather" width='70px' height='70px'/>
+                                    <div className="mx-auto d-flex flex-column">
+                                        <p className="m-0 fs-6">{main.feels_like}<span className="deg">O</span></p>
+                                        <p className="m-0 fs-6">{main.temp}<span className="deg">O</span></p>
                                     </div>
                                 </div>
                             </div>

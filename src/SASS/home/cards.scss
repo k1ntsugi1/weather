@@ -10,7 +10,7 @@
         position: relative;
         width: 100%;
         min-width: 230px;
-        height: 80px;
+        height: 100px;
         cursor: pointer;
             .city-img {
                 position: absolute;
@@ -20,7 +20,15 @@
                 height: 100%;
                 object-fit: cover;
             }
+        .icon-weather {
+            position: absolute;
+            right: -8px;
+            top: 10px;
         }
-
+        .deg {
+            font-size: 10px;
+            vertical-align: top;
+        }
+    }
 }
 
