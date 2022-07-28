@@ -9,6 +9,7 @@
                 "ru":"Russian",
                 "en":"English"
             },
+            "theme": "Theme:",
             "currentPoint": "Current point"
         },
         "title": "find your weather",
@@ -19,6 +20,10 @@
                 "forecastWeather": "For 5 days"
             },
             "errorEmptyField": "Enter something :)"
+        },
+        "cards": {
+            "feelsLike": "Feels like:",
+            "temp": "Temperature:"
         }
     },
     "undefindPage": {
@@ -28,12 +33,12 @@
     },
     "defaultPoints": {
         "moscow": "Moscow",
-        "saintP": "Saint-Peterburg",
+        "saintP": "Saint-Petersburg",
         "chelyabinsk": "Chelyabinsk",
         "ekaterinburg": "Ekaterinburg",
         "kaliningrad": "Kaliningrad",
         "kazan": "Kazan",
-        "rayzan": "Rayzan",
+        "ryazan": "Ryazan",
         "sochi": "Sochi",
         "ufa": "Ufa"
     }

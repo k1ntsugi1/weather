@@ -2,14 +2,18 @@ import { useFormik } from "formik";
 import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import { batch, useDispatch, useSelector } from "react-redux";
-import { actionsDataOfSearching } from "../../slices/dataOfSearchingSlice";
-import { selectorsDataResultOfSearching, actionsDataResultOfSearching, fetchDataOfWeather } from "../../slices/dataResultOfSearchingSlice";
+import {  useDispatch, useSelector } from "react-redux";
+import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
+import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
+import { useNavigate } from "react-router-dom";
+import { useDefaultPoints } from "../../hooks/useDefaultPoints";
 
 function SearchField({ t }) {
     const ids = useSelector(selectorsDataResultOfSearching.selectIds);
     const previousPoint = useSelector(state => state.dataOfSearching.currentPoint)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { defaultPoints } = useDefaultPoints();
     const formik = useFormik({
         initialValues: {
             point: '',
@@ -18,20 +22,8 @@ function SearchField({ t }) {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: (values) => {
-            const currentPoint = values
-                .point
-                .trim()
-                .split('')
-                .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
-                .join('');
-            const currentType = values.type.trim();
-            const idsForRemoving = ids.filter((id) => id.includes(`${values.type}_${values.point}`) ||  id.includes(`${values.type}_${previousPoint}`));
-            batch(() => {
-                dispatch(actionsDataOfSearching.setCurrentPoint({ currentPoint }));
-                dispatch(actionsDataOfSearching.setCurrentType({ currentType }));
-                dispatch(actionsDataResultOfSearching.removeItems({ idsForRemoving }));
-                dispatch(fetchDataOfWeather())
-            })
+            handlerAsyncThunk(defaultPoints, values.point, previousPoint, values.type, ids, dispatch);
+            navigate("/weather");
         }
     })
     return (

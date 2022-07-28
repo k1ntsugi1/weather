@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom"
 
 import NavbarWeather from './components/Nav/NavbarWeather';
 import HomePage from './components/Home/HomePage';
-
+import WeatherPage from './components/WeatherPage';
 import AboutProject from './components/AboutProject';
 import UndefinedPage from './components/UndefinedPage';
 
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="about" element={<AboutProject />} />
+          <Route path="weather" element={<WeatherPage />}></Route>
           <Route path="*" element={<UndefinedPage />} />
         </Routes>
       </div>

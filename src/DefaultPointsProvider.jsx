@@ -4,7 +4,7 @@ import { DefaultPointsContext } from "./index_Contexts";
 
 function DefaultPointsProvider({ t, children }) {
     const defaultPoints = {
-        points: [
+        defaultPoints: [
             t('defaultPoints.moscow'),
             t('defaultPoints.saintP'),
             t('defaultPoints.chelyabinsk'),
@@ -15,7 +15,7 @@ function DefaultPointsProvider({ t, children }) {
             t('defaultPoints.sochi'),
             t('defaultPoints.ufa'),
         ],
-        currentType: 'weather'
+        defaultType: 'weather'
     }
     return (
         <DefaultPointsContext.Provider value={defaultPoints}>

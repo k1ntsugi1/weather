@@ -437,7 +437,7 @@ html[data-theme=light] .btn {
   background: linear-gradient(45deg, pink, lightblue);
   z-index: 5;
   opacity: 0;
-  animation: rotateX 3s ease 3.5s forwards;
+  animation: rotateX 3s ease forwards;
 }
 .container-spinner-main-weather .first-block {
   height: 150px;
@@ -588,8 +588,8 @@ html[data-theme=light] .btn {
 }
 .container-cities .container-img .icon-weather {
   position: absolute;
-  right: -8px;
-  top: 10px;
+  right: -6px;
+  top: 14px;
 }
 .container-cities .container-img .deg {
   font-size: 10px;

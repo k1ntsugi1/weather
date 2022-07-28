@@ -40,7 +40,6 @@ const dataResultOfSearchingSlice = createSlice({
             state.error = null;
         })
         .addCase(fetchDataOfWeather.fulfilled, (state, { payload: { parsedData } }) => {
-            console.log(parsedData, 'parsedData1')
             state.loading = 'fulfilled';
             state.error = null;
             weatherAdapter.addMany(state, parsedData);
