@@ -11,7 +11,7 @@ import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearching
 function NavbarWeather({ t, i18n }) {
     const dispatch = useDispatch();
     const { currentPoint } = useSelector((state) => state.dataOfSearching)
-    const changeLang = (lang) => {
+    const switchLang = (lang) => {
         localStorage.setItem('current-lang', lang);
         i18n.changeLanguage(lang);
         batch(() => {
@@ -29,15 +29,15 @@ function NavbarWeather({ t, i18n }) {
                         <Link to="about" className="mx-2 nav-link">{t("home.navbar.aboutProject")}</Link>
                         <Link to="currentWeather" className="ms-2 me-auto nav-link">{t("home.navbar.randomPoint")}</Link>
                         <NavDropdown title={t("home.navbar.lang.currentLang")} className="mx-2">
-                            <NavDropdown.Item as="button" onClick={() => changeLang('ru')}>{t("home.navbar.lang.ru")}</NavDropdown.Item>
-                            <NavDropdown.Item as="button" onClick={() => changeLang('en')}>{t("home.navbar.lang.en")}</NavDropdown.Item>
+                            <NavDropdown.Item as="button" onClick={() => switchLang('ru')}>{t("home.navbar.lang.ru")}</NavDropdown.Item>
+                            <NavDropdown.Item as="button" onClick={() => switchLang('en')}>{t("home.navbar.lang.en")}</NavDropdown.Item>
                         </NavDropdown>
                         <SwitchTheme />
                         {
                             currentPoint &&
-                            <Navbar.Text className="mx-2">
+                            <Link to='weather' className="mx-2 nav-link">
                                 { t("home.navbar.currentPoint")}: {currentPoint} 
-                            </Navbar.Text>
+                            </Link>
                         }
                     </Nav>
                 </Navbar.Collapse>

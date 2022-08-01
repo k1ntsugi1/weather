@@ -15,7 +15,8 @@ function DefaultPointsProvider({ t, children }) {
             t('defaultPoints.sochi'),
             t('defaultPoints.ufa'),
         ],
-        defaultType: 'weather'
+        defaultType: 'weather',
+        statusOfPoint: 'disabled'
     }
     return (
         <DefaultPointsContext.Provider value={defaultPoints}>

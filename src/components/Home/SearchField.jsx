@@ -7,18 +7,35 @@ import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchi
 import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
 import { useDefaultPoints } from "../../hooks/useDefaultPoints";
+import * as Yup from 'yup';
 
 function SearchField({ t }) {
-    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
-    const previousPoint = useSelector(state => state.dataOfSearching.currentPoint)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { defaultPoints } = useDefaultPoints();
+
+    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
+    const {currentPoint: previousPoint, currentType} = useSelector(state => state.dataOfSearching);
+    const schemaForValidating = Yup.object().shape({
+            point: Yup
+                  .string()
+                  .test({
+                    name: 'emptyField',
+                    message: t("home.searchField.errorEmptyField"),
+                    test: (_, testContext) => {
+                        const point = testContext.parent.point ?? null;
+                        console.log(point)
+                        return !(point === null || point.trim() === '');
+                    }
+                    })
+                    
+    });
     const formik = useFormik({
         initialValues: {
             point: '',
             type: 'weather'
         },
+        validationSchema:  schemaForValidating,
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: (values) => {
@@ -35,9 +52,10 @@ function SearchField({ t }) {
                     aria-label="search-field"
                     placeholder={t("home.searchField.placeholder")}
                     className="border-dark"
+                    isInvalid={!!formik.errors.point}
                     onChange={formik.handleChange} />
                 <Form.Control.Feedback type="invalid" tooltip>
-                    {t("home.searchField.errorEmptyField")}
+                    {formik.errors.point}
                 </Form.Control.Feedback>
                 <Button variant="" type="submit" className="rounded-right">
                     <i className="fa-solid fa-magnifying-glass"></i>

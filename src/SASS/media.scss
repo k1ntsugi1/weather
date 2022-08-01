@@ -1,31 +1,67 @@
-@media (max-width: 991px) {
-    #nav-container {
-      position: relative;
-      flex-direction: row-reverse;
-      .navbar-collapse {
-        position: absolute;
-        top: 33px;
-        left: 10px;
-        z-index: 10;
-        .navbar-nav {
-          margin-top: 10px;
-          max-width: 200px;
-          border-radius: 10px;
-          background-color: white;
-          align-items: flex-start;
+@media (max-width: 2200px) {
+  .weather-container {
+    max-height: 240px;
+    .front-face-of-glass {
+      .container-additional-data {
+        .additional-data-item {
+          margin-right: auto;
+          width: 100%;
+          border-top: 1px solid black;
         }
       }
     }
   }
-  
-  @media (max-width: 767px) {
-    #nav-container {
-      flex-direction: row;
-      .navbar-collapse {
-        right: 10px;
-        left: auto;
+}
+
+@media (max-width: 991px) {
+  #nav-container {
+    position: relative;
+    flex-direction: row-reverse;
+
+    .navbar-collapse {
+      position: absolute;
+      top: 33px;
+      left: 10px;
+      z-index: 10;
+
+      .navbar-nav {
+        margin-top: 10px;
+        max-width: 200px;
+        border-radius: 10px;
+        background-color: white;
+        align-items: flex-start;
       }
     }
-  
   }
-  
+}
+
+@media (max-width: 767px) {
+  #nav-container {
+    flex-direction: row;
+
+    .navbar-collapse {
+      right: 10px;
+      left: auto;
+    }
+  }
+  .weather-container {
+    .front-face-of-glass {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      .container-data {
+        flex-direction: column;
+        .icon-container {
+          flex-direction: row-reverse;
+        }
+      }
+
+      .container-additional-data {
+        margin-right: 1rem;
+        flex-direction: column;
+      }
+    }
+
+  }
+}

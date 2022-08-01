@@ -11,12 +11,15 @@ import parseData from "../fetch/parseData";
 export const fetchDataOfWeather = createAsyncThunk(
     'weather/fetchData',
     async (defaultPoint, thunkAPI) => {
+        
         const state = thunkAPI.getState();
-        const { currentPoint,  currentType } = defaultPoint ? defaultPoint : state.dataOfSearching;
+        const { currentPoint,  currentType, statusOfPoint = 'active' } = defaultPoint ?? state.dataOfSearching;
         const { currentLang} = state.dataOfSearching;
+
         const url = getUrl_main(currentType, currentPoint, currentLang);
         const response = await axios.get(url);
-        const parsedData = parseData(currentType, currentPoint, response.data);
+        const parsedData = parseData(currentType, currentPoint, response.data, statusOfPoint);
+
         return { parsedData };
     }
 );

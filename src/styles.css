@@ -109,7 +109,7 @@ html[data-theme=dark] .brand-item {
 }
 html[data-theme=dark] .nav-link,
 html[data-theme=dark] .navbar-text {
-  color: darkgrey;
+  color: #777c8e;
 }
 html[data-theme=dark] .navbar {
   --bs-navbar-active-color: darkgrey;
@@ -122,19 +122,19 @@ html[data-theme=dark] .cube > .side {
   background-color: whitesmoke;
 }
 html[data-theme=dark] .custom-checkbox .checkbox + label:before {
-  background-color: darkgrey;
+  background-color: #777c8e;
 }
 html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
   background-color: #434b4f;
 }
 html[data-theme=dark] #nav-container .navbar-toggler {
-  background-color: darkgrey;
+  background-color: #777c8e;
 }
 html[data-theme=dark] #nav-container .navbar-toggler .navbar-toggler-icon {
   filter: invert(1);
 }
 html[data-theme=dark] #nav-container .brand-container .brand-item {
-  background-color: darkgrey;
+  background-color: #777c8e;
 }
 html[data-theme=dark] .btn:hover,
 html[data-theme=dark] .form-control:focus,
@@ -144,6 +144,9 @@ html[data-theme=dark] .form-select:focus {
 html[data-theme=dark] .btn {
   border: 1px solid whitesmoke;
   filter: invert(1);
+}
+html[data-theme=dark] .weather-container {
+  background: black;
 }
 
 html[data-theme=light] {
@@ -190,6 +193,9 @@ html[data-theme=light] .form-select:focus {
 html[data-theme=light] .btn {
   border: 1px solid #434b4f;
 }
+html[data-theme=light] .weather-container {
+  background: linear-gradient(45deg, cornflowerblue, lightblue);
+}
 
 .container-glass {
   position: relative;
@@ -211,10 +217,6 @@ html[data-theme=light] .btn {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
   font-size: 20px;
   font-weight: bold;
   background: rgba(255, 255, 255, 0.4);
@@ -430,17 +432,16 @@ html[data-theme=light] .btn {
 .container-spinner-main-weather {
   margin-top: 20px;
   padding: 20px;
-  min-height: 200px;
-  min-width: 300px;
+  min-height: 100px;
+  min-width: 230px;
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, pink, lightblue);
   z-index: 5;
-  opacity: 0;
-  animation: rotateX 3s ease forwards;
+  opacity: 1;
 }
 .container-spinner-main-weather .first-block {
-  height: 150px;
+  height: 100%;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -448,13 +449,13 @@ html[data-theme=light] .btn {
 }
 .container-spinner-main-weather .second-block {
   width: 50%;
-  height: 180px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 .container-spinner-main-weather .item-spinner {
-  height: 15%;
+  height: 10%;
   width: 100%;
   background: lavender;
 }
@@ -463,7 +464,7 @@ html[data-theme=light] .btn {
   width: 20%;
   animation: leftShowSmall linear 1s infinite alternate;
   background-color: aliceblue;
-  opacity: 0;
+  opacity: 1;
 }
 
 .custom-checkbox {
@@ -612,6 +613,16 @@ html[data-theme=light] .btn {
   gap: 20px;
 }
 
+@media (max-width: 2200px) {
+  .weather-container {
+    max-height: 240px;
+  }
+  .weather-container .front-face-of-glass .container-additional-data .additional-data-item {
+    margin-right: auto;
+    width: 100%;
+    border-top: 1px solid black;
+  }
+}
 @media (max-width: 991px) {
   #nav-container {
     position: relative;
@@ -638,6 +649,22 @@ html[data-theme=light] .btn {
   #nav-container .navbar-collapse {
     right: 10px;
     left: auto;
+  }
+  .weather-container .front-face-of-glass {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .weather-container .front-face-of-glass .container-data {
+    flex-direction: column;
+  }
+  .weather-container .front-face-of-glass .container-data .icon-container {
+    flex-direction: row-reverse;
+  }
+  .weather-container .front-face-of-glass .container-additional-data {
+    margin-right: 1rem;
+    flex-direction: column;
   }
 }
 body {

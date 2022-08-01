@@ -1,8 +1,8 @@
 import React from "react";
 
-function SpinnerMainWeather() {
+function SpinnerMainWeather({style}) {
     return (
-        <div className="container-spinner-main-weather container-glass b-rad-10">
+        <div className="container-spinner-main-weather container-glass b-rad-10" style={style}>
             <div className='back-face-of-glass b-rad-10'></div>
             <div className="front-face-of-glass d-flex justify-content-around b-rad-10">
                 <div className="first-block">

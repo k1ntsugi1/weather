@@ -11,13 +11,9 @@ const handlerAsyncThunk = (defaultPoints, point, previousPoint, type, ids, dispa
         .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
         .join('');
     const currentType = type.trim();
-    console.log( defaultPoints.includes(currentPoint), defaultPoints, currentPoint, previousPoint, type)
-    const idsForRemoving = ids.filter((id) => {
-        if(id.includes(`${currentType}_${currentPoint}`))  return true;
-        if(defaultPoints.includes(currentPoint)) return false;
-        if(id.includes(`${currentType}_${previousPoint}`))  return true;
 
-    });
+    const idsForRemoving = ids.filter((id) => id.includes(`active`));
+    
     batch(() => {
         dispatch(actionsDataOfSearching.setCurrentPoint({ currentPoint }));
         dispatch(actionsDataOfSearching.setCurrentType({ currentType }));

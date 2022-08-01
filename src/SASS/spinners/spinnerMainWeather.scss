@@ -1,16 +1,15 @@
 .container-spinner-main-weather {
     margin-top: 20px;
     padding: 20px;
-    min-height: 200px;
-    min-width: 300px;
+    min-height: 100px;
+    min-width: 230px;
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg, pink, lightblue);
     z-index: 5;
-    opacity: 0;
-    animation: rotateX 3s ease forwards;
+    opacity: 1;
     .first-block {
-        height: 150px;
+        height: 100%;
         width: 20%;
         display: flex;
         flex-direction: column;
@@ -18,13 +17,13 @@
     }
     .second-block {
         width: 50%;
-        height: 180px;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
     }
     .item-spinner {
-        height: 15%;
+        height: 10%;
         width: 100%;
         background: lavender;
         .spinner {
@@ -32,7 +31,7 @@
             width: 20%;
             animation:  leftShowSmall linear 1s infinite  alternate;
             background-color: aliceblue;
-            opacity: 0;
+            opacity: 1;
         }
     }
 }

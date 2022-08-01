@@ -58,6 +58,10 @@ html[data-theme="dark"] {
     border: 1px solid $color-dark-2;
     filter: invert(1);
   }
+  .weather-container {
+    background: black;
+
+  } 
 }
 
 
@@ -121,4 +125,7 @@ html[data-theme="light"] {
   .btn {
     border: 1px solid $color-dark-1;
   }
+  .weather-container {
+    background: linear-gradient(45deg, cornflowerblue, lightblue);
+  } 
 }
