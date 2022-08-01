@@ -1,12 +1,12 @@
 @media (max-width: 2200px) {
   .weather-container {
-    max-height: 240px;
+    max-height: 270px;
     .front-face-of-glass {
       .container-additional-data {
+        border-top: 1px solid black;
         .additional-data-item {
-          margin-right: auto;
           width: 100%;
-          border-top: 1px solid black;
+          margin-right: 20px;
         }
       }
     }
@@ -46,22 +46,15 @@
   }
   .weather-container {
     .front-face-of-glass {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-      flex-wrap: nowrap;
       .container-data {
-        flex-direction: column;
-        .icon-container {
-          flex-direction: row-reverse;
+        justify-content: space-evenly !important;
+        .description-item {
+          display: none;
+        }
+        .addtitional-item {
+          display: none;
         }
       }
-
-      .container-additional-data {
-        margin-right: 1rem;
-        flex-direction: column;
-      }
     }
-
   }
 }

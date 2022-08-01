@@ -615,12 +615,15 @@ html[data-theme=light] .weather-container {
 
 @media (max-width: 2200px) {
   .weather-container {
-    max-height: 240px;
+    max-height: 270px;
+  }
+  .weather-container .front-face-of-glass .container-additional-data {
+    border-top: 1px solid black;
+    flex-direction: row;
   }
   .weather-container .front-face-of-glass .container-additional-data .additional-data-item {
-    margin-right: auto;
     width: 100%;
-    border-top: 1px solid black;
+    margin-right: 20px;
   }
 }
 @media (max-width: 991px) {
@@ -650,21 +653,14 @@ html[data-theme=light] .weather-container {
     right: 10px;
     left: auto;
   }
-  .weather-container .front-face-of-glass {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
   .weather-container .front-face-of-glass .container-data {
-    flex-direction: column;
+    justify-content: space-evenly !important;
   }
-  .weather-container .front-face-of-glass .container-data .icon-container {
-    flex-direction: row-reverse;
+  .weather-container .front-face-of-glass .container-data .description-item {
+    display: none;
   }
-  .weather-container .front-face-of-glass .container-additional-data {
-    margin-right: 1rem;
-    flex-direction: column;
+  .weather-container .front-face-of-glass .container-data .addtitional-item {
+    display: none;
   }
 }
 body {

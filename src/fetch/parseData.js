@@ -11,8 +11,11 @@ const parseData = (type, point, data, statusOfPoint) => {
                 {
                     id: _.uniqueId(`${type}_${point}_${statusOfPoint}_`),
                     city: point,
-                    time: date.filter((part, index) => (index > 3 && index < 5))
-                              .join(' '),
+                    time: date.filter((_, index) => index === 4)
+                              .join('')
+                              .split(':')
+                              .filter((_, index) => index < 2)
+                              .join(':'),
                     day: date.filter((part, index) => index <= 3).join(' '),
                     weather: weather[0],
                     main,
