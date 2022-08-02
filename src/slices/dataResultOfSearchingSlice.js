@@ -10,17 +10,21 @@ import parseData from "../fetch/parseData";
 
 export const fetchDataOfWeather = createAsyncThunk(
     'weather/fetchData',
-    async (defaultPoint, thunkAPI) => {
+    async (dataOfPoint) => {
         
-        const state = thunkAPI.getState();
-        const { currentPoint,  currentType, statusOfPoint = 'active' } = defaultPoint ?? state.dataOfSearching;
-        const { currentLang} = state.dataOfSearching;
+        const { points,  currentTypeOfRequest, typeOfPoints } = dataOfPoint 
+        const currentLang = localStorage.getItem('current-lang')
 
-        const url = getUrl_main(currentType, currentPoint, currentLang);
-        const response = await axios.get(url);
-        const parsedData = parseData(currentType, currentPoint, response.data, statusOfPoint);
+        const promises = points.map((point) => {
+            const url = getUrl_main(currentTypeOfRequest, point, currentLang)
+            return axios.get(url)
+                 .then((response) => parseData(currentTypeOfRequest, point, response.data, typeOfPoints))
+                 .catch((error) => [{error, id: `error_${currentTypeOfRequest}_${point}`}])
+        });
 
-        return { parsedData };
+        const responsesData = await Promise.all(promises);
+
+        return { responsesData };
     }
 );
 
@@ -42,10 +46,10 @@ const dataResultOfSearchingSlice = createSlice({
             state.loading = 'pending';
             state.error = null;
         })
-        .addCase(fetchDataOfWeather.fulfilled, (state, { payload: { parsedData } }) => {
+        .addCase(fetchDataOfWeather.fulfilled, (state, { payload: { responsesData } }) => {
             state.loading = 'fulfilled';
             state.error = null;
-            weatherAdapter.addMany(state, parsedData);
+            responsesData.forEach((data) => weatherAdapter.addMany(state, data));
         })
         .addCase(fetchDataOfWeather.rejected, (state, {error}) => {
             console.log(error)

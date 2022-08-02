@@ -6,7 +6,7 @@ import Hashtag from "./Hashtag";
 import Title from "./Title";
 
 
-function HomePage() {
+function HomePage({setPoint}) {
     return (
         <section className="mt-5 container-welcom">
             <div className="mainFiled">
@@ -15,8 +15,8 @@ function HomePage() {
                 <Title />
             </div>
             <div className="searchField keyfr-showTop">
-                <SearchField/>
-                <Cards />
+                <SearchField setPoint={setPoint}/>
+                <Cards setPoint={setPoint}/>
             </div>
         </section>
 

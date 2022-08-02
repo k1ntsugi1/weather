@@ -3,23 +3,18 @@ import { actionsDataResultOfSearching } from "../slices/dataResultOfSearchingSli
 import { fetchDataOfWeather } from "../slices/dataResultOfSearchingSlice";
 import { batch } from "react-redux";
 
-const handlerAsyncThunk = (defaultPoints, point, previousPoint, type, ids, dispatch) => {
-
-    const currentPoint = point
-        .trim()
-        .split('')
-        .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
-        .join('');
-    const currentType = type.trim();
-
-    const idsForRemoving = ids.filter((id) => id.includes(`active`));
-    
+const handlerAsyncThunk = (points, currentTypeOfRequest, typeOfPoints, ids, dispatch ) => {
+    console.log('start thunk')
+    const idsParsed = ids.reduce((acc, id) => {
+        const typeOfPoint = id.includes(`defaultPoints`) ? 'defaultPoints' : 'userPoints';
+        acc[typeOfPoint] = acc[typeOfPoint] ? [...acc[typeOfPoint], id] : [id]
+        return acc;
+    }, { });
     batch(() => {
-        dispatch(actionsDataOfSearching.setCurrentPoint({ currentPoint }));
-        dispatch(actionsDataOfSearching.setCurrentType({ currentType }));
-        dispatch(actionsDataResultOfSearching.removeItems({idsForRemoving}));
-        dispatch(fetchDataOfWeather())
+        dispatch(actionsDataResultOfSearching.removeItems({idsForRemoving: idsParsed[typeOfPoints] ?? [] }));
+        dispatch(fetchDataOfWeather({points, currentTypeOfRequest, typeOfPoints}));
     })
+
 }
 
 export default handlerAsyncThunk;

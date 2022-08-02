@@ -16,7 +16,7 @@ const parseData = (type, point, data, statusOfPoint) => {
                               .split(':')
                               .filter((_, index) => index < 2)
                               .join(':'),
-                    day: date.filter((part, index) => index <= 3).join(' '),
+                    day: date.filter((_, index) => index <= 3).join(' '),
                     weather: weather[0],
                     main,
                     wind,

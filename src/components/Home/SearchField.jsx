@@ -2,45 +2,50 @@ import { useFormik } from "formik";
 import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { withTranslation } from "react-i18next";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
-import { useDefaultPoints } from "../../hooks/useDefaultPoints";
 import * as Yup from 'yup';
 
-function SearchField({ t }) {
+function SearchField({ t, setPoint }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { defaultPoints } = useDefaultPoints();
 
     const ids = useSelector(selectorsDataResultOfSearching.selectIds);
-    const {currentPoint: previousPoint, currentType} = useSelector(state => state.dataOfSearching);
+
     const schemaForValidating = Yup.object().shape({
-            point: Yup
-                  .string()
-                  .test({
-                    name: 'emptyField',
-                    message: t("home.searchField.errorEmptyField"),
-                    test: (_, testContext) => {
-                        const point = testContext.parent.point ?? null;
-                        console.log(point)
-                        return !(point === null || point.trim() === '');
-                    }
-                    })
-                    
+        point: Yup
+            .string()
+            .test({
+                name: 'emptyField',
+                message: t("home.searchField.errorEmptyField"),
+                test: (_, testContext) => {
+                    const point = testContext.parent.point ?? null;
+                    console.log(point)
+                    return !(point === null || point.trim() === '');
+                }
+            })
+
     });
     const formik = useFormik({
         initialValues: {
             point: '',
-            type: 'weather'
+            typeOfRequest: 'weather'
         },
-        validationSchema:  schemaForValidating,
+        validationSchema: schemaForValidating,
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: (values) => {
-            handlerAsyncThunk(defaultPoints, values.point, previousPoint, values.type, ids, dispatch);
+            console.log(values)
+            const point = values.point
+                .trim()
+                .split('')
+                .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
+                .join('');
+            handlerAsyncThunk([point], values.typeOfRequest, 'userPoints', ids, dispatch);
             navigate("/weather");
+            setPoint(point)
         }
     })
     return (
@@ -65,14 +70,14 @@ function SearchField({ t }) {
 
             <Form.Select
                 size="sm"
-                id="type"
-                name="type"
+                id="typeOfRequest"
+                name="typeOfRequest"
                 aria-label="Select type of search"
-                value={formik.type}
+                value={formik.typeOfRequest}
                 onChange={formik.handleChange}
                 className="ms-3 w-25 border-dark" >
-                <option value="weather">{t("home.searchField.selectField.currentWeather")}</option>
-                <option value="forecast">{t("home.searchField.selectField.forecastWeather")}</option>
+                    <option value="weather">{t("home.searchField.selectField.currentWeather")}</option>
+                    <option value="forecast">{t("home.searchField.selectField.forecastWeather")}</option>
             </Form.Select>
 
         </Form>

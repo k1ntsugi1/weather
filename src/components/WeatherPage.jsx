@@ -6,24 +6,22 @@ import SearchField from "./Home/SearchField";
 import { selectorsDataResultOfSearching } from "../slices/dataResultOfSearchingSlice";
 import getUrl_img from "../fetch/getUrl_img";
 
-function WeatherPage({ t }) {
+function WeatherPage({ t, setPoint }) {
     const allPoints = useSelector(selectorsDataResultOfSearching.selectEntities);
-    const activePoints = Object.values(allPoints).filter(({ id }) => id.includes('active'));
-    const activeDays = activePoints.reduce((acc, point) => {
+    const userPoints = Object.values(allPoints).filter(({ id }) => id.includes('userPoints'));
+    const activeDays = userPoints.reduce((acc, point) => {
         const { day } = point;
-        if (acc[day]) acc[day].push(point)
-        if (!acc[day]) acc[day] = [point]
+        acc[day] =  acc[day] ? [...acc[day], point] : [point];
         return acc;
     }, {});
 
     const arrayOfDays = Object.entries(activeDays);
-    console.log(arrayOfDays)
     const { loading } = useSelector(state => state.dataResultOfSearching);
 
     return (
         <>
-            <SearchField />
-            {loading === 'pending' && <SpinnerMainWeather style={{ "maxHeight": "200px" }} />}
+            <SearchField setPoint={setPoint}/>
+            {loading === 'pending' && <SpinnerMainWeather style={{ "maxHeight": "200px" }}/>}
             {loading === 'fulfilled' &&
                 arrayOfDays.map(([day, values]) => {
                     const { id, city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = values[0];
@@ -79,11 +77,7 @@ function WeatherPage({ t }) {
                                                 <p className="mt-4 display-6">Дополнительных данных о погоде нет</p>
                                             </div>
                                         )
-
-
                                     }
-
-
                                 </div>
                             </div>
                         </>

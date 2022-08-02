@@ -8,16 +8,12 @@ import { actionsDataOfSearching } from "../../slices/dataOfSearchingSlice";
 import { batch, useDispatch, useSelector } from "react-redux";
 import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 
-function NavbarWeather({ t, i18n }) {
+function NavbarWeather({ t, i18n , point}) {
     const dispatch = useDispatch();
-    const { currentPoint } = useSelector((state) => state.dataOfSearching)
     const switchLang = (lang) => {
         localStorage.setItem('current-lang', lang);
         i18n.changeLanguage(lang);
-        batch(() => {
-            dispatch(actionsDataResultOfSearching.removeAllWeathers());
-            dispatch(actionsDataOfSearching.setCurrentLang({ currentLang: lang }));
-        })
+        dispatch(actionsDataResultOfSearching.removeAllWeathers());
     }
     return (
         <Navbar expand="lg">
@@ -34,9 +30,9 @@ function NavbarWeather({ t, i18n }) {
                         </NavDropdown>
                         <SwitchTheme />
                         {
-                            currentPoint &&
+                            point &&
                             <Link to='weather' className="mx-2 nav-link">
-                                { t("home.navbar.currentPoint")}: {currentPoint} 
+                                { t("home.navbar.currentPoint")}: {point} 
                             </Link>
                         }
                     </Nav>

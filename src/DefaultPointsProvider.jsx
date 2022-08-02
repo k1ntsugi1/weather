@@ -11,7 +11,7 @@ function DefaultPointsProvider({ t, children }) {
             t('defaultPoints.ekaterinburg'),
             t('defaultPoints.kaliningrad'),
             t('defaultPoints.kazan'),
-            t('defaultPoints.rayzan'),
+            t('defaultPoints.ryazan'),
             t('defaultPoints.sochi'),
             t('defaultPoints.ufa'),
         ],

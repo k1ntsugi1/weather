@@ -194,7 +194,7 @@ html[data-theme=light] .btn {
   border: 1px solid #434b4f;
 }
 html[data-theme=light] .weather-container {
-  background: linear-gradient(45deg, cornflowerblue, lightblue);
+  background: linear-gradient(45deg, pink, cornflowerblue);
 }
 
 .container-glass {
@@ -570,7 +570,7 @@ html[data-theme=light] .weather-container {
   align-items: center;
   gap: 10px;
   opacity: 0;
-  animation: topShow 3s ease 2.5s forwards;
+  animation: topShow 3s ease forwards;
 }
 .container-cities .container-img {
   position: relative;
@@ -619,7 +619,6 @@ html[data-theme=light] .weather-container {
   }
   .weather-container .front-face-of-glass .container-additional-data {
     border-top: 1px solid black;
-    flex-direction: row;
   }
   .weather-container .front-face-of-glass .container-additional-data .additional-data-item {
     width: 100%;
