@@ -5,9 +5,9 @@ function Brand({t}) {
     const str = t("home.navbar.brand");
     return (
         <div className="brand-container">
-            {str.split('').map((symbol) => {
+            {str.split('').map((symbol, index) => {
                 return (
-                    <div className="brand-item">
+                    <div className="brand-item" key={index}>
                         <span>{symbol}</span>
                     </div>
                 )

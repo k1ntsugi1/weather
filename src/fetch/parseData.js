@@ -1,5 +1,5 @@
 import _ from 'lodash'
-const parseData = (type, point, data, statusOfPoint) => {
+const parseData = (typeOfRequest, point, data, typeOfPoints) => {
     const parser = {
         weather(data) {
             const { dt, weather, main, wind, clouds = null, rain = null, snow = null } = data;
@@ -9,7 +9,7 @@ const parseData = (type, point, data, statusOfPoint) => {
             const mmOfSnowLast3H = snow ? snow['3h'] : null;
             return [
                 {
-                    id: _.uniqueId(`${type}_${point}_${statusOfPoint}_`),
+                    id: _.uniqueId(`fullfilled_${point}_${typeOfRequest}_${typeOfPoints}_`),
                     city: point,
                     time: date.filter((_, index) => index === 4)
                               .join('')
@@ -32,7 +32,7 @@ const parseData = (type, point, data, statusOfPoint) => {
         },
     };
 
-    return parser[type](data);
+    return parser[typeOfRequest](data);
 }
 
 export default parseData;

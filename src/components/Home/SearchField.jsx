@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
 import React from "react";
-import { Form, Button, InputGroup } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 import { withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";

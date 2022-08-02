@@ -19,7 +19,7 @@ export const fetchDataOfWeather = createAsyncThunk(
             const url = getUrl_main(currentTypeOfRequest, point, currentLang)
             return axios.get(url)
                  .then((response) => parseData(currentTypeOfRequest, point, response.data, typeOfPoints))
-                 .catch((error) => [{error, id: `error_${currentTypeOfRequest}_${point}`}])
+                 .catch((error) => [{error, id: `error_${point}_${typeOfPoints}_${currentTypeOfRequest}`}])
         });
 
         const responsesData = await Promise.all(promises);

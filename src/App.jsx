@@ -8,13 +8,14 @@ import HomePage from './components/Home/HomePage';
 import WeatherPage from './components/WeatherPage';
 import AboutProject from './components/AboutProject';
 import UndefinedPage from './components/UndefinedPage';
-
+import ModalHelper from './components/ModalHelper';
 
 function App() {
   const [point, setPoint] = useState(null);
   return (
     <div className='pt-4 h-75 container-fluid'>
       <NavbarWeather point={point}/>
+      <ModalHelper />
       <div className='h-100 container'>
         <Routes>
           <Route path="/" element={<HomePage setPoint={setPoint}/>} />
