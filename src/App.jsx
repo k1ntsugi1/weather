@@ -13,7 +13,7 @@ import ModalHelper from './components/ModalHelper';
 function App() {
   const [point, setPoint] = useState(null);
   return (
-    <div className='pt-4 h-75 container-fluid'>
+    <div className='pt-4 h-75 container-fluid position-relative'>
       <NavbarWeather point={point}/>
       <ModalHelper />
       <div className='h-100 container'>

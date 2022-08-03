@@ -1,11 +1,10 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import SpinnerMainWeather from './spinners/SpinnerMainWeather';
 import SearchField from "./Home/SearchField";
 import { selectorsDataResultOfSearching } from "../slices/dataResultOfSearchingSlice";
 import getUrl_img from "../fetch/getUrl_img";
-
+import SpinnerWeather from './spinners/SpinnerWeather'
 function WeatherPage({ t, setPoint }) {
     const allPoints = useSelector(selectorsDataResultOfSearching.selectEntities);
     const userPoints = Object.values(allPoints).filter(({ id }) => id.includes('userPoints'));
@@ -16,14 +15,14 @@ function WeatherPage({ t, setPoint }) {
     }, {});
 
     const arrayOfDays = Object.entries(activeDays);
-    const { loading } = useSelector(state => state.dataResultOfSearching);
-
+    const { loading, errors } = useSelector(state => state.dataResultOfSearching);
+    const idRejectedUserPoints = errors.find((error) => error.id.includes('userPoints')) ?? null;
     return (
         <>
             <SearchField setPoint={setPoint}/>
-            {loading === 'pending' && <SpinnerMainWeather style={{ "maxHeight": "200px" }}/>}
-            {loading === 'fulfilled' &&
-                arrayOfDays.map(([day, values]) => {
+            {loading === 'pending' 
+            ? <SpinnerWeather styles={{ left: "50%", top: "50%", "animationDelay": "0s" }} size='big' />
+            : arrayOfDays.map(([day, values]) => {
                     const { id, city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = values[0];
                     const description = weather.description.split('')
                         .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
@@ -84,6 +83,7 @@ function WeatherPage({ t, setPoint }) {
                     )
                 })
             }
+            {idRejectedUserPoints && <div>Не найдено</div>}
         </>
     )
 }

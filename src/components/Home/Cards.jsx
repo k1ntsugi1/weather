@@ -12,12 +12,15 @@ import ErrorSmallCard from "./ErrorSmallCard";
 function Cards({ t, setPoint }) {
     const dispatch = useDispatch();
 
+
     const { defaultPoints } = useDefaultPoints();
     const currentLang = localStorage.getItem('current-lang');
-    const { loading } = useSelector(state => state.dataResultOfSearching);
+    const { loading, errors } = useSelector(state => state.dataResultOfSearching);
 
     const ids = useSelector(selectorsDataResultOfSearching.selectIds);
-    const idsDefaultPoints = ids.filter((id) => id.includes('defaultPoints'));
+    const idsFulfilledDefaultPoints = ids.filter((id) => id.includes('defaultPoints'));
+    const idsRejectedDefaultPoints = errors.flatMap((error) => error.id.includes('defaultPoints') ? error.id : []);
+    const idsDefaultPoints = [...idsFulfilledDefaultPoints, ...idsRejectedDefaultPoints]
 
     const images = require.context('../../images/cities', true, /\.(jpg|png)$/i);
     const paths = images.keys();
@@ -44,15 +47,16 @@ function Cards({ t, setPoint }) {
     return (
         <div className="container-cities">
             {loading === 'pending'
-                ? defaultPoints.map((_, index) => <SpinnerMainWeather key={index}/>)
+                ? defaultPoints.map((_, index) => <SpinnerMainWeather key={index} style={{"maxHeight": "100px", "padding": "0", "margin": "0"}}/>)
                 : idsDefaultPoints.map((id) => {
                     const cityName = id.split('_')[1];
                     const imgPath = paths.find((path) => path.includes(cityName));
                     const img = images(imgPath);
+                    const errorOfPoint = errors.find((error) => error.id === id) ?? null;
                     return (
-                        id.includes('error') 
-                        ? <ErrorSmallCard img={img} key={id}/>
-                        : <SmallCard img={img} id={id} ids={ids} setPoint={setPoint} key={id}/>
+                        errorOfPoint
+                        ? <ErrorSmallCard img={img} key={cityName} error={errorOfPoint}/>
+                        : <SmallCard img={img} id={ids.find((id) => id.includes(`${cityName}_weather`))} ids={ids} setPoint={setPoint} key={cityName} />
                     )
                 })
             }

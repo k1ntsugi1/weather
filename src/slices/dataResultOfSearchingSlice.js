@@ -19,17 +19,16 @@ export const fetchDataOfWeather = createAsyncThunk(
             const url = getUrl_main(currentTypeOfRequest, point, currentLang)
             return axios.get(url)
                  .then((response) => parseData(currentTypeOfRequest, point, response.data, typeOfPoints))
-                 .catch((error) => [{error, id: `error_${point}_${typeOfPoints}_${currentTypeOfRequest}`}])
+                 .catch((error) => [{error: error.response.data, id: `rejected_${point}_${typeOfPoints}_${currentTypeOfRequest}`}])
         });
 
         const responsesData = await Promise.all(promises);
-
-        return { responsesData };
+        return { responsesData: responsesData.flat() };
     }
 );
 
 const weatherAdapter = createEntityAdapter();
-const initialState = weatherAdapter.getInitialState({loading: null, error: null});
+const initialState = weatherAdapter.getInitialState({loading: null, errors: []});
 
 const dataResultOfSearchingSlice = createSlice({
     name: 'data-result-of-searching-slice',
@@ -38,23 +37,25 @@ const dataResultOfSearchingSlice = createSlice({
         removeItems(state, {payload: {idsForRemoving}}) {
             weatherAdapter.removeMany(state, idsForRemoving);
         },
-        removeAllWeathers: weatherAdapter.removeAll,
+        removeAllWeathers(state) {
+            weatherAdapter.removeAll(state);
+            state.errors = [];
+        }
     },
     extraReducers: (builder) => {
         builder
         .addCase(fetchDataOfWeather.pending, (state) => {
             state.loading = 'pending';
-            state.error = null;
         })
         .addCase(fetchDataOfWeather.fulfilled, (state, { payload: { responsesData } }) => {
             state.loading = 'fulfilled';
-            state.error = null;
-            responsesData.forEach((data) => weatherAdapter.addMany(state, data));
-        })
-        .addCase(fetchDataOfWeather.rejected, (state, {error}) => {
-            console.log(error)
-            state.loading = 'error';  
-            state.error = error;  
+            const filteredData = responsesData.reduce((acc,item) => {
+                const statusOfRequest = item.id.split('_')[0];
+                acc[statusOfRequest] = [...acc[statusOfRequest], item];
+                return acc;
+            }, { fulfilled: [], rejected: [] });
+             weatherAdapter.addMany(state, filteredData.fulfilled);
+             state.errors = [...state.errors, ...filteredData.rejected]
         })
     }
 });

@@ -9,7 +9,7 @@ const parseData = (typeOfRequest, point, data, typeOfPoints) => {
             const mmOfSnowLast3H = snow ? snow['3h'] : null;
             return [
                 {
-                    id: _.uniqueId(`fullfilled_${point}_${typeOfRequest}_${typeOfPoints}_`),
+                    id: _.uniqueId(`fulfilled_${point}_${typeOfRequest}_${typeOfPoints}_`),
                     city: point,
                     time: date.filter((_, index) => index === 4)
                               .join('')
