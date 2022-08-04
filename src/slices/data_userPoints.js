@@ -20,11 +20,16 @@ const sliceOfdata_userPoinst = createSlice({
                 state.loading_userPoints = 'pending';
             }
         })
-        .addCase(fetchDataOfWeather.fulfilled, (state,  { meta: {arg}, payload: { reducedData } }) => {
+        .addCase(fetchDataOfWeather.fulfilled, (state,  { meta: {arg}, payload: { parsedData } }) => {
             if(arg.typeOfPoints === 'userPoints') {
                 state.loading_userPoints = 'fulfilled';
-                adapter_userPoints.addMany(state, reducedData.fulfilled);
-                state.errors_userPoinst = [...state.errors_userPoinst, ...reducedData.rejected]
+                adapter_userPoints.addMany(state, parsedData);
+            }
+        })
+        .addCase(fetchDataOfWeather.rejected, (state, { meta: { arg }, payload }) => {
+            if(arg.typeOfPoints === 'userPoints') {
+                state.loading_userPoints = 'rejected';
+                state.errors_defaultPoints = [ ...state.errors_userPoinst, payload]
             }
         })
     }

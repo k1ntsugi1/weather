@@ -12,7 +12,7 @@ const handlerAsyncThunk = (points, typeOfRequest, typeOfPoints, dispatch ) => {
     }
     batch(() => {
         mapping_removeData[typeOfPoints]();
-        dispatch(fetchDataOfWeather({points, typeOfRequest, typeOfPoints}));
+        points.forEach((point) => dispatch(fetchDataOfWeather({point, typeOfRequest, typeOfPoints})));
     })
 
 }

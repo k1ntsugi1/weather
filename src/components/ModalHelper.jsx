@@ -12,9 +12,26 @@ function ModalHelper({ t }) {
     return (
         <Modal show={isActive} onHide={() => dispatch(actionsUiModalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Ошибки</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Modal body</Modal.Body>
+            <Modal.Body>
+                <h4>Общие рекомендации исправления:</h4>
+                <ul>
+                    <li>Проверьте интернет соединение</li>
+                    <li>Проверьте корректность название точки поиска</li>
+                </ul>
+                <h5>Описание ошибок:</h5>
+                <dl>
+                    <dt>401 - изменена форма подписки на OpenWeather API</dt>
+                    <dd>Исправление доступно только разработчику</dd>
+                    <dt>404 - не верно указано название точки поиска</dt>
+                    <dd>Для исправления посмотрите общие рекомендации</dd>
+                    <dt>429 - произведено более 60 запросов за прошедшую минуту или более 1000 за сутки</dt>
+                    <dd>Произведите запрос позже</dd>
+                    <dt>500, 502, 503, 504 - ошибка со стороны API</dt>
+                    <dd>Мы здесь бессильны :(</dd>
+                </dl>
+            </Modal.Body>
         </Modal>
     )
 }

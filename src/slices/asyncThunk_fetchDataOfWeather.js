@@ -6,26 +6,19 @@ import parseData from "../fetch/parseData";
 
 export const fetchDataOfWeather = createAsyncThunk(
     'weather/fetchData',
-    async (dataOfPoint) => {
-        console.log(1);
-        const { points,  typeOfRequest, typeOfPoints } = dataOfPoint 
+    async (dataOfPoint, {rejectWithValue}) => {
+        const { point, typeOfRequest, typeOfPoints } = dataOfPoint
         const currentLang = localStorage.getItem('current-lang')
 
-        const promises = points.map((point) => {
-            const url = getUrl_main(typeOfRequest, point, currentLang)
-            return axios.get(url)
-                 .then((response) => parseData(typeOfRequest, point, response.data, typeOfPoints))
-                 .catch((error) => [{error: error.response.data, id: `rejected_${point}_${typeOfPoints}_${typeOfRequest}`}])
-        });
+        const url = getUrl_main(typeOfRequest, point, currentLang);
+        try {
+            const parsedData = await axios.get(url).then((response) => parseData(typeOfRequest, point, response.data, typeOfPoints))
+            return { parsedData };
+        } catch(err) {
+            console.log('error')
+            return rejectWithValue({ error: err.response.data.cod, point })
+        }
 
-        const responsesData = await Promise.all(promises);
-        console.log(responsesData)
-        const reducedData = responsesData.flat().reduce((acc,item) => {
-            const statusOfRequest = item.id.split('_')[0];
-            acc[statusOfRequest] = [...acc[statusOfRequest], item];
-            return acc;
-        }, { fulfilled: [], rejected: [] });
 
-        return { reducedData };
     }
 );

@@ -18,17 +18,17 @@ function WeatherPage({ t, setPoint }) {
     return (
         <>
             <SearchField setPoint={setPoint}/>
-            {loading_userPoints === 'pending' && <SpinnerWeather styles={{ left: "50%", top: "50%", "animationDelay": "0s" }} size='big' />}
-            { errors_userPoinst.length !== 0 
-            ? <div>Не найдено</div>
-            : Object.entries(filtered_userPoints).map(([day, values]) => {
+            {loading_userPoints === 'pending' && <SpinnerWeather styles={{ left: "50%", top: "50%", "animationDelay": "0s" }} size='medium' />}
+            {loading_userPoints === 'rejected' && <div>Не найдено</div>}
+            {loading_userPoints === 'fulfilled' &&
+                Object.entries(filtered_userPoints).map(([day, values]) => {
                     const { id, city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = values[0];
                     const description = weather.description.split('')
                         .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
                         .join('');
-                    return (
-                        <>
-                            <h1 className="mb-2">{day}</h1>
+                        return (
+                            <>
+                            <h3 className="mb-2">{day}</h3>
                             <div className="weather-container container-glass b-rad-10 text-light" key={id}>
                                 <div className="back-face-of-glass b-rad-10"></div>
                                 <div className="px-3 py-2 front-face-of-glass b-rad-10 ">
