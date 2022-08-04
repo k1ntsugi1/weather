@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDefaultPoints } from "../../hooks/useDefaultPoints";
-import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
+import { selectors_defaultPoints } from "../../slices/data_defaultPoints";
 import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
 import { withTranslation } from "react-i18next";
 import SpinnerMainWeather from "../spinners/SpinnerMainWeather";
@@ -15,12 +15,11 @@ function Cards({ t, setPoint }) {
 
     const { defaultPoints } = useDefaultPoints();
     const currentLang = localStorage.getItem('current-lang');
-    const { loading, errors } = useSelector(state => state.dataResultOfSearching);
+    const { loading_defaultPoints, errors_defaultPoints } = useSelector(state => state.data_defaultPoints);
 
-    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
-    const idsFulfilledDefaultPoints = ids.filter((id) => id.includes('defaultPoints'));
-    const idsRejectedDefaultPoints = errors.flatMap((error) => error.id.includes('defaultPoints') ? error.id : []);
-    const idsDefaultPoints = [...idsFulfilledDefaultPoints, ...idsRejectedDefaultPoints]
+    const idsFulfilled_defaultPoinst = useSelector(selectors_defaultPoints.selectIds);
+    const idsRejected_defaultPoints = errors_defaultPoints.map((error) => error.id);
+    const ids_defaultPoints = [...idsFulfilled_defaultPoinst, ...idsRejected_defaultPoints]
 
     const images = require.context('../../images/cities', true, /\.(jpg|png)$/i);
     const paths = images.keys();
@@ -28,13 +27,13 @@ function Cards({ t, setPoint }) {
 
     useEffect(() => {
         console.log('firstload')
-        handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', ids, dispatch)
+        handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', dispatch)
     }, [currentLang]);
 
     useEffect(() => {
         const timeoutID = setTimeout(() => {
             console.log('setTimer')
-            handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', ids, dispatch);
+            handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', dispatch);
         }, 900000);
 
         const clear = (id) => () => {
@@ -42,21 +41,21 @@ function Cards({ t, setPoint }) {
             clearTimeout(id)
         };
         return clear(timeoutID);
-    }, [idsDefaultPoints])
+    }, [ids_defaultPoints])
 
     return (
         <div className="container-cities">
-            {loading === 'pending'
+            {loading_defaultPoints === 'pending'
                 ? defaultPoints.map((_, index) => <SpinnerMainWeather key={index} style={{"maxHeight": "100px", "padding": "0", "margin": "0"}}/>)
-                : idsDefaultPoints.map((id) => {
+                : ids_defaultPoints.map((id) => {
                     const cityName = id.split('_')[1];
                     const imgPath = paths.find((path) => path.includes(cityName));
                     const img = images(imgPath);
-                    const errorOfPoint = errors.find((error) => error.id === id) ?? null;
+                    const errorOfPoint = errors_defaultPoints.find((error) => error.id === id) ?? null;
                     return (
                         errorOfPoint
                         ? <ErrorSmallCard img={img} key={cityName} error={errorOfPoint}/>
-                        : <SmallCard img={img} id={ids.find((id) => id.includes(`${cityName}_weather`))} ids={ids} setPoint={setPoint} key={cityName} />
+                        : <SmallCard img={img} id={id} setPoint={setPoint} key={cityName} />
                     )
                 })
             }

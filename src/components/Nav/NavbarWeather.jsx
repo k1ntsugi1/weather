@@ -4,9 +4,9 @@ import SwitchTheme from "./SwitchTheme";
 import { Link } from "react-router-dom";
 import Brand from "../Home/Brand";
 import { withTranslation } from "react-i18next";
-import { actionsDataOfSearching } from "../../slices/dataOfSearchingSlice";
 import { batch, useDispatch, useSelector } from "react-redux";
-import { actionsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
+import { actions_defaultPoints } from "../../slices/data_defaultPoints";
+import { actions_userPoints } from "../../slices/data_userPoints";
 import { actionsUiModalHelper } from "../../slices/uiOfModalHelperSlice";
 
 function NavbarWeather({ t, i18n, point }) {
@@ -15,7 +15,10 @@ function NavbarWeather({ t, i18n, point }) {
     const switchLang = (lang) => {
         localStorage.setItem('current-lang', lang);
         i18n.changeLanguage(lang);
-        dispatch(actionsDataResultOfSearching.removeAllWeathers());
+        batch(() => {
+            dispatch(actions_defaultPoints.removeData_defaultPoints());
+            dispatch(actions_userPoints.removeData_userPoints())
+        })
     }
     return (
         <Navbar expand="lg">

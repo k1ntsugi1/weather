@@ -3,17 +3,17 @@ import { withTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import getUrl_img from "../../fetch/getUrl_img";
 import { useDispatch, useSelector } from "react-redux";
-import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
+import { selectors_defaultPoints } from "../../slices/data_defaultPoints";
 
-function SmallCard({ t, id, img, setPoint, ids}) {
-    const allPoints = useSelector(selectorsDataResultOfSearching.selectEntities);
+function SmallCard({ t, id, img, setPoint}) {
+    const fulfilled_defaultPoinst = useSelector(selectors_defaultPoints.selectEntities);
     const dispatch = useDispatch()
-    const { city, weather, main } = allPoints[id];
+    const { city, weather, main } = fulfilled_defaultPoinst[id];
     const navigate = useNavigate()
     return (
         <div className="container-img rotate-container" key={id} onClick={() => {
-            handlerAsyncThunk([city], 'forecast', 'userPoints', ids, dispatch);
+            handlerAsyncThunk([city], 'forecast', 'userPoints', dispatch);
             navigate("/weather");
             setPoint(city);
         }

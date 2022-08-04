@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { selectorsDataResultOfSearching } from "../../slices/dataResultOfSearchingSlice";
 import handlerAsyncThunk from "../../fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
@@ -13,8 +12,6 @@ import * as Yup from 'yup';
 function SearchField({ t, setPoint }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const ids = useSelector(selectorsDataResultOfSearching.selectIds);
 
     const schemaForValidating = Yup.object().shape({
         point: Yup
@@ -39,13 +36,12 @@ function SearchField({ t, setPoint }) {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: (values) => {
-            console.log(values)
             const point = values.point
                 .trim()
                 .split('')
                 .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
                 .join('');
-            handlerAsyncThunk([point], values.typeOfRequest, 'userPoints', ids, dispatch);
+            handlerAsyncThunk([point], values.typeOfRequest, 'userPoints', dispatch);
             navigate("/weather");
             setPoint(point)
         }

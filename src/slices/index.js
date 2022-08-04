@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import dataResultOfSearchingReducer from './dataResultOfSearchingSlice';
-import dataOfSearchingReducer from './dataOfSearchingSlice';
+import reducerData_defaultPoints from './data_defaultPoints'
+import reducerData_userPoinst from './data_userPoints'
 import uiOfModalHelperReducer from './uiOfModalHelperSlice'
 export default configureStore({
     reducer: {
-        dataOfSearching: dataOfSearchingReducer,
-        dataResultOfSearching: dataResultOfSearchingReducer,
+        data_userPoints: reducerData_userPoinst,
+        data_defaultPoints: reducerData_defaultPoints,
         uiOfModalHelper: uiOfModalHelperReducer
     },
 })

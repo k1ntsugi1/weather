@@ -1,18 +1,18 @@
-import { actionsDataOfSearching } from "../slices/dataOfSearchingSlice";
-import { actionsDataResultOfSearching } from "../slices/dataResultOfSearchingSlice";
-import { fetchDataOfWeather } from "../slices/dataResultOfSearchingSlice";
+import { actions_defaultPoints } from "../slices/data_defaultPoints";
+import { actions_userPoints } from "../slices/data_userPoints";
+
+import { fetchDataOfWeather } from "../slices/asyncThunk_fetchDataOfWeather";
 import { batch } from "react-redux";
 
-const handlerAsyncThunk = (points, currentTypeOfRequest, typeOfPoints, ids, dispatch ) => {
+const handlerAsyncThunk = (points, typeOfRequest, typeOfPoints, dispatch ) => {
     console.log('start thunk')
-    const idsParsed = ids.reduce((acc, id) => {
-        const typeOfPoint = id.includes(`defaultPoints`) ? 'defaultPoints' : 'userPoints';
-        acc[typeOfPoint] = acc[typeOfPoint] ? [...acc[typeOfPoint], id] : [id]
-        return acc;
-    }, { });
+    const mapping_removeData = {
+        'defaultPoints': () => dispatch(actions_defaultPoints.removeData_defaultPoints()),
+        'userPoints': () => dispatch(actions_userPoints.removeData_userPoints()),
+    }
     batch(() => {
-        dispatch(actionsDataResultOfSearching.removeItems({idsForRemoving: idsParsed[typeOfPoints] ?? [] }));
-        dispatch(fetchDataOfWeather({points, currentTypeOfRequest, typeOfPoints}));
+        mapping_removeData[typeOfPoints]();
+        dispatch(fetchDataOfWeather({points, typeOfRequest, typeOfPoints}));
     })
 
 }

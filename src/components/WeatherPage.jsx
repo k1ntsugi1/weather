@@ -2,27 +2,26 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import SearchField from "./Home/SearchField";
-import { selectorsDataResultOfSearching } from "../slices/dataResultOfSearchingSlice";
 import getUrl_img from "../fetch/getUrl_img";
 import SpinnerWeather from './spinners/SpinnerWeather'
+import { selectors_userPoints } from "../slices/data_userPoints";
+
 function WeatherPage({ t, setPoint }) {
-    const allPoints = useSelector(selectorsDataResultOfSearching.selectEntities);
-    const userPoints = Object.values(allPoints).filter(({ id }) => id.includes('userPoints'));
-    const activeDays = userPoints.reduce((acc, point) => {
+    const fulfilled_userPoints = useSelector(selectors_userPoints.selectEntities);
+    const filtered_userPoints = Object.values(fulfilled_userPoints).reduce((acc, point) => {
         const { day } = point;
         acc[day] =  acc[day] ? [...acc[day], point] : [point];
         return acc;
     }, {});
 
-    const arrayOfDays = Object.entries(activeDays);
-    const { loading, errors } = useSelector(state => state.dataResultOfSearching);
-    const idRejectedUserPoints = errors.find((error) => error.id.includes('userPoints')) ?? null;
+    const {loading_userPoints, errors_userPoinst} = useSelector(store => store.data_userPoints)
     return (
         <>
             <SearchField setPoint={setPoint}/>
-            {loading === 'pending' 
-            ? <SpinnerWeather styles={{ left: "50%", top: "50%", "animationDelay": "0s" }} size='big' />
-            : arrayOfDays.map(([day, values]) => {
+            {loading_userPoints === 'pending' && <SpinnerWeather styles={{ left: "50%", top: "50%", "animationDelay": "0s" }} size='big' />}
+            { errors_userPoinst.length !== 0 
+            ? <div>Не найдено</div>
+            : Object.entries(filtered_userPoints).map(([day, values]) => {
                     const { id, city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = values[0];
                     const description = weather.description.split('')
                         .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
@@ -83,7 +82,6 @@ function WeatherPage({ t, setPoint }) {
                     )
                 })
             }
-            {idRejectedUserPoints && <div>Не найдено</div>}
         </>
     )
 }
