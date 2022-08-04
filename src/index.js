@@ -1,15 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import './i18n/i18n'
+import './assets/i18n/i18n'
 
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './slices/index.js';
+import store from './store/index.js';
 import { BrowserRouter } from "react-router-dom"
 import App from './App';
 
-import DefaultPointsProvider from './DefaultPointsProvider';
+import Provider_defaultPoints from './components/contexts/Provider_defaultPoints';
 
 
 
@@ -17,9 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Provider store={store}>
-            <DefaultPointsProvider>
+            <Provider_defaultPoints>
                 <App />
-            </DefaultPointsProvider>
+            </Provider_defaultPoints>
         </Provider>
     </BrowserRouter>
 );

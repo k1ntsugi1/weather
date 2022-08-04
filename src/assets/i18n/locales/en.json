@@ -1,0 +1,60 @@
+{
+    "errorOfRequest": {
+        "noData": "No result",
+        "point": "Point:",
+        "code": "Code:"
+    },
+    "home": {
+        "navbar": {
+            "brand": "weather",
+            "aboutProject": "About project",
+            "randomPoint": "Random point",
+            "lang": {
+                "currentLang": "Language",
+                "ru":"Russian",
+                "en":"English"
+            },
+            "theme": "Theme:",
+            "currentPoint": "Current point"
+        },
+        "title": "find your weather",
+        "searchField": {
+            "placeholder": "Search",
+            "selectField": {
+                "currentWeather": "Current",
+                "forecastWeather": "For 5 days"
+            },
+            "errorEmptyField": "Enter something :)"
+        },
+        "cards": {
+            "feelsLike": "Feels like:",
+            "temp": "Temperature:"
+        }
+    },
+    "undefindPage": {
+        "haveNotFoundPage": "Page not found",
+        "suggestion": "But you can go to",
+        "toHome": " home page"
+    },
+        "weatherPage" : {
+        "time": "Time:",
+        "description": "Description:",
+        "feelsLike": "Feels like",
+        "cloudiness": "Cloudiness:",
+        "wind": "Wind",
+        "precipitation_last3H": "Precipitation for the last 3 hours:",
+        "rain": "Rain:",
+        "snow": "Snow:"
+    },
+    "defaultPoints": {
+        "moscow": "Moscow",
+        "saintP": "Saint-Petersburg",
+        "chelyabinsk": "Chelyabinsk",
+        "ekaterinburg": "Ekaterinburg",
+        "kaliningrad": "Kaliningrad",
+        "kazan": "Kazan",
+        "ryazan": "Ryazan",
+        "sochi": "Sochi",
+        "ufa": "Ufa"
+    }
+}

@@ -1,16 +1,16 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 
-import { actionsUiModalHelper } from "../slices/uiOfModalHelperSlice";
+import { actions_modalHelper } from "../store/slices/uiSlice_modalHelper";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 
 function ModalHelper({ t }) {
     const dispatch = useDispatch();
-    const { isActive } = useSelector(store => store.uiOfModalHelper);
+    const { isActive } = useSelector(store => store.ui_modalHelper);
     console.log(isActive, 'isActive')
     return (
-        <Modal show={isActive} onHide={() => dispatch(actionsUiModalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
+        <Modal show={isActive} onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header closeButton>
                 <Modal.Title>Ошибки</Modal.Title>
             </Modal.Header>
