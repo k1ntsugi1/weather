@@ -13,15 +13,16 @@ import { actions_dataOfSearching } from "../../store/slices/uiSlice_dataOfSearch
 
 function NavbarApp({ t, i18n }) {
     const dispatch = useDispatch();
-    const { currentPoint } = useSelector(store => store. ui_dataOfSearching)
+    const { currentPoint, currentLang } = useSelector(store => store. ui_dataOfSearching)
     const switchLang = (lang) => {
-        localStorage.setItem('current-lang', lang);
-        i18n.changeLanguage(lang);
-        dispatch(actions_defaultPoints.removeData_defaultPoints());
-        dispatch(actions_userPoints.removeData_userPoints())
-        dispatch(actions_dataOfSearching.setCurrentLang({currentLang: lang}))
-        dispatch(actions_dataOfSearching.setCurrentPoint({currentPoint: null}))
-
+        if(currentLang !== lang) {
+            localStorage.setItem('current-lang', lang);
+            i18n.changeLanguage(lang);
+            dispatch(actions_defaultPoints.removeData_defaultPoints());
+            dispatch(actions_userPoints.removeData_userPoints())
+            dispatch(actions_dataOfSearching.setCurrentLang({currentLang: lang}))
+            dispatch(actions_dataOfSearching.setCurrentPoint({currentPoint: null}))
+        }
     }
     return (
         <Navbar expand="lg">

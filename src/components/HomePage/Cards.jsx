@@ -41,7 +41,7 @@ function Cards({ t }) {
             const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
             return clearCurrentTimeout;
         }
-    }, [idsFulfilled_defaultPoinst, currentLang])
+    }, [idsFulfilled_defaultPoinst])
 
     useEffect(() => {
         if ( rejected_defaultPoints.length > 0 ) {
@@ -50,7 +50,7 @@ function Cards({ t }) {
             const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
             return clearCurrentTimeout;
         }
-    }, [rejected_defaultPoints, currentLang])
+    }, [rejected_defaultPoints])
 
     return (
         <div className="container-cities">

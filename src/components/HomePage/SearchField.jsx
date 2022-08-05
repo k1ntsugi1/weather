@@ -64,21 +64,21 @@ function SearchField({ t }) {
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </Button>
             </InputGroup>
-
-
             <Form.Select
                 size="sm"
                 id="typeOfRequest"
                 name="typeOfRequest"
                 aria-label="Select type of search"
                 value={formik.typeOfRequest}
-                onChange={formik.handleChange}
+                onChange={({ target: { value } }) => {
+                    formik.setFieldValue('typeOfRequest', value, true);
+                    formik.submitForm();
+                }}
                 className="ms-3 w-25 border-dark" >
                     <option value="weather">{t("home.searchField.selectField.currentWeather")}</option>
                     <option value="forecast">{t("home.searchField.selectField.forecastWeather")}</option>
             </Form.Select>
-
-        </Form>
+        </Form>   
     )
 }
 
