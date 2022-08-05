@@ -41,7 +41,8 @@ function SearchField({ t }) {
                 .split('')
                 .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
                 .join('');
-            handlerAsyncThunk([point], values.typeOfRequest, 'userPoints', dispatch);
+            const data = { points: [point], typeOfRequest: values.typeOfRequest, typeOfPoints: 'userPoints', statusOfPoint: 'pending' }
+            handlerAsyncThunk(data, dispatch);
             navigate("/weather");
         }
     })

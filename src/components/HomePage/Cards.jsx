@@ -10,6 +10,8 @@ import SpinnerCard from "../spinners/SpinnerCard";
 import CardWeather_small from "../cards/CardWeather_small/CardWeather_small";
 import CardWeather_small_error from "../cards/CardWeather_small/CardWeather_small_error";
 
+import handlerTimeouts from "../../services/fetch/handlerTimeouts";
+
 function Cards({ t }) {
     const dispatch = useDispatch();
 
@@ -18,29 +20,30 @@ function Cards({ t }) {
     const { currentLang } = useSelector(store => store.ui_dataOfSearching)
     const { loading_defaultPoints, errors_defaultPoints } = useSelector(state => state.data_defaultPoints);
 
+    const rejected_defaultPoints = errors_defaultPoints.map(((error)=> error.point))
     const idsFulfilled_defaultPoinst = useSelector(selectors_defaultPoints.selectIds);
 
     const images = require.context('../../assets/images/cities', true, /\.(jpg|png)$/i);
+
     const paths = images.keys();
 
 
     useEffect(() => {
-        console.log('firstload')
-        handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', dispatch)
+        const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
+        handlerAsyncThunk(data, dispatch)
     }, [currentLang]);
 
     useEffect(() => {
-        const timeoutID = setTimeout(() => {
-            console.log('setTimer')
-            handlerAsyncThunk(defaultPoints, 'weather', 'defaultPoints', dispatch);
-        }, 900000);
-
-        const clear = (id) => () => {
-            console.log('clear Timer')
-            clearTimeout(id)
-        };
-        return clear(timeoutID);
+        const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
+        const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
+        return clearCurrentTimeout;
     }, [idsFulfilled_defaultPoinst])
+
+    useEffect(() => {
+        const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
+        const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
+        return clearCurrentTimeout;
+    }, [rejected_defaultPoints])
 
     return (
         <div className="container-cities">

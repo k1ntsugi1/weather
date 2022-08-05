@@ -2,7 +2,7 @@ import { createSlice, createEntityAdapter} from "@reduxjs/toolkit";
 import { fetchDataOfWeather } from "../asyncThunk_fetchDataOfWeather";
 
 const adapter_userPoints = createEntityAdapter();
-const initialState = adapter_userPoints.getInitialState({loading_userPoints: null, errors_userPoinst: []});
+const initialState = adapter_userPoints.getInitialState({loading_userPoints: null, errors_userPoints: []});
 
 const dataSlice_userPoinst = createSlice({
     name: 'data_userPoinst',
@@ -10,8 +10,11 @@ const dataSlice_userPoinst = createSlice({
     reducers: {
         removeData_userPoints(state) {
             adapter_userPoints.removeAll(state);
-            state.errors_userPoinst = [];
+            state.errors_userPoints = [];
             state.loading_userPoints = null;
+        },
+        removeData_rejectedUserPoints(state) {
+            state.errors_userPoints = [];
         }
     },
     extraReducers: (builder) => {
@@ -30,7 +33,7 @@ const dataSlice_userPoinst = createSlice({
         .addCase(fetchDataOfWeather.rejected, (state, { meta: { arg }, payload }) => {
             if(arg.typeOfPoints === 'userPoints') {
                 state.loading_userPoints = 'rejected';
-                state.errors_userPoinst = [ ...state.errors_userPoinst, payload]
+                state.errors_userPoints = [ ...state.errors_userPoints, payload]
             }
         })
     }

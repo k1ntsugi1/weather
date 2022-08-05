@@ -11,9 +11,10 @@ function CardWeather_small({ t, id, img}) {
     const dispatch = useDispatch()
     const { city, weather, main } = fulfilled_defaultPoinst[id];
     const navigate = useNavigate()
+    const data = { points: [city], typeOfRequest: 'forecast', typeOfPoints:'userPoints', statusOfPoint: 'pending' }
     return (
         <div className="container-img rotate-container" key={id} onClick={() => {
-            handlerAsyncThunk([city], 'forecast', 'userPoints', dispatch);
+            handlerAsyncThunk(data, dispatch);
             navigate("/weather");
         }
         }>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const uiSlice_dataOfSearching = createSlice({
-    name: 'data-of-searching',
+    name: 'data_of_searching',
     initialState: {
         currentPoint: null,
         currentLang: localStorage.getItem('current-lang') ?? 'ru',

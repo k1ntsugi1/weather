@@ -17,6 +17,9 @@ const dataSlice_defaultPoints = createSlice({
             adapter_defaultPoints.removeAll(state);
             state.errors_defaultPoints = [];
             state.loading_defaultPoints = [];
+        },
+        removeData_rejectedDefaultPoints(state) {
+            state.errors_defaultPoints = [];
         }
     },
     extraReducers: (builder) => {
@@ -36,7 +39,7 @@ const dataSlice_defaultPoints = createSlice({
         })
         .addCase(fetchDataOfWeather.rejected, (state, { meta: { arg }, payload }) => {
             if(arg.typeOfPoints === 'defaultPoints') {
-                const filteredLoading = filterLoading_defaultPoints(state, arg.point, 'pending', 'fulfilled');
+                const filteredLoading = filterLoading_defaultPoints(state, arg.point, 'pending', 'fulfilled', 'rejected');
                 state.loading_defaultPoints = [...filteredLoading, `rejected_${arg.point}`];
                 state.errors_defaultPoints = [ ...state.errors_defaultPoints, payload]
             }
