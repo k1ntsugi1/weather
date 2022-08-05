@@ -34,15 +34,19 @@ function Cards({ t }) {
     }, [currentLang]);
 
     useEffect(() => {
-        const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
-        const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
-        return clearCurrentTimeout;
+        if ( idsFulfilled_defaultPoinst.length > 0 ) {
+            const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
+            const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
+            return clearCurrentTimeout;
+        }
     }, [idsFulfilled_defaultPoinst])
 
     useEffect(() => {
-        const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
-        const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
-        return clearCurrentTimeout;
+        if ( rejected_defaultPoints.length > 0 ) {
+            const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
+            const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
+            return clearCurrentTimeout;
+        }
     }, [rejected_defaultPoints])
 
     return (

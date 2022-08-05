@@ -25,10 +25,12 @@ function WeatherPage({ t }) {
     const rejected_userPoint = errorOfPoint ? errorOfPoint.point : null;
 
     useEffect(() => {
-        const data = { points: [rejected_userPoint], typeOfRequest: 'weather', typeOfPoints: 'userPoints', statusOfPoint: 'rejected' }
-        const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
-        return clearCurrentTimeout;
-    }, [errors_userPoints]);
+        if (errorOfPoint) {
+            const data = { points: [rejected_userPoint], typeOfRequest: 'weather', typeOfPoints: 'userPoints', statusOfPoint: 'rejected' }
+            const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
+            return clearCurrentTimeout;
+        }
+    }, [errorOfPoint]);
 
     return (
         <>
