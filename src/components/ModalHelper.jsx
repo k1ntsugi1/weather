@@ -8,7 +8,6 @@ import { Modal } from "react-bootstrap";
 function ModalHelper({ t }) {
     const dispatch = useDispatch();
     const { isActive } = useSelector(store => store.ui_modalHelper);
-    console.log(isActive, 'isActive')
     return (
         <Modal show={isActive} onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header closeButton>

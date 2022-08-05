@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import reducerData_defaultPoints from './slices/dataSlice_defaultPoints';
 import reducerData_userPoinst from './slices/dataSlice_userPoints';
 import reducerUi_modalHelper from './slices/uiSlice_modalHelper';
+import reducerUi_modalGeoposition from './slices/uiSlice_modalGeoposition';
 import reducerUi_dataOfSearching from './slices/uiSlice_dataOfSearching'
 
 export default configureStore({
@@ -10,6 +11,7 @@ export default configureStore({
         data_userPoints: reducerData_userPoinst,
         data_defaultPoints: reducerData_defaultPoints,
         ui_modalHelper: reducerUi_modalHelper,
+        ui_modalGeoposition: reducerUi_modalGeoposition,
         ui_dataOfSearching: reducerUi_dataOfSearching
     },
 })

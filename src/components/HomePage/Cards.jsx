@@ -29,14 +29,12 @@ function Cards({ t }) {
 
 
     useEffect(() => {
-        console.log('first request card');
         const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
         handlerAsyncThunk(data, dispatch)
     }, [currentLang]);
 
     useEffect(() => {
         if ( idsFulfilled_defaultPoinst.length > 0 ) {
-            console.log('fulfilled request card');
             const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
             const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
             return clearCurrentTimeout;
@@ -45,7 +43,6 @@ function Cards({ t }) {
 
     useEffect(() => {
         if ( rejected_defaultPoints.length > 0 ) {
-            console.log('rejected request card');
             const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
             const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
             return clearCurrentTimeout;
