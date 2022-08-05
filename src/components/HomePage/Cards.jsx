@@ -17,7 +17,7 @@ function Cards({ t }) {
 
 
     const { defaultPoints } = useDefaultPoints();
-    const { currentLang } = useSelector(store => store.ui_dataOfSearching)
+    const { currentLang } = useSelector(store => store.ui_dataOfSearching);
     const { loading_defaultPoints, errors_defaultPoints } = useSelector(state => state.data_defaultPoints);
 
     const rejected_defaultPoints = errors_defaultPoints.map(((error)=> error.point))
@@ -29,25 +29,28 @@ function Cards({ t }) {
 
 
     useEffect(() => {
+        console.log('first request card');
         const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
         handlerAsyncThunk(data, dispatch)
     }, [currentLang]);
 
     useEffect(() => {
         if ( idsFulfilled_defaultPoinst.length > 0 ) {
+            console.log('fulfilled request card');
             const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
             const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
             return clearCurrentTimeout;
         }
-    }, [idsFulfilled_defaultPoinst])
+    }, [idsFulfilled_defaultPoinst, currentLang])
 
     useEffect(() => {
         if ( rejected_defaultPoints.length > 0 ) {
+            console.log('rejected request card');
             const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
             const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
             return clearCurrentTimeout;
         }
-    }, [rejected_defaultPoints])
+    }, [rejected_defaultPoints, currentLang])
 
     return (
         <div className="container-cities">

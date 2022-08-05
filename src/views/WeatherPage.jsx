@@ -2,17 +2,19 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import SearchField from "../components/HomePage/SearchField";
-import SpinnerWeather from "../components/spinners/SpinnerWeather";
 import { selectors_userPoints } from "../store/slices/dataSlice_userPoints";
 import CardWeather_normal from "../components/cards/CardWeather_normal/CardWeather_normal";
 import CardError from "../components/cards/CardError";
 import { useEffect } from "react";
-import handlerAsyncThunk from "../services/fetch/handlerAsynkThunk";
 import handlerTimeouts from "../services/fetch/handlerTimeouts";
 import { ThreeDots } from 'react-loader-spinner'
+import uiSlice_dataOfSearching from "../store/slices/uiSlice_dataOfSearching";
 
 function WeatherPage({ t }) {
     const dispatch = useDispatch();
+    const { currentLang } = useSelector(store => store.ui_dataOfSearching);
+    const { loading_userPoints, errors_userPoints } = useSelector(store => store.data_userPoints)
+
     const fulfilled_userPoints = useSelector(selectors_userPoints.selectEntities);
     const filtered_userPoints = Object.values(fulfilled_userPoints).reduce((acc, point) => {
         const { day } = point;
@@ -20,7 +22,6 @@ function WeatherPage({ t }) {
         return acc;
     }, {});
 
-    const { loading_userPoints, errors_userPoints } = useSelector(store => store.data_userPoints)
     const errorOfPoint = errors_userPoints.length > 0 ? errors_userPoints[0] : null;
     const rejected_userPoint = errorOfPoint ? errorOfPoint.point : null;
 
@@ -30,7 +31,7 @@ function WeatherPage({ t }) {
             const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
             return clearCurrentTimeout;
         }
-    }, [errorOfPoint]);
+    }, [errorOfPoint, currentLang]);
 
     return (
         <>
