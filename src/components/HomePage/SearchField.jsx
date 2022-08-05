@@ -8,11 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import handlerAsyncThunk from "../../services/fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
+import { useEffect } from "react";
 
 function SearchField({ t }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const { currentPoint, currentTypeOfRequest, currentLang } = useSelector(store => store.ui_dataOfSearching);
+    
     const schemaForValidating = Yup.object().shape({
         point: Yup
             .string()
@@ -28,10 +31,7 @@ function SearchField({ t }) {
 
     });
     const formik = useFormik({
-        initialValues: {
-            point: '',
-            typeOfRequest: 'weather'
-        },
+        initialValues: { point: currentPoint, typeOfRequest: currentTypeOfRequest},
         validationSchema: schemaForValidating,
         validateOnBlur: false,
         validateOnChange: false,
@@ -45,7 +45,14 @@ function SearchField({ t }) {
             handlerAsyncThunk(data, dispatch);
             navigate("/weather");
         }
-    })
+    });
+
+    useEffect(() => {
+        if (currentPoint !== '') {
+            formik.setFieldValue('point', currentPoint, false);
+        } 
+    }, [currentLang]);
+
     return (
         <Form noValidate className='w-100 d-flex' onSubmit={formik.handleSubmit}>
             <InputGroup>
@@ -56,7 +63,9 @@ function SearchField({ t }) {
                     placeholder={t("home.searchField.placeholder")}
                     className="border-dark"
                     isInvalid={!!formik.errors.point}
-                    onChange={formik.handleChange} />
+                    onChange={formik.handleChange} 
+                    value={formik.values.point}
+                    />
                 <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.point}
                 </Form.Control.Feedback>
@@ -69,7 +78,7 @@ function SearchField({ t }) {
                 id="typeOfRequest"
                 name="typeOfRequest"
                 aria-label="Select type of search"
-                value={formik.typeOfRequest}
+                value={formik.values.typeOfRequest}
                 onChange={({ target: { value } }) => {
                     formik.setFieldValue('typeOfRequest', value, true);
                     formik.submitForm();

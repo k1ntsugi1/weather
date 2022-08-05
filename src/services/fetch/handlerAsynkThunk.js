@@ -16,7 +16,8 @@ const handlerAsyncThunk = (data, dispatch) => {
             statusOfPoint === 'rejected' 
             ? dispatch(actions_userPoints.removeData_rejectedUserPoints())
             : dispatch(actions_userPoints.removeData_userPoints());
-            dispatch(actions_dataOfSearching.setCurrentPoint({ currentPoint: points[0] }))
+            dispatch(actions_dataOfSearching.setCurrentPoint({ currentPoint: points[0] }));
+            dispatch(actions_dataOfSearching.setCurrentTypeOfRequest({ currentTypeOfRequest: typeOfRequest }))
         },
     };
     mapping_typeOfPoints[typeOfPoints]();

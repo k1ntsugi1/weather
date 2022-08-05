@@ -4,7 +4,7 @@ import SwitchTheme from "./SwitchTheme";
 import { Link } from "react-router-dom";
 import Brand from "../HomePage/Brand";
 import { withTranslation } from "react-i18next";
-import { batch, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions_defaultPoints } from "../../store/slices/dataSlice_defaultPoints";
 import { actions_userPoints } from "../../store/slices/dataSlice_userPoints";
 import { actions_modalHelper } from "../../store/slices/uiSlice_modalHelper";
@@ -21,7 +21,6 @@ function NavbarApp({ t, i18n }) {
             dispatch(actions_defaultPoints.removeData_defaultPoints());
             dispatch(actions_userPoints.removeData_userPoints())
             dispatch(actions_dataOfSearching.setCurrentLang({currentLang: lang}))
-            dispatch(actions_dataOfSearching.setCurrentPoint({currentPoint: null}))
         }
     }
     return (
@@ -34,7 +33,7 @@ function NavbarApp({ t, i18n }) {
                         <Link to="about" className="mx-2 nav-link">{t("home.navbar.aboutProject")}</Link>
                         <Link to="currentWeather" className="ms-2 me-auto nav-link">{t("home.navbar.randomPoint")}</Link>
                         {
-                            currentPoint &&
+                            currentPoint !== '' &&
                             <Link to='weather' className="mx-2 nav-link">
                                 {t("home.navbar.currentPoint")}: {currentPoint}
                             </Link>
