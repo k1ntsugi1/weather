@@ -6,17 +6,17 @@ import parseData from "../services/fetch/parseData";
 
 export const fetchDataOfWeather = createAsyncThunk(
     'weather/fetchData',
-    async (dataOfPoint, {rejectWithValue}) => {
+    async (dataOfPoint, thunkAPI) => {
+        const { currentLang } = thunkAPI.getState().ui_dataOfSearching;
         const { point, typeOfRequest, typeOfPoints } = dataOfPoint
-        const currentLang = localStorage.getItem('current-lang')
 
         const url = getUrl_main(typeOfRequest, point, currentLang);
         try {
-            const parsedData = await axios.get(url).then((response) => parseData(typeOfRequest, point, response.data, typeOfPoints))
+            const parsedData = await axios.get(url).then((response) => parseData(typeOfRequest, point, response.data, typeOfPoints, currentLang))
             return { parsedData };
         } catch(err) {
             console.log('error')
-            return rejectWithValue({ code: err.response.data.cod, point })
+            return thunkAPI.rejectWithValue({ code: err.response.data.cod, point })
         }
 
 

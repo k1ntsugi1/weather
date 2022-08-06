@@ -4,12 +4,10 @@ import CardWeather_normal_mainField from "./CardWeather_normal_mainField";
 import CardWeather_normal_additionalField from "./CardWeather_normal_additionalField";
 import CardWeather_normal_additionalField_empty from "./CardWeather_normal_additionalField_empty";
 function CardWeather_normal({t, point}) {
-    const [day, values] = point;
+    const [_, values] = point;
     const [value, ...rest] = values;
         return (
-            <>
-            <h3 className="mb-2">{day}</h3>
-            <div className="weather-container container-glass b-rad-10 text-light bg-gradient-main">
+            <div className="my-3 weather-container container-glass b-rad-10 text-light bg-gradient-main">
                 <div className="back-face-of-glass b-rad-10"></div>
                 <div className="px-3 py-2 front-face-of-glass b-rad-10 ">
                     <CardWeather_normal_mainField value={value} />
@@ -23,7 +21,6 @@ function CardWeather_normal({t, point}) {
                     }
                 </div>
             </div>
-        </>
     )
 }
 
