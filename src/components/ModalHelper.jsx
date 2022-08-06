@@ -14,12 +14,12 @@ function ModalHelper({ t }) {
                 <Modal.Title>Ошибки</Modal.Title>
             </Modal.Header>
             <Modal.Body className="bg-main color-additional rounded-bottom">
-                <h4>Общие рекомендации исправления:</h4>
+                <h5>Общие рекомендации исправления:</h5>
                 <ul>
                     <li>Проверьте интернет соединение</li>
                     <li>Проверьте корректность название точки поиска</li>
                 </ul>
-                <h5>Описание ошибок:</h5>
+                <h6>Описание ошибок:</h6>
                 <dl>
                     <dt>401 - изменена форма подписки на OpenWeather API</dt>
                     <dd>Исправление доступно только разработчику</dd>

@@ -107,6 +107,9 @@
 html[data-theme=dark] .bg-main {
   background-color: #434b4f;
 }
+html[data-theme=dark] .bg-gradient-main {
+  background: linear-gradient(45deg, #434b4f, #777c8e);
+}
 html[data-theme=dark] .bg-additional {
   background-color: whitesmoke;
 }
@@ -151,13 +154,14 @@ html[data-theme=dark] .form-select:focus {
 html[data-theme=dark] .btn {
   border: 1px solid whitesmoke;
   filter: invert(1);
-}
-html[data-theme=dark] .weather-container {
-  background: black;
+  color: black;
 }
 
 html[data-theme=light] .bg-main {
   background-color: lavender;
+}
+html[data-theme=light] .bg-gradient-main {
+  background: linear-gradient(45deg, cornflowerblue, lightblue);
 }
 html[data-theme=light] .bg-additional {
   background-color: cornflowerblue;
@@ -196,9 +200,7 @@ html[data-theme=light] .form-select:focus {
 }
 html[data-theme=light] .btn {
   border: 1px solid #434b4f;
-}
-html[data-theme=light] .weather-container {
-  background: linear-gradient(45deg, pink, cornflowerblue);
+  color: cornflowerblue;
 }
 
 .container-glass {
@@ -247,7 +249,6 @@ html[data-theme=light] .weather-container {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, lightblue, pink);
 }
 .rotate-container .rotate-card .back-face-of-card {
   position: absolute !important;
@@ -255,7 +256,6 @@ html[data-theme=light] .weather-container {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, pink, lightblue);
   transform: rotateX(180deg);
 }
 .rotate-container:hover .rotate-card {

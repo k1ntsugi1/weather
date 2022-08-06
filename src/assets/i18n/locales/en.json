@@ -1,6 +1,7 @@
 {
     "errorOfRequest": {
-        "noData": "No result",
+        "noData": "No result.",
+        "reconecting": "Wait a second...",
         "point": "Point:",
         "code": "Code:"
     },

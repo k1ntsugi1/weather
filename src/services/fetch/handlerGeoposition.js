@@ -7,7 +7,7 @@ const handlerGeoposition = async (data, currentLang, dispatch) => {
     console.log(data, 'data')
     const {coords: { latitude, longitude }} = data;
     const url = getUrl_additional(latitude, longitude);
-    const response = await axios.get(url);
+    const response = await axios.get(url).catch((error) => console.log(error, 'error geoposition'));
     const presumedPoint = parserData_geoposition(response.data, currentLang);
     dispatch(actions_modalGeoposition.setPresumedPoint({ presumedPoint }));
     dispatch(actions_modalGeoposition.setActiveStatus());

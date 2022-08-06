@@ -19,8 +19,8 @@ function CardWeather_small({ t, id, img}) {
         }
         }>
             <div className="rotate-card">
-                <div className="back-face-of-card container-glass b-rad-10">
-                    <div className="back-face-of-glass b-rad-10"></div>
+                <div className="back-face-of-card container-glass b-rad-10 bg-gradient-main">
+                    <div className="back-face-of-glass b-rad-10 "></div>
                     <div className="px-3 front-face-of-glass b-rad-10 d-flex justify-content-between align-items-center text-nowrap fw-normal">
                         <div className="w-50 d-flex flex-column text-start">
                             <p className="m-0 h4">{city}</p>

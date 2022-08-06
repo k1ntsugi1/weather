@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchField from "../components/HomePage/SearchField";
 import { selectors_userPoints } from "../store/slices/dataSlice_userPoints";
 import CardWeather_normal from "../components/cards/CardWeather_normal/CardWeather_normal";
-import CardError from "../components/cards/CardError";
+import CardError from "../components/cards/CardWeather_normal/CardWeather_normal_error";
 import { useEffect } from "react";
 import handlerTimeouts from "../services/fetch/handlerTimeouts";
 import { ThreeDots } from 'react-loader-spinner'
@@ -34,7 +34,7 @@ function WeatherPage({ t }) {
     }, [errorOfPoint, currentLang]);
 
     return (
-        <>
+        <section className="h-100">
             <SearchField />
             {loading_userPoints === 'pending' 
             && <div className="mt-5 d-flex justify-content-center">
@@ -51,7 +51,7 @@ function WeatherPage({ t }) {
             {loading_userPoints === 'fulfilled' &&
                 Object.entries(filtered_userPoints).map((point) => <CardWeather_normal point={point} key={point.day} />)
             }
-        </>
+        </section>
     )
 }
 

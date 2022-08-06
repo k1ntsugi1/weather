@@ -2,6 +2,9 @@ html[data-theme="dark"] {
   .bg-main {
     background-color: $color-dark-main;
   };
+  .bg-gradient-main {
+    background: linear-gradient(45deg, $color-dark-main, $color-dark-main-lighter);
+  };
   .bg-additional {
     background-color: $color-dark-additional-lighter;
   };
@@ -36,34 +39,33 @@ html[data-theme="dark"] {
 
   .custom-checkbox {
     .checkbox+label:before {
-      background-color: $color-dark-3;
+      background-color: $color-dark-main-lighter;
     }
 
     .checkbox:checked+label:before {
-      background-color: $color-dark-1;
+      background-color: $color-dark-main;
     }
   }
 
   .btn:hover,
   .form-control:focus,
   .form-select:focus {
-    box-shadow: 0 0 5px 2px $color-dark-1 inset;
+    box-shadow: 0 0 5px 2px $color-dark-main inset;
   }
   .btn {
-    border: 1px solid $color-dark-2;
+    border: 1px solid $color-dark-additional-lighter;
     filter: invert(1);
+    color: black;
   }
-  .weather-container {
-    background: black;
-
-  } 
 }
 
 
 html[data-theme="light"] {
-
   .bg-main {
     background-color: $color-light-main;
+  };
+  .bg-gradient-main {
+    background: linear-gradient(45deg, cornflowerblue, lightblue);
   };
   .bg-additional {
     background-color: $color-light-additional;
@@ -95,23 +97,21 @@ html[data-theme="light"] {
 
   .custom-checkbox {
     .checkbox+label:before {
-      background-color: $color-light-3;
+      background-color: $color-light-additional;
     }
 
     .checkbox:checked+label:before {
-      background-color: $color-light-3;
+      background-color: $color-light-additional;
     }
   }
 
   .btn:hover,
   .form-control:focus,
   .form-select:focus {
-    box-shadow: 0 0 5px 1px $color-light-3 inset;
+    box-shadow: 0 0 5px 1px $color-light-additional inset;
   }
   .btn {
-    border: 1px solid $color-dark-1;
+    border: 1px solid $color-dark-main;
+    color: $color-light-additional;
   }
-  .weather-container {
-    background: linear-gradient(45deg, pink, cornflowerblue);
-  } 
 }

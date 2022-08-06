@@ -34,7 +34,7 @@ function NavbarApp({ t, i18n }) {
                         <Link to="currentWeather" className="ms-2 me-auto nav-link color-main-lighter">{t("home.navbar.randomPoint")}</Link>
                         {
                             currentPoint !== '' &&
-                            <Link to='weather' className="mx-2 nav-link color-main-lighter">
+                            <Link to='weather' className="mx-2 nav-link color-main-lighter text-truncate" style={{"maxWidth": "200px"}}>
                                 {t("home.navbar.currentPoint")}: {currentPoint}
                             </Link>
                         }

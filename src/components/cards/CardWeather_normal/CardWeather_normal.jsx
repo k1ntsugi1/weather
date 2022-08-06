@@ -9,7 +9,7 @@ function CardWeather_normal({t, point}) {
         return (
             <>
             <h3 className="mb-2">{day}</h3>
-            <div className="weather-container container-glass b-rad-10 text-light">
+            <div className="weather-container container-glass b-rad-10 text-light bg-gradient-main">
                 <div className="back-face-of-glass b-rad-10"></div>
                 <div className="px-3 py-2 front-face-of-glass b-rad-10 ">
                     <CardWeather_normal_mainField value={value} />
