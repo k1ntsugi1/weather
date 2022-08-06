@@ -1,26 +1,37 @@
 html[data-theme="dark"] {
-  background-color: $color-dark-1;
-  color: $color-dark-2;
-
-  .brand-item {
-    color: $color-dark-2;
+  .bg-main {
+    background-color: $color-dark-main;
+  };
+  .bg-additional {
+    background-color: $color-dark-additional-lighter;
+  };
+  .bg-additional-lighter {
+    background-color: $color-dark-additional-lighter;
+  };
+  .bg-cube-side {
+    background-color: $color-dark-additional-lighter;
+  };
+  .bg-brand {
+    background-color: $color-dark-main-lighter;
   }
 
-  .nav-link,
-  .navbar-text {
-    color: $color-dark-3;
+  .color-main {
+    color: $color-dark-main;
   }
-
-  .navbar {
-    --bs-navbar-active-color: darkgrey;
+  .color-main-lighter {
+    color: $color-dark-main-lighter;
   }
-
-  .line1,
-  .line2,
-  .line3,
-  .line4,
-  .cube>.side {
-    background-color: $color-dark-2;
+  .color-additional {
+    color: $color-dark-additional-lighter;
+  }
+  .color-additional-lighter {
+    color: $color-dark-additional-lighter;
+  }
+  .color-brand {
+    color: $color-dark-additional-lighter;
+  }
+  .dropdown-toggle {
+    color: $color-dark-main-lighter
   }
 
   .custom-checkbox {
@@ -30,22 +41,6 @@ html[data-theme="dark"] {
 
     .checkbox:checked+label:before {
       background-color: $color-dark-1;
-    }
-  }
-
-  #nav-container {
-    .navbar-toggler {
-      background-color: $color-dark-3;
-
-      .navbar-toggler-icon {
-        filter: invert(1);
-      }
-    }
-
-    .brand-container {
-      .brand-item {
-        background-color: $color-dark-3;
-      }
     }
   }
 
@@ -66,30 +61,37 @@ html[data-theme="dark"] {
 
 
 html[data-theme="light"] {
-  background-color: $color-light-1;
-  color: $color-light-3;
 
-  .brand-item {
-    color: $color-light-3;
+  .bg-main {
+    background-color: $color-light-main;
+  };
+  .bg-additional {
+    background-color: $color-light-additional;
+  };
+  .bg-additional-lighter {
+    background-color: $color-light-additional-lighter;
+  };
+  .bg-cube-side {
+    background-color: $color-light-main;
+  };
+  .bg-brand {
+    background-color: $color-light-additional-lighter;
+  }
+  .color-main {
+    color: $color-light-main;
+  }
+  .color-additional {
+    color: $color-light-additional;
+  }
+  .color-additional-lighter {
+    color: $color-light-additional-lighter;
+  }
+  .color-brand {
+    color: $color-light-additional;
   }
 
-  .navbar {
-    --bs-navbar-active-color: #434b4f;
-  }
 
-  .line1,
-  .line2 {
-    background-color: $color-light-3;
-  }
 
-  .line3,
-  .line4 {
-    background-color: $color-light-2;
-  }
-
-  .cube>.side {
-    background-color: $color-light-1;
-  }
 
   .custom-checkbox {
     .checkbox+label:before {
@@ -98,22 +100,6 @@ html[data-theme="light"] {
 
     .checkbox:checked+label:before {
       background-color: $color-light-3;
-    }
-  }
-
-  #nav-container {
-    .navbar-toggler {
-      background-color: $color-light-2;
-
-      .navbar-toggler-icon {
-        filter: invert(1);
-      }
-    }
-
-    .brand-container {
-      .brand-item {
-        background-color: $color-light-2;
-      }
     }
   }
 

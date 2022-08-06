@@ -25,22 +25,22 @@ function NavbarApp({ t, i18n }) {
     }
     return (
         <Navbar expand="lg">
-            <Container id="nav-container">
+            <Container>
                 <Link to='/'><Brand /></Link>
-                <Navbar.Toggle aria-controls="navbarWeather" />
+                <Navbar.Toggle aria-controls="navbarWeather" className="bg-additional-lighter"/>
                 <Navbar.Collapse>
                     <Nav className='w-100'>
-                        <Link to="about" className="mx-2 nav-link">{t("home.navbar.aboutProject")}</Link>
-                        <Link to="currentWeather" className="ms-2 me-auto nav-link">{t("home.navbar.randomPoint")}</Link>
+                        <Link to="about" className="mx-2 nav-link color-main-lighter">{t("home.navbar.aboutProject")}</Link>
+                        <Link to="currentWeather" className="ms-2 me-auto nav-link color-main-lighter">{t("home.navbar.randomPoint")}</Link>
                         {
                             currentPoint !== '' &&
-                            <Link to='weather' className="mx-2 nav-link">
+                            <Link to='weather' className="mx-2 nav-link color-main-lighter">
                                 {t("home.navbar.currentPoint")}: {currentPoint}
                             </Link>
                         }
                         <NavDropdown title={t("home.navbar.lang.currentLang")} className="mx-2">
-                            <NavDropdown.Item as="button" onClick={() => switchLang('ru')}>{t("home.navbar.lang.ru")}</NavDropdown.Item>
-                            <NavDropdown.Item as="button" onClick={() => switchLang('en')}>{t("home.navbar.lang.en")}</NavDropdown.Item>
+                            <NavDropdown.Item as="button" className="color-main-lighter" onClick={() => switchLang('ru')}>{t("home.navbar.lang.ru")}</NavDropdown.Item>
+                            <NavDropdown.Item as="button" className="color-main-lighter" onClick={() => switchLang('en')}>{t("home.navbar.lang.en")}</NavDropdown.Item>
                         </NavDropdown>
                         <SwitchTheme />
 

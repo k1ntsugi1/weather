@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 function Title({t}) {
     const str = t("home.title");
     return (
-        <div className="container-title">
+        <div className="container-title color-additional">
             {str.split(' ').map((word, index) => <span key={index}>{word}</span>)}
     </div>
     )

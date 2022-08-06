@@ -15,22 +15,22 @@ function SpinnerWeather({styles, size}) {
     return (
             <div className={mapping_sizeOfCube[size]} style={styles}>
                 <div className='cube'>
-                    <div className='side front'>
+                    <div className='side front bg-cube-side'>
                         <img src={Img_1} alt="Lightning" />
                     </div>
-                    <div className='side back'>
+                    <div className='side back bg-cube-side'>
                         <img src={Img_2} alt="Sun" />
                     </div>
-                    <div className='side left'>
+                    <div className='side left bg-cube-side'>
                         <img src={Img_3} alt="ImgLightning2" />
                     </div>
-                    <div className='side right'>
+                    <div className='side right bg-cube-side'>
                         <img src={Img_4} alt="ImgLightning3" />
                     </div>
-                    <div className='side top'>
+                    <div className='side top bg-cube-side'>
                         <img src={Img_5} alt="ImgSun2" />
                     </div>
-                    <div className='side bottom'>
+                    <div className='side bottom bg-cube-side'>
                         <img src={Img_6} alt="ImgSun3" />
                     </div>
                 </div>

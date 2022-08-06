@@ -100,41 +100,48 @@
   border-radius: 10px;
 }
 
-html[data-theme=dark] {
+.modal-content {
+  border: 0;
+}
+
+html[data-theme=dark] .bg-main {
   background-color: #434b4f;
-  color: whitesmoke;
 }
-html[data-theme=dark] .brand-item {
-  color: whitesmoke;
+html[data-theme=dark] .bg-additional {
+  background-color: whitesmoke;
 }
-html[data-theme=dark] .nav-link,
-html[data-theme=dark] .navbar-text {
+html[data-theme=dark] .bg-additional-lighter {
+  background-color: whitesmoke;
+}
+html[data-theme=dark] .bg-cube-side {
+  background-color: whitesmoke;
+}
+html[data-theme=dark] .bg-brand {
+  background-color: #777c8e;
+}
+html[data-theme=dark] .color-main {
+  color: #434b4f;
+}
+html[data-theme=dark] .color-main-lighter {
   color: #777c8e;
 }
-html[data-theme=dark] .navbar {
-  --bs-navbar-active-color: darkgrey;
+html[data-theme=dark] .color-additional {
+  color: whitesmoke;
 }
-html[data-theme=dark] .line1,
-html[data-theme=dark] .line2,
-html[data-theme=dark] .line3,
-html[data-theme=dark] .line4,
-html[data-theme=dark] .cube > .side {
-  background-color: whitesmoke;
+html[data-theme=dark] .color-additional-lighter {
+  color: whitesmoke;
+}
+html[data-theme=dark] .color-brand {
+  color: whitesmoke;
+}
+html[data-theme=dark] .dropdown-toggle {
+  color: #777c8e;
 }
 html[data-theme=dark] .custom-checkbox .checkbox + label:before {
   background-color: #777c8e;
 }
 html[data-theme=dark] .custom-checkbox .checkbox:checked + label:before {
   background-color: #434b4f;
-}
-html[data-theme=dark] #nav-container .navbar-toggler {
-  background-color: #777c8e;
-}
-html[data-theme=dark] #nav-container .navbar-toggler .navbar-toggler-icon {
-  filter: invert(1);
-}
-html[data-theme=dark] #nav-container .brand-container .brand-item {
-  background-color: #777c8e;
 }
 html[data-theme=dark] .btn:hover,
 html[data-theme=dark] .form-control:focus,
@@ -149,41 +156,38 @@ html[data-theme=dark] .weather-container {
   background: black;
 }
 
-html[data-theme=light] {
+html[data-theme=light] .bg-main {
   background-color: lavender;
-  color: cornflowerblue;
 }
-html[data-theme=light] .brand-item {
-  color: cornflowerblue;
-}
-html[data-theme=light] .navbar {
-  --bs-navbar-active-color: #434b4f;
-}
-html[data-theme=light] .line1,
-html[data-theme=light] .line2 {
+html[data-theme=light] .bg-additional {
   background-color: cornflowerblue;
 }
-html[data-theme=light] .line3,
-html[data-theme=light] .line4 {
+html[data-theme=light] .bg-additional-lighter {
   background-color: lightblue;
 }
-html[data-theme=light] .cube > .side {
+html[data-theme=light] .bg-cube-side {
   background-color: lavender;
+}
+html[data-theme=light] .bg-brand {
+  background-color: lightblue;
+}
+html[data-theme=light] .color-main {
+  color: lavender;
+}
+html[data-theme=light] .color-additional {
+  color: cornflowerblue;
+}
+html[data-theme=light] .color-additional-lighter {
+  color: lightblue;
+}
+html[data-theme=light] .color-brand {
+  color: cornflowerblue;
 }
 html[data-theme=light] .custom-checkbox .checkbox + label:before {
   background-color: cornflowerblue;
 }
 html[data-theme=light] .custom-checkbox .checkbox:checked + label:before {
   background-color: cornflowerblue;
-}
-html[data-theme=light] #nav-container .navbar-toggler {
-  background-color: lightblue;
-}
-html[data-theme=light] #nav-container .navbar-toggler .navbar-toggler-icon {
-  filter: invert(1);
-}
-html[data-theme=light] #nav-container .brand-container .brand-item {
-  background-color: lightblue;
 }
 html[data-theme=light] .btn:hover,
 html[data-theme=light] .form-control:focus,

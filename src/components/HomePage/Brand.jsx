@@ -7,7 +7,7 @@ function Brand({t}) {
         <div className="brand-container">
             {str.split('').map((symbol, index) => {
                 return (
-                    <div className="brand-item" key={index}>
+                    <div className="brand-item bg-brand color-brand" key={index}>
                         <span>{symbol}</span>
                     </div>
                 )

@@ -9,11 +9,11 @@ function ModalHelper({ t }) {
     const dispatch = useDispatch();
     const { isActive } = useSelector(store => store.ui_modalHelper);
     return (
-        <Modal show={isActive} onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
-            <Modal.Header closeButton>
+        <Modal show={isActive}  onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
+            <Modal.Header  closeButton className="bg-main color-additional">
                 <Modal.Title>Ошибки</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="bg-main color-additional rounded-bottom">
                 <h4>Общие рекомендации исправления:</h4>
                 <ul>
                     <li>Проверьте интернет соединение</li>
