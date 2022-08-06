@@ -10,12 +10,12 @@ function HomePage() {
 
     return (
         <section className="mt-5 container-welcom">
-            <div className="mainFiled">
+            <div className="mainField">
                 <SpinnerWeather styles={{ left: "140px", top: "-5px" }} size='medium' />
                 <Hashtag />
                 <Title />
             </div>
-            <div className="searchField keyfr-showTop">
+            <div className="searchField">
                 <SearchField/>
                 <Cards/>
             </div>

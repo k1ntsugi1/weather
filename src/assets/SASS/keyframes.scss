@@ -22,7 +22,7 @@
 
 @keyframes rightShow {
     0% {
-        transform: translateX(200%);
+        transform: translateX(50%);
     }
     100% {
         opacity: 1;
@@ -94,5 +94,26 @@
 
     100% {
         transform: rotateY(-270deg);
+    }
+}
+
+@keyframes rotateYY {
+    0% {
+        transform: translateX(145%) translateY(-150%) rotateZ(0deg)  ;
+    }
+    20% {
+        transform: translateX(130%) translateY(0) rotateZ(-200deg) ;
+    }
+    40% {
+        transform: translateX(95%) translateY(-100%) rotateZ(-300deg)  rotateY(45deg);
+    }
+    60% {
+        transform: translateX(47.5%) translateY(-50%) rotateZ(-400deg) ;
+    }
+    80% {
+        transform: translateX(7.5%) translateY(0) rotateZ(-500deg) ;
+    }
+    100% {
+        transform: translateX(-47.5%) translateY(0) rotateZ(-630deg);
     }
 }

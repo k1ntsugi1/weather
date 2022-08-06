@@ -11,7 +11,11 @@ function ModalGeoposition({ t }) {
     const { isActive, presumedPoint } = useSelector(store => store.ui_modalGeoposition);
     return (
         <div>
-            <Popup contentStyle={{ "position": "absolute", "top": "5%", "left": "5%" }} overlayStyle={{"background": "rgb(0 0 0 / 40%)"}} open={isActive} closeOnDocumentClick onClose={() => dispatch(actions_modalHelper.setUnactiveStatus())}>
+            <Popup 
+                contentStyle={{ "position": "absolute", "top": "5%", "left": "5%" }} 
+                overlayStyle={{"background": "rgb(0 0 0 / 40%)"}} open={isActive} 
+                closeOnDocumentClick 
+                onClose={() => dispatch(actions_modalGeoposition.setUnactiveStatus())}>
                 <div className="p-3 border color-additional bg-main rounded" style={{ "display": "inline-block" }}>
                     <p className="mx-1 my-0">Ваша позиция: {presumedPoint}</p>
                     <Button variant="" className=" mb-1 p-1 border-0" onClick={() => dispatch(actions_modalGeoposition.setUnactiveStatus())}>

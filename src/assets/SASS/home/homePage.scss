@@ -2,9 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-
-    opacity: 0;
-    animation: rightShow ease 3s 1 forwards;
+    .mainField {
+        position: relative;
+    }
     .searchField {
         flex-grow: 2;
         display: flex;
@@ -12,5 +12,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 20px;
+        opacity: 0;
+        animation: opacity 2s ease 3s forwards
     }
 }

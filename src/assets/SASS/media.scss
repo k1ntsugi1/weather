@@ -2,6 +2,12 @@
   .weather-container {
     max-height: 270px;
     .front-face-of-glass {
+      .container-data {
+        .main-icon {
+          width: 120px;
+          height: 120px;
+        }
+      }
       .container-additional-data {
         border-top: 1px solid black;
         .additional-data-item {
@@ -38,7 +44,6 @@
 @media (max-width: 767px) {
   #nav-container {
     flex-direction: row;
-
     .navbar-collapse {
       right: 10px;
       left: auto;
@@ -46,15 +51,28 @@
   }
   .weather-container {
     .front-face-of-glass {
-      .container-data {
-        justify-content: space-evenly !important;
-        .description-item {
-          display: none;
+      .container-data { 
+        .main-icon {
+          width: 80px;
+          height: 80px;
         }
-        .addtitional-item {
+        .description-item  {
           display: none;
         }
       }
     }
   }
+}
+
+
+@media (max-width: 560px) {
+  .weather-container {
+    .front-face-of-glass {
+        .description-item,
+        .addtitional-item  {
+          display: none;
+        }
+      }
+    }
+  
 }

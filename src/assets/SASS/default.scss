@@ -12,12 +12,16 @@
   text-decoration: underline;
 }
 
-.keyfr-showTop {
+.keyfr-opacity {
     opacity: 0;
-    animation: topShow 3s ease 2.5s forwards;
+    animation: opacity 3s ease 3s forwards;
 }
-
-
+.keyFr-rotate {
+    animation: rotateYY 3s ease  forwards;
+}
+.opacity-animation {
+    animation: opacity 2s ease forwards
+}
 
 .border-radius-50 {
     border-radius: 50px;

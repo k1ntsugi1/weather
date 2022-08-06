@@ -61,7 +61,7 @@ function Cards({ t }) {
                     <>
                         { status === "pending" && <SpinnerCard style={ {"maxHeight": "100px", "padding": "0", "margin": "0"} } key={cityName}/> }
                         { status === "fulfilled" && <CardWeather_small img={img} id={id} key={cityName} /> }
-                        { status === "rejected" && <CardWeather_small_error img={img} errorOfPoint={errorOfPoint} key={cityName}/> }
+                        { status === "rejected" && <CardWeather_small_error img={img} errorOfPoint={errorOfPoint} key={cityName} /> }
                     </>
 
                 )

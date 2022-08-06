@@ -15,7 +15,7 @@ $bigLength: calc($bigSize / 2);
     perspective: 1000px;
     opacity: 0;
     animation: opacity 2.5s ease 3s forwards;
-
+    
     &:hover {
         animation-play-state: paused;
     }
@@ -25,10 +25,11 @@ $bigLength: calc($bigSize / 2);
         height: 100%;
 
         animation: rotateXY 4s infinite alternate-reverse;
+        /*animation: rotateYY 2.5s linear 0s forwards;*/
         transform-style: preserve-3d;
         &:hover {
             cursor: pointer;
-            animation-play-state: paused;
+            /*animation-play-state: paused;*/
         }
         .side {
             position: absolute;

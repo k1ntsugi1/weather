@@ -18,7 +18,7 @@
 }
 @keyframes rightShow {
   0% {
-    transform: translateX(200%);
+    transform: translateX(50%);
   }
   100% {
     opacity: 1;
@@ -80,6 +80,26 @@
     transform: rotateY(-270deg);
   }
 }
+@keyframes rotateYY {
+  0% {
+    transform: translateX(145%) translateY(-150%) rotateZ(0deg);
+  }
+  20% {
+    transform: translateX(130%) translateY(0) rotateZ(-200deg);
+  }
+  40% {
+    transform: translateX(95%) translateY(-100%) rotateZ(-300deg) rotateY(45deg);
+  }
+  60% {
+    transform: translateX(47.5%) translateY(-50%) rotateZ(-400deg);
+  }
+  80% {
+    transform: translateX(7.5%) translateY(0) rotateZ(-500deg);
+  }
+  100% {
+    transform: translateX(-47.5%) translateY(0) rotateZ(-630deg);
+  }
+}
 .nav-link:hover,
 .nav-item:hover,
 .nav-link:focus,
@@ -87,9 +107,17 @@
   text-decoration: underline;
 }
 
-.keyfr-showTop {
+.keyfr-opacity {
   opacity: 0;
-  animation: topShow 3s ease 2.5s forwards;
+  animation: opacity 3s ease 3s forwards;
+}
+
+.keyFr-rotate {
+  animation: rotateYY 3s ease forwards;
+}
+
+.opacity-animation {
+  animation: opacity 2s ease forwards;
 }
 
 .border-radius-50 {
@@ -281,11 +309,12 @@ html[data-theme=light] .btn {
   width: 100%;
   height: 100%;
   animation: rotateXY 4s infinite alternate-reverse;
+  /*animation: rotateYY 2.5s linear 0s forwards;*/
   transform-style: preserve-3d;
 }
 .container-smallCube .cube:hover {
   cursor: pointer;
-  animation-play-state: paused;
+  /*animation-play-state: paused;*/
 }
 .container-smallCube .cube .side {
   position: absolute;
@@ -337,11 +366,12 @@ html[data-theme=light] .btn {
   width: 100%;
   height: 100%;
   animation: rotateXY 4s infinite alternate-reverse;
+  /*animation: rotateYY 2.5s linear 0s forwards;*/
   transform-style: preserve-3d;
 }
 .container-mediumCube .cube:hover {
   cursor: pointer;
-  animation-play-state: paused;
+  /*animation-play-state: paused;*/
 }
 .container-mediumCube .cube .side {
   position: absolute;
@@ -393,11 +423,12 @@ html[data-theme=light] .btn {
   width: 100%;
   height: 100%;
   animation: rotateXY 4s infinite alternate-reverse;
+  /*animation: rotateYY 2.5s linear 0s forwards;*/
   transform-style: preserve-3d;
 }
 .container-bigCube .cube:hover {
   cursor: pointer;
-  animation-play-state: paused;
+  /*animation-play-state: paused;*/
 }
 .container-bigCube .cube .side {
   position: absolute;
@@ -528,6 +559,8 @@ html[data-theme=light] .btn {
 .container-title {
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  animation: rightShow ease 3s forwards;
 }
 .container-title span {
   font-size: 64px;
@@ -573,8 +606,6 @@ html[data-theme=light] .btn {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   align-items: center;
   gap: 10px;
-  opacity: 0;
-  animation: topShow 3s ease forwards;
 }
 .container-cities .container-img {
   position: relative;
@@ -605,8 +636,9 @@ html[data-theme=light] .btn {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  opacity: 0;
-  animation: rightShow ease 3s 1 forwards;
+}
+.container-welcom .mainField {
+  position: relative;
 }
 .container-welcom .searchField {
   flex-grow: 2;
@@ -615,11 +647,17 @@ html[data-theme=light] .btn {
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  opacity: 0;
+  animation: opacity 2s ease 3s forwards;
 }
 
 @media (max-width: 2200px) {
   .weather-container {
     max-height: 270px;
+  }
+  .weather-container .front-face-of-glass .container-data .main-icon {
+    width: 120px;
+    height: 120px;
   }
   .weather-container .front-face-of-glass .container-additional-data {
     border-top: 1px solid black;
@@ -656,13 +694,17 @@ html[data-theme=light] .btn {
     right: 10px;
     left: auto;
   }
-  .weather-container .front-face-of-glass .container-data {
-    justify-content: space-evenly !important;
+  .weather-container .front-face-of-glass .container-data .main-icon {
+    width: 80px;
+    height: 80px;
   }
   .weather-container .front-face-of-glass .container-data .description-item {
     display: none;
   }
-  .weather-container .front-face-of-glass .container-data .addtitional-item {
+}
+@media (max-width: 560px) {
+  .weather-container .front-face-of-glass .description-item,
+.weather-container .front-face-of-glass .addtitional-item {
     display: none;
   }
 }
