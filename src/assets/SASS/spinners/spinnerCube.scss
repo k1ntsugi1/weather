@@ -29,7 +29,7 @@ $bigLength: calc($bigSize / 2);
         transform-style: preserve-3d;
         &:hover {
             cursor: pointer;
-            /*animation-play-state: paused;*/
+            animation-play-state: paused;
         }
         .side {
             position: absolute;
