@@ -1,8 +1,8 @@
 const getUrl_additional = (latitude, longitude) => {
     const additionalUrl = `http://api.openweathermap.org/geo/1.0/reverse?`;
-    const lat = `lat=${latitude}&`;
-    const lon = `lon=${longitude}&`
-    const limit = `limit=${1}&`;
+    const lat = `lat=${55.17378616333008}&`;
+    const lon = `lon=${61.31373596191406}&`
+    const limit = `limit=${5}&`;
     const appid = 'appid=45d767d1bc549e5a3ade84a6a2d80e23';
     return additionalUrl + lat + lon + limit + appid;
 }
