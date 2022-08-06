@@ -1,6 +1,6 @@
 @keyframes topShow {
   0% {
-    transform: translateY(-200%);
+    transform: translateY(-50%);
   }
   100% {
     opacity: 1;
@@ -9,7 +9,7 @@
 }
 @keyframes bottomShow {
   0% {
-    transform: translateY(200%);
+    transform: translateY(50%);
   }
   100% {
     opacity: 1;
@@ -27,7 +27,7 @@
 }
 @keyframes leftShow {
   0% {
-    transform: translateX(-200%);
+    transform: translateX(-50%);
   }
   100% {
     opacity: 1;
@@ -314,7 +314,7 @@ html[data-theme=light] .btn {
 }
 .container-smallCube .cube:hover {
   cursor: pointer;
-  /*animation-play-state: paused;*/
+  animation-play-state: paused;
 }
 .container-smallCube .cube .side {
   position: absolute;
@@ -371,7 +371,7 @@ html[data-theme=light] .btn {
 }
 .container-mediumCube .cube:hover {
   cursor: pointer;
-  /*animation-play-state: paused;*/
+  animation-play-state: paused;
 }
 .container-mediumCube .cube .side {
   position: absolute;
@@ -428,7 +428,7 @@ html[data-theme=light] .btn {
 }
 .container-bigCube .cube:hover {
   cursor: pointer;
-  /*animation-play-state: paused;*/
+  animation-play-state: paused;
 }
 .container-bigCube .cube .side {
   position: absolute;
