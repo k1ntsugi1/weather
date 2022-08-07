@@ -79,5 +79,8 @@
             "500EtcCodes": "500, 502, 503, 504 - API error",
             "500EtcDescription": "We are powerless here :("
         }
+    },
+    "toastText": {
+        "undefinedPoint": "Сould not determine the location"
     }
 }

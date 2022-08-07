@@ -5,9 +5,11 @@ import { actions_modalGeoposition } from "../store/slices/uiSlice_modalGeopositi
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import Popup from 'reactjs-popup';
+import { useNavigate } from "react-router-dom";
 
 function ModalGeoposition({ t }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isActive, presumedPoint } = useSelector(store => store.ui_modalGeoposition);
     return (
         <div>
@@ -28,8 +30,9 @@ function ModalGeoposition({ t }) {
                     <Button variant=""
                             className="mb-1 me-1 p-1 border-0 "
                             onClick={() => {
-                                const data = { points: [presumedPoint], typeOfRequest: 'weather', typeOfPoints: 'userPoints', statusOfPoint: 'pending' };
+                                const data = { points: [presumedPoint], typeOfRequest: 'forecast', typeOfPoints: 'userPoints', statusOfPoint: 'pending' };
                                 handlerAsyncThunk(data, dispatch);
+                                navigate('/weather');
                                 dispatch(actions_modalGeoposition.setUnactiveStatus())
                             }}
                     >
