@@ -268,7 +268,9 @@ html[data-theme=light] .btn {
   position: relative;
   width: 100%;
   height: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transition: transform 1s;
   transition: transform 1s;
 }
 .rotate-container .rotate-card .front-face-of-card {
