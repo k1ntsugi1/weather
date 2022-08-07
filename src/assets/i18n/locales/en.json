@@ -37,7 +37,7 @@
         "suggestion": "But you can go to",
         "toHome": " home page"
     },
-        "weatherPage" : {
+    "weatherPage" : {
         "time": "Time:",
         "description": "Description:",
         "feelsLike": "Feels like",
@@ -57,5 +57,27 @@
         "ryazan": "Ryazan",
         "sochi": "Sochi",
         "ufa": "Ufa"
+    },
+    "modalGeoposition": {
+        "positiion": "Is your position",
+        "correctly": "Correctly",
+        "incorrectly": "Incorrectly"
+    },
+    "modalHelper": {
+        "titleHeader": "Errors",
+        "body": {
+            "titleBody": "General fix recommendations:",
+            "checkNetwork": "Check your network connection",
+            "checkNameOfPoint":"Check the correctness of the name of the search point",
+            "description": "Description",
+            "401Code": "401 - Changed the subscription form for the API",
+            "401Description": "The fix is only available to the developer",
+            "404Code": "404 - The name of the search point is incorrect",
+            "404Description": "See the general recommendations",
+            "429Code": "429 - More than 60 requests were made in the past minute or more than 1000 per day",
+            "429Descroption": "Make a request later",
+            "500EtcCodes": "500, 502, 503, 504 - API error",
+            "500EtcDescription": "We are powerless here :("
+        }
     }
 }

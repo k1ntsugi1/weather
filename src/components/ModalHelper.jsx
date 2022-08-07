@@ -11,24 +11,24 @@ function ModalHelper({ t }) {
     return (
         <Modal show={isActive}  onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header  closeButton className="bg-main color-additional">
-                <Modal.Title>Ошибки</Modal.Title>
+                <Modal.Title>{t("modalHelper.titleHeader")}</Modal.Title>
             </Modal.Header>
             <Modal.Body className="bg-main color-additional rounded-bottom">
-                <h5>Общие рекомендации исправления:</h5>
+                <h5>{t("modalHelper.body.titleBody")}</h5>
                 <ul>
-                    <li>Проверьте интернет соединение</li>
-                    <li>Проверьте корректность название точки поиска</li>
+                    <li>{t("modalHelper.body.checkNetwork")}</li>
+                    <li>{t("modalHelper.body.checkNameOfPoint")}</li>
                 </ul>
-                <h6>Описание ошибок:</h6>
+                <h6>{t("modalHelper.body.description")}</h6>
                 <dl>
-                    <dt>401 - изменена форма подписки на OpenWeather API</dt>
-                    <dd>Исправление доступно только разработчику</dd>
-                    <dt>404 - не верно указано название точки поиска</dt>
-                    <dd>Для исправления посмотрите общие рекомендации</dd>
-                    <dt>429 - произведено более 60 запросов за прошедшую минуту или более 1000 за сутки</dt>
-                    <dd>Произведите запрос позже</dd>
-                    <dt>500, 502, 503, 504 - ошибка со стороны API</dt>
-                    <dd>Мы здесь бессильны :(</dd>
+                    <dt>{t("modalHelper.body.401Code")}</dt>
+                    <dd>{t("modalHelper.body.401Description")}</dd>
+                    <dt>{t("modalHelper.body.404Code")}</dt>
+                    <dd>{t("modalHelper.body.404Description")}</dd>
+                    <dt>{t("modalHelper.body.429Code")}</dt>
+                    <dd>{t("modalHelper.body.429Descroption")}</dd>
+                    <dt>{t("modalHelper.body.500EtcCodes")}</dt>
+                    <dd>{t("modalHelper.body.500EtcDescription")}</dd>
                 </dl>
             </Modal.Body>
         </Modal>
