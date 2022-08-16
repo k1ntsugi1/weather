@@ -12,7 +12,6 @@ function UndefinedPage({t}) {
                     <span>{t("undefindPage.suggestion")}</span> <Link to="/">{t("undefindPage.toHome")}</Link>
                 </div>
             </div>
-            <SpinnerWeather styles={{ left: "50%", top: "50%" }} size='medium' />
         </section>
     )
 }
