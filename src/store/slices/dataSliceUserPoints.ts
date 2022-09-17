@@ -1,14 +1,16 @@
-import { createSlice, createEntityAdapter} from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter, PayloadAction} from "@reduxjs/toolkit";
 import { fetchDataOfWeather } from "../asyncThunkFetchDataOfWeather";
+import { ParsedDataOutput } from '../../interfaces/ResponseParsedData';
+import { RootState } from '../index';
 
 type ErrorUserPoints = {
-    code: string,
-    point: string
+    code?: string,
+    point?: string // если не сделать опциональными то выдатеся ошибка
 };
-
+//: <PayloadAction<ParsedDataOutput>
 interface InitialState {
     loadingUserPoints: string | null,
-    errorsUserPoints: ErrorUserPoints[]
+    errorsUserPoints: ErrorUserPoints[] | []
 };
 
 const adapterUserPoints = createEntityAdapter();
@@ -49,7 +51,7 @@ const dataSliceUserPoints = createSlice({
     }
 });
 
-export const selectorsUserPoints = adapterUserPoints.getSelectors((store) => store.dataUserPoints);
+export const selectorsUserPoints = adapterUserPoints.getSelectors((store: RootState) => store.dataUserPoints);
 
 export const actionsUserPoints =  dataSliceUserPoints.actions;
 

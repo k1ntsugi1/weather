@@ -3,9 +3,9 @@ import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
 
 interface DataOfSearchingPayload {
-    currentPoint: string,
-    currentTypeOfRequest: string,
-    currentLang: string,
+    currentPoint?: string,
+    currentTypeOfRequest?: string,
+    currentLang?: string,
 }
 
 

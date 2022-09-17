@@ -6,10 +6,10 @@ const uiSliceModalHelper = createSlice({
         isActive: false
     },
     reducers: {
-        setActiveStatus(state, _) {
+        setActiveStatus(state) {
             state.isActive = true;
         },
-        setUnactiveStatus(state, _) {
+        setUnactiveStatus(state) {
             state.isActive = false;
         },
     },

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import getUrl_additional from './getUrlAdditional';
 import parserData_geoposition from './parserDataGeoposition';
-import { actions_modalGeoposition } from '../../store/slices/uiSliceModalGeoposition';
+import { actionsModalGeoposition } from '../../store/slices/uiSliceModalGeoposition';
 import { useTranslation } from 'react-i18next';
 
 const handlerGeoposition = async (data, currentLang: string, dispatch) => {
@@ -12,8 +12,8 @@ const handlerGeoposition = async (data, currentLang: string, dispatch) => {
   try {
     const response = await axios.get(url);
     const presumedPoint = parserData_geoposition(response.data, currentLang);
-    dispatch(actions_modalGeoposition.setPresumedPoint({ presumedPoint }));
-    dispatch(actions_modalGeoposition.setActiveStatus());
+    dispatch(actionsModalGeoposition.setPresumedPoint({ presumedPoint }));
+    dispatch(actionsModalGeoposition.setActiveStatus());
   } catch {
     toast(`😲 ${t('toastText.undefinedPoint')}!`, {
       className: 'bg-main color-additional',

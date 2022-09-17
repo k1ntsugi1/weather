@@ -1,15 +1,18 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 
-import { actions_modalHelper } from "../store/slices/uiSliceModalHelper";
+import { actionsModalHelper } from "../store/slices/uiSliceModalHelper";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 
-function ModalHelper({ t }) {
+import { RootState } from '../store/index'
+
+const ModalHelper: React.FC = () => {
+    const { t } = useTranslation()
     const dispatch = useDispatch();
-    const { isActive } = useSelector(store => store.ui_modalHelper);
+    const { isActive } = useSelector((store: RootState) => store.uiModalHelper);
     return (
-        <Modal show={isActive}  onHide={() => dispatch(actions_modalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
+        <Modal show={isActive}  onHide={() => dispatch(actionsModalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header  closeButton className="bg-main color-additional">
                 <Modal.Title>{t("modalHelper.titleHeader")}</Modal.Title>
             </Modal.Header>
@@ -35,4 +38,4 @@ function ModalHelper({ t }) {
     )
 }
 
-export default withTranslation()(ModalHelper)
+export default ModalHelper;

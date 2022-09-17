@@ -3,14 +3,15 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import handlerAsyncThunk from "../../services/fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import { useEffect } from "react";
 
-function SearchField({ t }) {
+const SearchField: React.FC = () => {
+    const { t } = useTranslation()
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -91,4 +92,4 @@ function SearchField({ t }) {
     )
 }
 
-export default withTranslation()(SearchField);
+export default SearchField;

@@ -1,7 +1,8 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 
-function Brand({t}) {
+function Brand() {
+    const { t } = useTranslation()
     const str = t("home.navbar.brand");
     return (
         <div className="brand-container">
@@ -17,4 +18,4 @@ function Brand({t}) {
     )
 }
 
-export default withTranslation()(Brand);
+export default Brand;

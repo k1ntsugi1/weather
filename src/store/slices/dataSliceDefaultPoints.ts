@@ -1,59 +1,81 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { fetchDataOfWeather } from "../asyncThunkFetchDataOfWeather";
 import _ from 'lodash';
+import { RootState } from "..";
 
-const filterLoading_defaultPoints = (state, point, firstStatus, secondStatus) => {
-    return _.without(state.loading_defaultPoints, `${firstStatus}_${point}`, `${secondStatus}_${point}`)
-}
-const sortedByPoint = (collection) => {
-    return _.sortBy(collection, [function(loadingStatus) {return loadingStatus.split('_')[1]}])
-}
-const adapter_defaultPoints = createEntityAdapter();
-const initialState = adapter_defaultPoints.getInitialState({loading_defaultPoints: [], errors_defaultPoints: []});
+type ErrorDefaultPoints = {
+    code?: string,
+    point?: string // если не сделать опциональными то выдатеся ошибка
+};
 
-const dataSlice_defaultPoints = createSlice({
+interface InitialState {
+    loadingDefaultPoints: string[] | [],
+    errorsDefaultPoints: ErrorDefaultPoints[] | []
+}
+
+type PrepairedLoading = (
+    state: any,/////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    point: string,
+    firstStatus: string,
+    secondStatus: string
+) => (nextStrOfLoading:string) => string[];
+
+const prepaireDefaultPoints: PrepairedLoading = (state, point, firstStatus, secondStatus) => {
+    const filteredLoading = _.without(state.loadingDefaultPoints, `${firstStatus}_${point}`, `${secondStatus}_${point}`);
+    const sortedByPoint = (nextStatusOfLoading: string): string[] => {
+        const collection = [...filteredLoading, nextStatusOfLoading];
+        return _.sortBy(collection, [function(loadingStatus) {return loadingStatus.split('_')[1]}])
+    };
+    return sortedByPoint;
+};
+
+
+
+const myInitialState: InitialState = { loadingDefaultPoints: [], errorsDefaultPoints: [] }
+
+const adapterDefaultPoints = createEntityAdapter();
+const initialState = adapterDefaultPoints.getInitialState(myInitialState);
+
+const dataSliceDefaultPoints = createSlice({
     name: 'data_defaultPoints',
     initialState,
     reducers: {
-        removeData_defaultPoints(state) {
-            adapter_defaultPoints.removeAll(state);
-            state.errors_defaultPoints = [];
-            state.loading_defaultPoints = [];
+        removeDataDefaultPoints(state) {
+            adapterDefaultPoints.removeAll(state);
+            state.errorsDefaultPoints = [];
+            state.loadingDefaultPoints = [];
         },
-        removeData_rejectedDefaultPoints(state) {
-            state.errors_defaultPoints = [];
+        removeDataRejectedDefaultPoints(state) {
+            state.errorsDefaultPoints = [];
         }
     },
     extraReducers: (builder) => {
         builder
         .addCase(fetchDataOfWeather.pending, (state, { meta: { arg } }) => {
             if (arg.typeOfPoints === 'defaultPoints') {
-                const filteredLoading = filterLoading_defaultPoints(state, arg.point, 'fulfilled', 'rejected');
-                const sortedLoading = sortedByPoint([...filteredLoading, `pending_${arg.point}`])
-                state.loading_defaultPoints = sortedLoading;
+                const prepairedLoading = prepaireDefaultPoints(state, arg.point, 'fulfilled', 'rejected')(`pending_${arg.point}`);
+                state.loadingDefaultPoints = prepairedLoading;
             }
         })
         .addCase(fetchDataOfWeather.fulfilled, (state, { meta: { arg }, payload: { parsedData } }) => {
            if(arg.typeOfPoints === 'defaultPoints') {
-                const filteredLoading = filterLoading_defaultPoints(state, arg.point, 'pending', 'rejected');
-                const sortedLoading = sortedByPoint([...filteredLoading, `fulfilled_${arg.point}`])
-                state.loading_defaultPoints = sortedLoading;
-                adapter_defaultPoints.addMany(state, parsedData);
+                const prepairedLoading = prepaireDefaultPoints(state, arg.point, 'pending', 'rejected')(`fulfilled_${arg.point}`);
+                state.loadingDefaultPoints = prepairedLoading;
+                adapterDefaultPoints.addMany(state, parsedData);
             }
         })
         .addCase(fetchDataOfWeather.rejected, (state, { meta: { arg }, payload }) => {
             if(arg.typeOfPoints === 'defaultPoints') {
-                const filteredLoading = filterLoading_defaultPoints(state, arg.point, 'pending', 'fulfilled', 'rejected');
-                const sortedLoading = sortedByPoint([...filteredLoading, `rejected_${arg.point}`])
-                state.loading_defaultPoints = sortedLoading;
-                state.errors_defaultPoints = [ ...state.errors_defaultPoints, payload]
+                const prepairedLoading = prepaireDefaultPoints(state, arg.point, 'pending', 'fulfilled')(`rejected_${arg.point}`);
+                state.loadingDefaultPoints = prepairedLoading;
+                state.errorsDefaultPoints = [ ...state.errorsDefaultPoints, payload]
             }
         })
     }
 });
 
-export const selectors_defaultPoints = adapter_defaultPoints.getSelectors((store) => store.data_defaultPoints);
+export const selectorsDefaultPoints = adapterDefaultPoints.getSelectors((store: RootState) => store.dataDefaultPoints);
 
-export const actions_defaultPoints = dataSlice_defaultPoints.actions;
+export const actionsDefaultPoints = dataSliceDefaultPoints.actions;
 
-export default dataSlice_defaultPoints.reducer;
+export default dataSliceDefaultPoints.reducer;

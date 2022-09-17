@@ -1,7 +1,8 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 
-function Title({t}) {
+const Title: React.FC = () => {
+    const { t } = useTranslation()
     const str = t("home.title");
     return (
         <div className="container-title color-additional">
@@ -10,4 +11,4 @@ function Title({t}) {
     )
 }
 
-export default withTranslation()(Title)
+export default Title

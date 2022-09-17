@@ -14,10 +14,10 @@ const uiSliceModalGeoposition = createSlice({
         setPresumedPoint(state, { payload: { presumedPoint } }: PayloadAction<GeoposPayload>) {
             state.presumedPoint = presumedPoint;
         },
-        setActiveStatus(state, _) {
+        setActiveStatus(state) {
             state.isActive = true;
         },
-        setUnactiveStatus(state, _) {
+        setUnactiveStatus(state) {
             state.isActive = false;
         },
     },

@@ -6,12 +6,20 @@ import reducerUiModalHelper from './slices/uiSliceModalHelper';
 import reducerUiModalGeoposition from './slices/uiSliceModalGeoposition';
 import reducerUiDataOfSearching from './slices/uiSliceDataOfSearching'
 
-export default configureStore({
+
+const store = configureStore({
     reducer: {
         dataUserPoints: reducerDataUserPoinst,
         dataDefaultPoints: reducerDataDefaultPoints,
         uiModalHelper: reducerUiModalHelper,
         uiModalGeoposition: reducerUiModalGeoposition,
-        uiMataOfSearching: reducerUiDataOfSearching
+        uiDataOfSearching: reducerUiDataOfSearching
     },
-})
+});
+
+export type RootState = ReturnType<typeof store.getState> // !!!!!!
+
+export type AppDispatch = typeof store.dispatch; // !!!!!!!!!!!!
+ // !!!!!!!!!!
+
+export default store;

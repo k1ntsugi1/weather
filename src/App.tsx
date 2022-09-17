@@ -14,14 +14,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { useTranslation, withTranslation } from 'react-i18next';
 
+import { RootState } from './store/index';
 
 const App: React.FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch();
-  const { currentLang } = useSelector(store => store.ui_dataOfSearching);
+  const { currentLang } = useSelector((store: RootState) => store.uiDataOfSearching);
 
   useEffect(() => {
-      navigator.geolocation.getCurrentPosition((data) => handlerGeoposition(data, currentLang, dispatch, t))
+      navigator.geolocation.getCurrentPosition((data) => handlerGeoposition(data, currentLang, dispatch))
   }, []);
   
   return (

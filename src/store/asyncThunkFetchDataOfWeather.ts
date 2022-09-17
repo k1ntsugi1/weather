@@ -4,9 +4,12 @@ import axios, { AxiosResponse } from "axios";
 import getUrl_main from "../services/fetch/getUrlMain";
 import parseData from "../services/fetch/parseData";
 
+import { AppDispatch } from ".";
+
 import { ResponseFetchData } from '../interfaces/ResponseFetchData';
 //import { ResponseParsedDataFunc } from '../interfaces/ResponseParsedData'
 import { ParsedDataOutput } from '../interfaces/ResponseParsedData'
+import { RootState } from './index'
 
 interface DataOfPoint {
     point: string,
@@ -14,9 +17,25 @@ interface DataOfPoint {
     typeOfPoints: string,
 }
 
-export const fetchDataOfWeather = createAsyncThunk(
+interface FullfilledRequest {
+    parsedData: ParsedDataOutput[]
+}
+
+interface ThunkAPI {
+    state: RootState,
+    dispatch: AppDispatch,
+    extra: {
+        jwt: string
+    },
+    rejectValue: {
+        point: string,
+        code: string,
+    },
+}
+
+export const fetchDataOfWeather = createAsyncThunk<FullfilledRequest, DataOfPoint, ThunkAPI>(
     'weather/fetchData',
-    async (dataOfPoint: DataOfPoint, thunkAPI) => {
+    async (dataOfPoint, thunkAPI) => {
         const { currentLang } = thunkAPI.getState().uiDataOfSearching;
         const { point, typeOfRequest, typeOfPoints } = dataOfPoint
 

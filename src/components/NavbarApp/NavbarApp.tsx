@@ -3,24 +3,26 @@ import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
 import SwitchTheme from "./SwitchTheme";
 import { Link } from "react-router-dom";
 import Brand from "../HomePage/Brand";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { actions_defaultPoints } from "../../store/slices/dataSliceDefaultPoints";
-import { actions_userPoints } from "../../store/slices/dataSliceUserPoints";
-import { actions_modalHelper } from "../../store/slices/uiSliceModalHelper";
-import { actions_dataOfSearching } from "../../store/slices/uiSliceDataOfSearching";
+import { actionsDefaultPoints } from "../../store/slices/dataSliceDefaultPoints";
+import { actionsUserPoints } from "../../store/slices/dataSliceUserPoints";
+import { actionsModalHelper } from "../../store/slices/uiSliceModalHelper";
+import { actionsDataOfSearching } from "../../store/slices/uiSliceDataOfSearching";
 
+import { AppDispatch, RootState } from '../../store/index';
 
-function NavbarApp({ t, i18n }) {
-    const dispatch = useDispatch();
-    const { currentPoint, currentLang } = useSelector(store => store. ui_dataOfSearching)
-    const switchLang = (lang) => {
+const NavbarApp:React.FC = () => {
+    const { t, i18n } = useTranslation()
+    const dispatch: AppDispatch = useDispatch();
+    const { currentPoint, currentLang } = useSelector((store: RootState) => store.uiDataOfSearching)
+    const switchLang = (lang: string): void => {
         if(currentLang !== lang) {
             localStorage.setItem('current-lang', lang);
             i18n.changeLanguage(lang);
-            dispatch(actions_defaultPoints.removeData_defaultPoints());
-            dispatch(actions_userPoints.removeData_userPoints())
-            dispatch(actions_dataOfSearching.setCurrentLang({currentLang: lang}))
+            dispatch(actionsDefaultPoints.removeDataDefaultPoints());
+            dispatch(actionsUserPoints.removeDataUserPoints())
+            dispatch(actionsDataOfSearching.setCurrentLang({currentLang: lang}))
         }
     }
     return (
@@ -44,7 +46,7 @@ function NavbarApp({ t, i18n }) {
                         </NavDropdown>
                         <SwitchTheme />
 
-                        <div className="mx-2  navbar-text" style={{ "cursor": "pointer" }} onClick={() => dispatch(actions_modalHelper.setActiveStatus())}>
+                        <div className="mx-2  navbar-text" style={{ "cursor": "pointer" }} onClick={() => dispatch(actionsModalHelper.setActiveStatus())}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" className="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
                                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                             </svg>
@@ -56,4 +58,4 @@ function NavbarApp({ t, i18n }) {
     )
 }
 
-export default withTranslation()(NavbarApp);
+export default NavbarApp;

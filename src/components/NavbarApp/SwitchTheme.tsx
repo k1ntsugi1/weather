@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { withTranslation } from "react-i18next";
-function SwitchTheme({t}) {
+import { useTranslation, withTranslation } from "react-i18next";
+
+const SwitchTheme: React.FC = () => {
+    const { t } = useTranslation();
     const [theme, setTheme] = useState(
         localStorage.getItem('current-theme') ?? 'light'
     );
@@ -24,4 +26,4 @@ function SwitchTheme({t}) {
     )
 }
 
-export default withTranslation()(SwitchTheme);
+export default SwitchTheme;
