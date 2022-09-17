@@ -1,7 +1,7 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { actions_modalHelper } from "../../../store/slices/uiSlice_modalHelper";
+import { actions_modalHelper } from "../../../store/slices/uiSliceModalHelper";
 import CardError from "../CardError";
 
 function CardWeather_small_error({ t, img, errorOfPoint }) {

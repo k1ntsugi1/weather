@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import getUrl_img from "../../../services/fetch/getUrl_img";
+import getUrl_img from "../../../services/fetch/getUrlImg";
 
 function CardWeather_noraml_mainField({ t, value }) {
     const { city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = value;

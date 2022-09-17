@@ -1,7 +1,7 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import handlerAsyncThunk from "../services/fetch/handlerAsynkThunk";
-import { actions_modalGeoposition } from "../store/slices/uiSlice_modalGeoposition";
+import { actions_modalGeoposition } from "../store/slices/uiSliceModalGeoposition";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import Popup from 'reactjs-popup';

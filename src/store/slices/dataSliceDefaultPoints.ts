@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { fetchDataOfWeather } from "../asyncThunk_fetchDataOfWeather";
+import { fetchDataOfWeather } from "../asyncThunkFetchDataOfWeather";
 import _ from 'lodash';
 
 const filterLoading_defaultPoints = (state, point, firstStatus, secondStatus) => {

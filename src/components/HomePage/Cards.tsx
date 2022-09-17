@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useDefaultPoints } from "../contexts/useDefaultPoints";
-import { selectors_defaultPoints } from "../../store/slices/dataSlice_defaultPoints";
+import { selectors_defaultPoints } from "../../store/slices/dataSliceDefaultPoints";
 import handlerAsyncThunk from "../../services/fetch/handlerAsynkThunk";
 import { withTranslation } from "react-i18next";
 import SpinnerCard from "../spinners/SpinnerCard";

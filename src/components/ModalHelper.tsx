@@ -1,7 +1,7 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 
-import { actions_modalHelper } from "../store/slices/uiSlice_modalHelper";
+import { actions_modalHelper } from "../store/slices/uiSliceModalHelper";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 

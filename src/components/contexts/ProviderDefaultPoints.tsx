@@ -1,8 +1,13 @@
-import React from "react";
-import { withTranslation } from "react-i18next";
-import { context_defaultPoints } from "./context_defaultPoints";
+import React, { FC } from "react";
+import { useTranslation } from "react-i18next";
+import { contextDefaultPoints } from "./contextDefaultPoints";
 
-function Provider_defaultPoints({ t, children }) {
+interface Props {
+    children: React.ReactNode;
+}
+
+const ProviderDefaultPoints: FC<Props> = ({ children }) => {
+    const { t } = useTranslation()
     const defaultPoints = {
         defaultPoints: [
             t('defaultPoints.moscow'),
@@ -19,10 +24,10 @@ function Provider_defaultPoints({ t, children }) {
         statusOfPoint: 'disabled'
     }
     return (
-        <context_defaultPoints.Provider value={defaultPoints}>
+        <contextDefaultPoints.Provider value={defaultPoints}>
             { children }
-        </ context_defaultPoints.Provider>
+        </ contextDefaultPoints.Provider>
     )
 }
 
-export default withTranslation()(Provider_defaultPoints)
+export default ProviderDefaultPoints;

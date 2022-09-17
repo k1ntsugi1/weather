@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import Brand from "../HomePage/Brand";
 import { withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { actions_defaultPoints } from "../../store/slices/dataSlice_defaultPoints";
-import { actions_userPoints } from "../../store/slices/dataSlice_userPoints";
-import { actions_modalHelper } from "../../store/slices/uiSlice_modalHelper";
-import { actions_dataOfSearching } from "../../store/slices/uiSlice_dataOfSearching";
+import { actions_defaultPoints } from "../../store/slices/dataSliceDefaultPoints";
+import { actions_userPoints } from "../../store/slices/dataSliceUserPoints";
+import { actions_modalHelper } from "../../store/slices/uiSliceModalHelper";
+import { actions_dataOfSearching } from "../../store/slices/uiSliceDataOfSearching";
 
 
 function NavbarApp({ t, i18n }) {

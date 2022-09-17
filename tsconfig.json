@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+    "outDir": "./public/",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "resolveJsonModule": true,
+    "module": "es2022",
+    "target": "es2022",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node"
+    },
+    "include": ["./src/**/*"]
+  }

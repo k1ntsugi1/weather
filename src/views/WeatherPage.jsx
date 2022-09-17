@@ -2,13 +2,13 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import SearchField from "../components/HomePage/SearchField";
-import { selectors_userPoints } from "../store/slices/dataSlice_userPoints";
+import { selectors_userPoints } from "../store/slices/dataSliceUserPoints";
 import CardWeather_normal from "../components/cards/CardWeather_normal/CardWeather_normal";
 import CardError from "../components/cards/CardWeather_normal/CardWeather_normal_error";
 import { useEffect } from "react";
 import handlerTimeouts from "../services/fetch/handlerTimeouts";
 import { ThreeDots } from 'react-loader-spinner'
-import uiSlice_dataOfSearching from "../store/slices/uiSlice_dataOfSearching";
+import uiSlice_dataOfSearching from "../store/slices/uiSliceDataOfSearching";
 
 function WeatherPage({ t }) {
     const dispatch = useDispatch();

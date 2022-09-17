@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
-import getUrl_img from "../../../services/fetch/getUrl_img";
+import getUrl_img from "../../../services/fetch/getUrlImg";
 
 function CardWeather_normal_additionalField({t, item}) {
     const { id, time, main, weather } = item;

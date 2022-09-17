@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const uiSlice_modalHelper = createSlice({
+const uiSliceModalHelper = createSlice({
     name: 'ui-of-modal-helper',
     initialState: {
         isActive: false
@@ -15,6 +15,6 @@ const uiSlice_modalHelper = createSlice({
     },
 });
 
-export const actions_modalHelper = uiSlice_modalHelper.actions;
+export const actionsModalHelper = uiSliceModalHelper.actions;
 
-export default uiSlice_modalHelper.reducer;
+export default uiSliceModalHelper.reducer;

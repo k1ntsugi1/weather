@@ -1,10 +1,10 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import getUrl_img from "../../../services/fetch/getUrl_img";
+import getUrl_img from "../../../services/fetch/getUrlImg";
 import { useDispatch, useSelector } from "react-redux";
 import handlerAsyncThunk from "../../../services/fetch/handlerAsynkThunk";
-import { selectors_defaultPoints } from "../../../store/slices/dataSlice_defaultPoints";
+import { selectors_defaultPoints } from "../../../store/slices/dataSliceDefaultPoints";
 
 function CardWeather_small({ t, id, img}) {
     const fulfilled_defaultPoinst = useSelector(selectors_defaultPoints.selectEntities);

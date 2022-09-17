@@ -11,12 +11,13 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
     mode,
     target: 'web',
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'index.ts'),
     output: {
         filename: 'main.js',
         path: path.join(__dirname, 'public'),
         clean: true,
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -29,6 +30,8 @@ module.exports = {
                     }
                 }
             },
+            { test: /\.tsx?$/, loader: "ts-loader" },
+            { test: /\.js$/, loader: "source-map-loader" },
             {
                 test: /\.(c|s[ac])ss$/i,
                 use: [
@@ -60,6 +63,6 @@ module.exports = {
         new MiniCssExtractPlugin()
     ],
     resolve: {
-        extensions: ["*", ".js", ".jsx"],
+        extensions: ["*", ".js", ".jsx", "ts", "tsx"],
     },
 }

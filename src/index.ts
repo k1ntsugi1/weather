@@ -4,17 +4,17 @@ import './styles.css';
 import './assets/i18n/i18n'
 
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './store/index.js';
 import { BrowserRouter } from "react-router-dom"
 import App from './App';
 
-import Provider_defaultPoints from './components/contexts/Provider_defaultPoints';
+import Provider_defaultPoints from './components/contexts/ProviderDefaultPoints';
 
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Provider store={store}>

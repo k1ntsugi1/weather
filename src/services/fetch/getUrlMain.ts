@@ -1,4 +1,4 @@
-const getUrl_main = (currentType, currentPoint, currentLang) => {
+const getUrlMain = (currentType: string, currentPoint: string, currentLang: string): string => {
     const mainUrl = `https://api.openweathermap.org/data/2.5/${currentType}?`;
     const point = `q=${currentPoint}`
     const lang=`&lang=${currentLang}`;
@@ -7,4 +7,4 @@ const getUrl_main = (currentType, currentPoint, currentLang) => {
     return mainUrl + point + lang + units + appid;
 }
 
-export default getUrl_main;
+export default getUrlMain;

@@ -12,14 +12,18 @@ import ModalGeoposition from './components/ModalGeoposition';
 import handlerGeoposition from './services/fetch/handlerGeoposition';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { withTranslation } from 'react-i18next';
+import { useTranslation, withTranslation } from 'react-i18next';
 
-function App({t}) {
+
+const App: React.FC = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch();
   const { currentLang } = useSelector(store => store.ui_dataOfSearching);
+
   useEffect(() => {
       navigator.geolocation.getCurrentPosition((data) => handlerGeoposition(data, currentLang, dispatch, t))
-  }, [])
+  }, []);
+  
   return (
     <div className='pt-4 h-75 container-fluid position-relative'>
       <NavbarApp />
