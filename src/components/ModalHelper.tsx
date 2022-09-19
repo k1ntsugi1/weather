@@ -1,16 +1,15 @@
 import React from "react";
-import { useTranslation, withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import { actionsModalHelper } from "../store/slices/uiSliceModalHelper";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { Modal } from "react-bootstrap";
 
-import { RootState } from '../store/index'
 
 const ModalHelper: React.FC = () => {
     const { t } = useTranslation()
-    const dispatch = useDispatch();
-    const { isActive } = useSelector((store: RootState) => store.uiModalHelper);
+    const dispatch = useAppDispatch();
+    const { isActive } = useAppSelector(store => store.uiModalHelper);
     return (
         <Modal show={isActive}  onHide={() => dispatch(actionsModalHelper.setUnactiveStatus())} centered aria-labelledby="modal-helper">
             <Modal.Header  closeButton className="bg-main color-additional">

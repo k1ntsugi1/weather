@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import React from 'react';
-import { withTranslation } from 'react-i18next';
+import { useTranslation, withTranslation } from 'react-i18next';
 
-function CardError({
-  t, errorOfPoint, currentPage, styles,
-}) {
+const CardError: React.FC = ({ errorOfPoint, currentPage, styles }) => {
+  const { t } = useTranslation();
   const classnamesOfContainer = cn('container-glass', 'b-rad-10', 'bg-gradient-main', 'color-main', {
     'back-face-of-card': currentPage === 'homePage',
   });
+  
   return (
     <div className={classnamesOfContainer} style={styles}>
       <div className="back-face-of-glass b-rad-10" />
@@ -36,6 +36,4 @@ function CardError({
   );
 }
 
-export default withTranslation()(CardError);
-
-//
+export default CardError;

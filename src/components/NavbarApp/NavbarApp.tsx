@@ -1,21 +1,20 @@
 import React from "react";
-import { Navbar, Container, Nav, NavDropdown, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import SwitchTheme from "./SwitchTheme";
 import { Link } from "react-router-dom";
 import Brand from "../HomePage/Brand";
-import { useTranslation, withTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { actionsDefaultPoints } from "../../store/slices/dataSliceDefaultPoints";
 import { actionsUserPoints } from "../../store/slices/dataSliceUserPoints";
 import { actionsModalHelper } from "../../store/slices/uiSliceModalHelper";
 import { actionsDataOfSearching } from "../../store/slices/uiSliceDataOfSearching";
 
-import { AppDispatch, RootState } from '../../store/index';
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const NavbarApp:React.FC = () => {
     const { t, i18n } = useTranslation()
-    const dispatch: AppDispatch = useDispatch();
-    const { currentPoint, currentLang } = useSelector((store: RootState) => store.uiDataOfSearching)
+    const dispatch = useAppDispatch();
+    const { currentPoint, currentLang } = useAppSelector(store => store.uiDataOfSearching)
     const switchLang = (lang: string): void => {
         if(currentLang !== lang) {
             localStorage.setItem('current-lang', lang);

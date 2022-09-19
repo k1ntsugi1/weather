@@ -10,16 +10,12 @@ import AboutPage from './views/AboutPage';
 import ModalHelper from './components/ModalHelper';
 import ModalGeoposition from './components/ModalGeoposition';
 import handlerGeoposition from './services/fetch/handlerGeoposition';
-import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { useTranslation, withTranslation } from 'react-i18next';
-
-import { RootState } from './store/index';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 
 const App: React.FC = () => {
-  const { t } = useTranslation()
-  const dispatch = useDispatch();
-  const { currentLang } = useSelector((store: RootState) => store.uiDataOfSearching);
+  const dispatch = useAppDispatch();
+  const { currentLang } = useAppSelector(store => store.uiDataOfSearching);
 
   useEffect(() => {
       navigator.geolocation.getCurrentPosition((data) => handlerGeoposition(data, currentLang, dispatch))
@@ -43,4 +39,4 @@ const App: React.FC = () => {
 
   );
 }
-export default withTranslation()(App);
+export default App;

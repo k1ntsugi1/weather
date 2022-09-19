@@ -1,18 +1,17 @@
 import React from "react";
-import { useTranslation, withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import handlerAsyncThunk from "../services/fetch/handlerAsynkThunk";
 import { actionsModalGeoposition } from "../store/slices/uiSliceModalGeoposition";
-import { useDispatch, useSelector } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Popup from 'reactjs-popup';
 import { useNavigate } from "react-router-dom";
 import { RootState } from '../store/index';
-
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 const ModalGeoposition: React.FC = () => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { isActive, presumedPoint } = useSelector((store: RootState) => store.uiModalGeoposition);
+    const { isActive, presumedPoint } = useAppSelector(store => store.uiModalGeoposition);
     return (
         <div>
             <Popup 

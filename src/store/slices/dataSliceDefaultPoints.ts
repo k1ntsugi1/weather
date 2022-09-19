@@ -4,17 +4,17 @@ import _ from 'lodash';
 import { RootState } from "..";
 
 type ErrorDefaultPoints = {
-    code?: string,
-    point?: string // если не сделать опциональными то выдатеся ошибка
+    code: string,
+    point: string 
 };
 
 interface InitialState {
-    loadingDefaultPoints: string[] | [],
-    errorsDefaultPoints: ErrorDefaultPoints[] | []
+    loadingDefaultPoints: string[],
+    errorsDefaultPoints: ErrorDefaultPoints[]
 }
 
 type PrepairedLoading = (
-    state: any,/////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    state: InitialState,
     point: string,
     firstStatus: string,
     secondStatus: string

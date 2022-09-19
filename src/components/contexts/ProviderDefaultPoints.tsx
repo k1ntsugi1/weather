@@ -8,24 +8,22 @@ interface Props {
 
 const ProviderDefaultPoints: FC<Props> = ({ children }) => {
     const { t } = useTranslation()
-    const defaultPoints = {
-        defaultPoints: [
-            t('defaultPoints.moscow'),
-            t('defaultPoints.saintP'),
-            t('defaultPoints.chelyabinsk'),
-            t('defaultPoints.ekaterinburg'),
-            t('defaultPoints.kaliningrad'),
-            t('defaultPoints.kazan'),
-            t('defaultPoints.ryazan'),
-            t('defaultPoints.sochi'),
-            t('defaultPoints.ufa'),
-        ],
-        defaultType: 'weather',
-        statusOfPoint: 'disabled'
-    }
+
+    const defaultPoints = [
+        t('defaultPoints.moscow'),
+        t('defaultPoints.saintP'),
+        t('defaultPoints.chelyabinsk'),
+        t('defaultPoints.ekaterinburg'),
+        t('defaultPoints.kaliningrad'),
+        t('defaultPoints.kazan'),
+        t('defaultPoints.ryazan'),
+        t('defaultPoints.sochi'),
+        t('defaultPoints.ufa'),
+    ];
+
     return (
         <contextDefaultPoints.Provider value={defaultPoints}>
-            { children }
+            {children}
         </ contextDefaultPoints.Provider>
     )
 }

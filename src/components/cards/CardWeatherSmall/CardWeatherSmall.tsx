@@ -1,16 +1,19 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import getUrl_img from "../../../services/fetch/getUrlImg";
 import { useDispatch, useSelector } from "react-redux";
 import handlerAsyncThunk from "../../../services/fetch/handlerAsynkThunk";
-import { selectors_defaultPoints } from "../../../store/slices/dataSliceDefaultPoints";
+import { selectorsDefaultPoints } from "../../../store/slices/dataSliceDefaultPoints";
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 
-function CardWeather_small({ t, id, img}) {
-    const fulfilled_defaultPoinst = useSelector(selectors_defaultPoints.selectEntities);
-    const dispatch = useDispatch()
-    const { city, weather, main } = fulfilled_defaultPoinst[id];
+const CardWeatherSmall: React.FC = ({id, img}) => {
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate()
+
+    const fulfilledDefaultPoinst = useAppSelector(selectorsDefaultPoints.selectEntities);
+    const { city, weather, main } = fulfilledDefaultPoinst[id];
     const data = { points: [city], typeOfRequest: 'forecast', typeOfPoints:'userPoints', statusOfPoint: 'pending' }
     return (
         <div className="container-img rotate-container opacity-animation" key={id} onClick={() => {
@@ -43,4 +46,4 @@ function CardWeather_small({ t, id, img}) {
     )
 }
 
-export default withTranslation()(CardWeather_small)
+export default CardWeatherSmall;

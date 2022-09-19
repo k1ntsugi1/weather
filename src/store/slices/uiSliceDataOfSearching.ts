@@ -1,14 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import CyrillicToTranslit from 'cyrillic-to-translit-js';
 
-
-interface DataOfSearchingPayload {
-    currentPoint?: string,
-    currentTypeOfRequest?: string,
-    currentLang?: string,
-}
-
-
 const uiSliceDataOfSearching = createSlice({
     name: 'data_of_searching',
     initialState: {
@@ -17,13 +9,13 @@ const uiSliceDataOfSearching = createSlice({
         currentLang: localStorage.getItem('current-lang') ?? 'ru',
     },
     reducers: {
-        setCurrentPoint(state, { payload: { currentPoint } }: PayloadAction<DataOfSearchingPayload>) {
+        setCurrentPoint(state, { payload: { currentPoint } }: PayloadAction<{ currentPoint: string }>) {
             state.currentPoint = currentPoint;
         },
-        setCurrentTypeOfRequest(state, { payload: { currentTypeOfRequest } }: PayloadAction<DataOfSearchingPayload>) {
+        setCurrentTypeOfRequest(state, { payload: { currentTypeOfRequest } }: PayloadAction<{ currentTypeOfRequest: string }>) {
             state.currentTypeOfRequest = currentTypeOfRequest;
         },
-        setCurrentLang(state, { payload: { currentLang } }: PayloadAction<DataOfSearchingPayload>) {
+        setCurrentLang(state, { payload: { currentLang } }: PayloadAction<{ currentLang: string }>) {
             const currentPoint = state.currentPoint;
             const translit = new CyrillicToTranslit(); //@types undefined
 

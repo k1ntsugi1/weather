@@ -9,13 +9,14 @@ import handlerAsyncThunk from "../../services/fetch/handlerAsynkThunk";
 import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const SearchField: React.FC = () => {
     const { t } = useTranslation()
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
-    const { currentPoint, currentTypeOfRequest, currentLang } = useSelector(store => store.ui_dataOfSearching);
+    const { currentPoint, currentTypeOfRequest, currentLang } = useAppSelector(store => store.uiDataOfSearching);
     
     const schemaForValidating = Yup.object().shape({
         point: Yup
@@ -25,7 +26,6 @@ const SearchField: React.FC = () => {
                 message: t("home.searchField.errorEmptyField"),
                 test: (_, testContext) => {
                     const point = testContext.parent.point ?? null;
-                    console.log(point)
                     return !(point === null || point.trim() === '');
                 }
             })

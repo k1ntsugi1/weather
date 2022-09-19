@@ -4,13 +4,12 @@ import { ParsedDataOutput } from '../../interfaces/ResponseParsedData';
 import { RootState } from '../index';
 
 type ErrorUserPoints = {
-    code?: string,
-    point?: string // если не сделать опциональными то выдатеся ошибка
+    code: string,
+    point: string
 };
-//: <PayloadAction<ParsedDataOutput>
 interface InitialState {
     loadingUserPoints: string | null,
-    errorsUserPoints: ErrorUserPoints[] | []
+    errorsUserPoints: ErrorUserPoints[]
 };
 
 const adapterUserPoints = createEntityAdapter();

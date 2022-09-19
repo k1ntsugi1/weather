@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { useTranslation, withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const SwitchTheme: React.FC = () => {
     const { t } = useTranslation();

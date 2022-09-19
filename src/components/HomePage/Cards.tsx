@@ -1,56 +1,70 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { useDefaultPoints } from "../contexts/useDefaultPoints";
 import { selectorsDefaultPoints } from "../../store/slices/dataSliceDefaultPoints";
 import handlerAsyncThunk from "../../services/fetch/handlerAsynkThunk";
-import { useTranslation, withTranslation } from "react-i18next";
 import SpinnerCard from "../spinners/SpinnerCard";
 
-import CardWeather_small from "../cards/CardWeather_small/CardWeather_small";
-import CardWeather_small_error from "../cards/CardWeather_small/CardWeather_small_error";
+import CardWeatherSmall from "../cards/CardWeatherSmall/CardWeatherSmall";
+import CardWeatherSmallError from "../cards/CardWeatherSmall/CardWeatherSmallError";
 
 import handlerTimeouts from "../../services/fetch/handlerTimeouts";
 
-import { RootState } from '../../store/index';
+import { useAppDispatch, useAppSelector } from "../../store/hooks"; 
+import { AppDispatch } from "../../store";
+
+// type Callback = (
+//     points: string[],
+//     typeOfRequest: string,
+//     typeOfPoints: string,
+//     statusOfPoint: string,
+//     dispatch: AppDispatch) => void | number;
 
 const Cards: React.FC = () => {
-    const { t } = useTranslation()
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
 
-    const { defaultPoints } = useDefaultPoints();
-    const { currentLang } = useSelector((store: RootState) => store.uiDataOfSearching);
-    const { loadingDefaultPoints, errorsDefaultPoints } = useSelector((store: RootState) => store.dataDefaultPoints);
+    const defaultPoints = useDefaultPoints();
+    const { currentLang } = useAppSelector(store => store.uiDataOfSearching);
+    const { loadingDefaultPoints, errorsDefaultPoints } = useAppSelector(store => store.dataDefaultPoints);
 
-    const rejected_defaultPoints = errorsDefaultPoints.map(((error)=> error.point))
-    const idsFulfilled_defaultPoinst = useSelector(selectorsDefaultPoints.selectIds);
+    const rejectedDefaultPoints = errorsDefaultPoints.map(((error)=> error.point))
+    const idsFulfilledDefaultPoints = useAppSelector(selectorsDefaultPoints.selectIds);
 
     const images = require.context('../../assets/images/cities', true, /\.(jpg|png)$/i);
 
     const paths = images.keys();
 
+    // const handlerPointsWithKnownData = (typeOfRequest: string, typeOfPoints: string, dispatch: AppDispatch) => {
+    //     return (callback: Callback, points: string[], statusOfPoint: string): void | number => { 
+    //         return callback(points, typeOfRequest, typeOfPoints, statusOfPoint, dispatch)
+    //     };
+    // };
+
+    // const bindedHandlerDefaultPoints = handlerPointsWithKnownData('weather', 'defaultPoints', dispatch)
+    const dataForDefaultPoints = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints'};
+    const dataForUserPoints = {points: rejectedDefaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'};
 
     useEffect(() => {
-        const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
-        handlerAsyncThunk(data, dispatch)
+        //const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
+        handlerAsyncThunk({...dataForDefaultPoints, statusOfPoint: 'pending'}, dispatch)
     }, [currentLang]);
 
     useEffect(() => {
-        if ( idsFulfilled_defaultPoinst.length > 0 ) {
-            const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
-            const clearCurrentTimeout = handlerTimeouts(900000, data, dispatch)
+        if ( idsFulfilledDefaultPoints.length > 0 ) {
+            //const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
+            const clearCurrentTimeout = handlerTimeouts(900000, {...dataForDefaultPoints, statusOfPoint: 'fulfilled'}, dispatch)
             return clearCurrentTimeout;
         }
-    }, [idsFulfilled_defaultPoinst])
+    }, [idsFulfilledDefaultPoints])
 
     useEffect(() => {
-        if ( rejected_defaultPoints.length > 0 ) {
-            const data = {points: rejected_defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
-            const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch)
+        if ( rejectedDefaultPoints.length > 0 ) {
+            //const data = {points: rejectedDefaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
+            const clearCurrentTimeout = handlerTimeouts(9000, dataForUserPoints, dispatch)
             return clearCurrentTimeout;
         }
-    }, [rejected_defaultPoints])
+    }, [rejectedDefaultPoints])
 
     return (
         <div className="container-cities">
@@ -59,12 +73,12 @@ const Cards: React.FC = () => {
                 const imgPath = paths.find((path) => path.includes(cityName));
                 const img = images(imgPath);
                 const errorOfPoint = errorsDefaultPoints.find((error) => error.point === cityName) ?? null;
-                const id = idsFulfilled_defaultPoinst.find((id) => id.includes(cityName))
+                const id = idsFulfilledDefaultPoints.find((id) => String(id).includes(cityName))
                 return (
                     <>
                         { status === "pending" && <SpinnerCard style={ {"maxHeight": "100px", "padding": "0", "margin": "0"} } key={cityName}/> }
-                        { status === "fulfilled" && <CardWeather_small img={img} id={id} key={cityName} /> }
-                        { status === "rejected" && <CardWeather_small_error img={img} errorOfPoint={errorOfPoint} key={cityName} /> }
+                        { status === "fulfilled" && <CardWeatherSmall img={img} id={id} key={cityName} /> }
+                        { status === "rejected" && <CardWeatherSmallError img={img} errorOfPoint={errorOfPoint} key={cityName} /> }
                     </>
 
                 )

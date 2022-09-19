@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { ResponseParsedDataFunc } from '../../interfaces/ResponseParsedData';
 
 type PlainProp = string | number | null;
-
+// думаю здесь можно будет сделать перегрузку
 const parseData: ResponseParsedDataFunc = (typeOfRequest, point, typeOfPoints, currentLang, data) => {
       const {
         dt, weather, main, wind, clouds = null, rain = null, snow = null,

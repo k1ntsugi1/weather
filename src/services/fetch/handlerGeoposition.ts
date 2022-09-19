@@ -1,17 +1,19 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import getUrl_additional from './getUrlAdditional';
-import parserData_geoposition from './parserDataGeoposition';
+import getUrlAdditional from './getUrlAdditional';
+import parserDataGeoposition from './parserDataGeoposition';
 import { actionsModalGeoposition } from '../../store/slices/uiSliceModalGeoposition';
 import { useTranslation } from 'react-i18next';
+import { AppDispatch } from '../../store';
 
-const handlerGeoposition = async (data, currentLang: string, dispatch) => {
+const handlerGeoposition = async (data: GeolocationPosition, currentLang: string, dispatch: AppDispatch): Promise<void> => {
   const { t } = useTranslation()
   const { coords: { latitude, longitude } } = data;
-  const url = getUrl_additional(latitude, longitude);
+  const url = getUrlAdditional(latitude, longitude);
+
   try {
-    const response = await axios.get(url);
-    const presumedPoint = parserData_geoposition(response.data, currentLang);
+    const response = await axios.get(url); // any response
+    const presumedPoint = parserDataGeoposition(response.data, currentLang); // any props here
     dispatch(actionsModalGeoposition.setPresumedPoint({ presumedPoint }));
     dispatch(actionsModalGeoposition.setActiveStatus());
   } catch {
