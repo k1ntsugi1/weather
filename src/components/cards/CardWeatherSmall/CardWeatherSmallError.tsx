@@ -1,12 +1,17 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { actionsModalHelper } from '../../../store/slices/uiSliceModalHelper';
 import CardError from '../CardError';
 import { useAppDispatch } from '../../../store/hooks';
 
-const CardWeatherSmallError: React.FC = ({img, errorOfPoint }) => {
-  const { t } = useTranslation();
+interface ICardWeatherSmallError {
+  img: string,
+  errorOfPoint: {
+    [key: string]: string,
+  }
+}
+
+const CardWeatherSmallError: React.FC<ICardWeatherSmallError> = ({img, errorOfPoint }) => {
   const dispatch = useAppDispatch();
   return (
     <div className="container-img rotate-container opacity-animation" onClick={() => dispatch(actionsModalHelper.setActiveStatus())}>

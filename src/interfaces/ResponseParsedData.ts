@@ -10,7 +10,16 @@ export interface ParsedDataOutput {
     main: {
         [temp: string]: number
     },
-    [key: string]: string | number | object
+    wind: {
+        [key: string]: number,
+    },
+    id: string,
+    city: string,
+    time: string,
+    day: string,
+    percentOfClouds: number,
+    mmOfRainLast3H: number,
+    mmOfSnowLast3H: number,
 }
 
 export interface ResponseParsedDataFunc {
@@ -22,3 +31,14 @@ export interface ResponseParsedDataFunc {
         data: ResponseFetchData,
     ): ParsedDataOutput[]
 } 
+
+// id: _.uniqueId(`fulfilled_${point}_${typeOfRequest}_${typeOfPoints}_`),
+// city: point,
+// time,
+// day,
+//       weather: currentWeather,
+//       main,
+// wind,
+// percentOfClouds,
+// mmOfRainLast3H,
+// mmOfSnowLast3H,

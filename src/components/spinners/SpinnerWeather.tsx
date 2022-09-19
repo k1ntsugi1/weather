@@ -6,7 +6,7 @@ import Img_4 from '../../assets/images/gismeteo-icons/d.svg';
 import Img_5 from '../../assets/images/gismeteo-icons/d_c2_r1.svg'
 import Img_6 from '../../assets/images/gismeteo-icons/d_c1_rs1.svg';
 
-function SpinnerWeather({styles, size}) {
+const SpinnerWeather: React.FC = ({styles, size}) => {
     const mapping_sizeOfCube = {
         "big": 'container-bigCube',
         'medium': 'container-mediumCube',

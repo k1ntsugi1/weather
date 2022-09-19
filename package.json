@@ -44,6 +44,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@types/react-router-dom": "^5.3.3",
+    "@types/webpack-env": "^1.18.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",

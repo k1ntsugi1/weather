@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { ResponseParsedDataFunc } from '../../interfaces/ResponseParsedData';
 
-type PlainProp = string | number | null;
+type PlainProp =  number | null;
 // думаю здесь можно будет сделать перегрузку
 const parseData: ResponseParsedDataFunc = (typeOfRequest, point, typeOfPoints, currentLang, data) => {
       const {
@@ -22,7 +22,7 @@ const parseData: ResponseParsedDataFunc = (typeOfRequest, point, typeOfPoints, c
         .filter((_, index) => index < 2)
         .join(':');
 
-      const percentOfClouds: PlainProp = clouds?.all ?? null;
+      const percentOfClouds: PlainProp = clouds.all ?? null;
       const mmOfRainLast3H: PlainProp = (rain ? rain['3h'] : null);
       const mmOfSnowLast3H: PlainProp = (snow ? snow['3h'] : null);
       const currentWeather = weather[0] ?? null;

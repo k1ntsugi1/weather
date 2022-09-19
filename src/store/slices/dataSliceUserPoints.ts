@@ -12,7 +12,7 @@ interface InitialState {
     errorsUserPoints: ErrorUserPoints[]
 };
 
-const adapterUserPoints = createEntityAdapter();
+const adapterUserPoints = createEntityAdapter<ParsedDataOutput>();
 const myInitialState: InitialState = {loadingUserPoints: null, errorsUserPoints: []};
 
 const dataSliceUserPoints = createSlice({

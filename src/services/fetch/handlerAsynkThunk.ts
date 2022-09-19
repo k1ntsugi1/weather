@@ -4,25 +4,32 @@ import { actionsUserPoints } from '../../store/slices/dataSliceUserPoints';
 import { fetchDataOfWeather } from '../../store/asyncThunkFetchDataOfWeather';
 import { actionsDataOfSearching } from '../../store/slices/uiSliceDataOfSearching';
 
-const handlerAsyncThunk = (data, dispatch) => {
+import { IHandler } from './handlerTimeouts';
+
+interface Mapping {
+  defaultPoints: void,
+  userPoints: void
+}
+
+const handlerAsyncThunk = (data: IHandler) => {
   const {
-    points, typeOfRequest, typeOfPoints, statusOfPoint,
+    points, typeOfRequest, typeOfPoints, statusOfPoint, dispatch
   } = data;
-  const mapping_typeOfPoints = {
+  const mappingTypeOfPoints = {
     defaultPoints: () => {
       statusOfPoint === 'rejected'
-        ? dispatch(actionsDefaultPoints.removeData_rejectedDefaultPoints())
-        : dispatch(actionsDefaultPoints.removeData_defaultPoints());
+        ? dispatch(actionsDefaultPoints.removeDataRejectedDefaultPoints())
+        : dispatch(actionsDefaultPoints.removeDataDefaultPoints());
     },
     userPoints: () => {
       statusOfPoint === 'rejected'
-        ? dispatch(actionsUserPoints.removeData_rejectedUserPoints())
-        : dispatch(actionsUserPoints.removeData_userPoints());
+        ? dispatch(actionsUserPoints.removeDataRejectedUserPoints())
+        : dispatch(actionsUserPoints.removeDataUserPoints());
       dispatch(actionsDataOfSearching.setCurrentPoint({ currentPoint: points[0] }));
       dispatch(actionsDataOfSearching.setCurrentTypeOfRequest({ currentTypeOfRequest: typeOfRequest }));
     },
   };
-  mapping_typeOfPoints[typeOfPoints]();
+  mappingTypeOfPoints[typeOfPoints]();
   points.forEach((point) => dispatch(fetchDataOfWeather({ point, typeOfRequest, typeOfPoints })));
 };
 

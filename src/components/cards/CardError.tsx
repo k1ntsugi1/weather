@@ -1,8 +1,17 @@
 import cn from 'classnames';
 import React from 'react';
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-const CardError: React.FC = ({ errorOfPoint, currentPage, styles }) => {
+
+interface ICardError {
+  errorOfPoint: {
+    [key: string]: string,
+  },
+  currentPage?: string,
+  styles?: {}
+}
+
+const CardError: React.FC<ICardError> = ({ errorOfPoint, currentPage, styles }) => {
   const { t } = useTranslation();
   const classnamesOfContainer = cn('container-glass', 'b-rad-10', 'bg-gradient-main', 'color-main', {
     'back-face-of-card': currentPage === 'homePage',

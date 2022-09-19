@@ -1,6 +1,6 @@
 import React from "react";
 
-function SpinnerCard({style}) {
+const SpinnerCard: React.FC = ({style}) => {
     return (
         <div className="container-spinner-main-weather container-glass b-rad-10" style={style}>
             <div className='back-face-of-glass b-rad-10'></div>

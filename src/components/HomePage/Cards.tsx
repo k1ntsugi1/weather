@@ -11,14 +11,8 @@ import CardWeatherSmallError from "../cards/CardWeatherSmall/CardWeatherSmallErr
 import handlerTimeouts from "../../services/fetch/handlerTimeouts";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks"; 
-import { AppDispatch } from "../../store";
 
-// type Callback = (
-//     points: string[],
-//     typeOfRequest: string,
-//     typeOfPoints: string,
-//     statusOfPoint: string,
-//     dispatch: AppDispatch) => void | number;
+
 
 const Cards: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -35,33 +29,23 @@ const Cards: React.FC = () => {
 
     const paths = images.keys();
 
-    // const handlerPointsWithKnownData = (typeOfRequest: string, typeOfPoints: string, dispatch: AppDispatch) => {
-    //     return (callback: Callback, points: string[], statusOfPoint: string): void | number => { 
-    //         return callback(points, typeOfRequest, typeOfPoints, statusOfPoint, dispatch)
-    //     };
-    // };
-
-    // const bindedHandlerDefaultPoints = handlerPointsWithKnownData('weather', 'defaultPoints', dispatch)
-    const dataForDefaultPoints = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints'};
-    const dataForUserPoints = {points: rejectedDefaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'};
+    const dataForDefaultPoints = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', dispatch};
+    const dataForUserPoints = {points: rejectedDefaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected', dispatch};
 
     useEffect(() => {
-        //const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints', statusOfPoint: 'pending' };
-        handlerAsyncThunk({...dataForDefaultPoints, statusOfPoint: 'pending'}, dispatch)
+        handlerAsyncThunk({...dataForDefaultPoints, statusOfPoint: 'pending'})
     }, [currentLang]);
 
     useEffect(() => {
-        if ( idsFulfilledDefaultPoints.length > 0 ) {
-            //const data = { points: defaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'fulfilled'}
-            const clearCurrentTimeout = handlerTimeouts(900000, {...dataForDefaultPoints, statusOfPoint: 'fulfilled'}, dispatch)
+        if ( idsFulfilledDefaultPoints.length) {
+            const clearCurrentTimeout = handlerTimeouts(900000, {...dataForDefaultPoints, statusOfPoint: 'fulfilled'})
             return clearCurrentTimeout;
         }
     }, [idsFulfilledDefaultPoints])
 
     useEffect(() => {
         if ( rejectedDefaultPoints.length > 0 ) {
-            //const data = {points: rejectedDefaultPoints, typeOfRequest: 'weather', typeOfPoints:'defaultPoints',  statusOfPoint: 'rejected'}
-            const clearCurrentTimeout = handlerTimeouts(9000, dataForUserPoints, dispatch)
+            const clearCurrentTimeout = handlerTimeouts(9000, dataForUserPoints)
             return clearCurrentTimeout;
         }
     }, [rejectedDefaultPoints])
@@ -71,9 +55,9 @@ const Cards: React.FC = () => {
             { loadingDefaultPoints.map((point) => {
                 const [ status, cityName ] = point.split('_');
                 const imgPath = paths.find((path) => path.includes(cityName));
-                const img = images(imgPath);
+                const img = images(imgPath) as string;
                 const errorOfPoint = errorsDefaultPoints.find((error) => error.point === cityName) ?? null;
-                const id = idsFulfilledDefaultPoints.find((id) => String(id).includes(cityName))
+                const id = idsFulfilledDefaultPoints.find((id: string) => id.includes(cityName)) as string;
                 return (
                     <>
                         { status === "pending" && <SpinnerCard style={ {"maxHeight": "100px", "padding": "0", "margin": "0"} } key={cityName}/> }

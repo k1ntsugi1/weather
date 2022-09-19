@@ -1,9 +1,15 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import getUrl_img from "../../../services/fetch/getUrlImg";
+import { ParsedDataOutput } from '../../../interfaces/ResponseParsedData';
 
-function CardWeather_noraml_mainField({ t, value }) {
-    const { city, time, main, weather, wind, mmOfRaingLast3H, mmOfShowLast3H, percentOfClouds } = value;
+interface Props {
+    value: ParsedDataOutput,
+}
+
+const CardWeatherNormalMainField: React.FC<Props> = ({ value }) => {
+    const { t } = useTranslation();
+    const { city, time, main, weather, wind, mmOfRainLast3H, mmOfSnowLast3H, percentOfClouds } = value;
     const description = weather.description.split('')
         .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
         .join('');
@@ -24,12 +30,12 @@ function CardWeather_noraml_mainField({ t, value }) {
                 </div>
                 <div className="addtitional-item">
                     <p className="my-0 h3">{t("weatherPage.precipitation_last3H")}</p>
-                    <p className="my-0 fs-6">{t("weatherPage.rain")} {mmOfRaingLast3H || '0'} мм</p>
-                    <p className="my-0 fs-6">{t("weatherPage.snow")} {mmOfShowLast3H || '0'} мм</p>
+                    <p className="my-0 fs-6">{t("weatherPage.rain")} {mmOfRainLast3H || '0'} мм</p>
+                    <p className="my-0 fs-6">{t("weatherPage.snow")} {mmOfSnowLast3H || '0'} мм</p>
                 </div>
 
         </div>
     )
 }
 
-export default withTranslation()(CardWeather_noraml_mainField)
+export default CardWeatherNormalMainField;

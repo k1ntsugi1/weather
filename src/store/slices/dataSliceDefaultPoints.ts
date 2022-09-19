@@ -2,6 +2,7 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { fetchDataOfWeather } from "../asyncThunkFetchDataOfWeather";
 import _ from 'lodash';
 import { RootState } from "..";
+import { ParsedDataOutput } from '../../interfaces/ResponseParsedData';
 
 type ErrorDefaultPoints = {
     code: string,
@@ -33,7 +34,7 @@ const prepaireDefaultPoints: PrepairedLoading = (state, point, firstStatus, seco
 
 const myInitialState: InitialState = { loadingDefaultPoints: [], errorsDefaultPoints: [] }
 
-const adapterDefaultPoints = createEntityAdapter();
+const adapterDefaultPoints = createEntityAdapter<ParsedDataOutput>();
 const initialState = adapterDefaultPoints.getInitialState(myInitialState);
 
 const dataSliceDefaultPoints = createSlice({
@@ -74,7 +75,7 @@ const dataSliceDefaultPoints = createSlice({
     }
 });
 
-export const selectorsDefaultPoints = adapterDefaultPoints.getSelectors((store: RootState) => store.dataDefaultPoints);
+export const selectorsDefaultPoints = adapterDefaultPoints.getSelectors<RootState>(store => store.dataDefaultPoints);
 
 export const actionsDefaultPoints = dataSliceDefaultPoints.actions;
 

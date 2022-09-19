@@ -1,6 +1,6 @@
 import React from "react";
 
-const AboutPage = () => {
+const AboutPage: React.FC = () => {
     return (
         <section className="mt-5 container-glass b-rad-10 text-light bg-gradient-main">
             <div className="back-face-of-glass b-rad-10"></div>
@@ -35,7 +35,7 @@ const AboutPage = () => {
                     </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 export default AboutPage;
