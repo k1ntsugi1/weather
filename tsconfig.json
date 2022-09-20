@@ -2,11 +2,11 @@
     "compilerOptions": {
     "outDir": "./public/",
     "noImplicitAny": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "resolveJsonModule": true,
     "module": "es2022",
     "target": "es2022",
@@ -14,5 +14,5 @@
     "allowJs": true,
     "moduleResolution": "node"
     },
-    "include": ["./src/**/*"]
+    "include": ["./src/**/*", "custom.d.ts"]
   }

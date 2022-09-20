@@ -6,11 +6,11 @@ import './assets/i18n/i18n'
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import store from './store/index.js';
+import store from './store/index';
 import { BrowserRouter } from "react-router-dom"
 import App from './App';
 
-import Provider_defaultPoints from './components/contexts/ProviderDefaultPoints';
+import ProviderDefaultPoints from './components/contexts/ProviderDefaultPoints';
 
 
 
@@ -18,9 +18,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Provider store={store}>
-            <Provider_defaultPoints>
+            <ProviderDefaultPoints>
                 <App />
-            </Provider_defaultPoints>
+            </ProviderDefaultPoints>
         </Provider>
     </BrowserRouter>
 );

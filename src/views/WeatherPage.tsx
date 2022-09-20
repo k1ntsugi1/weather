@@ -34,9 +34,9 @@ const WeatherPage: React.FC = () => {
   useEffect(() => {
     if (errorOfPoint) {
       const data = {
-        points: [rejectedUserPoint], typeOfRequest: 'weather', typeOfPoints: 'userPoints', statusOfPoint: 'rejected',
+        points: [rejectedUserPoint], typeOfRequest: 'weather', typeOfPoints: 'userPoints', statusOfPoint: 'rejected', dispatch
       };
-      const clearCurrentTimeout = handlerTimeouts(9000, data, dispatch);
+      const clearCurrentTimeout = handlerTimeouts(9000, data);
       return clearCurrentTimeout;
     }
   }, [errorOfPoint, currentLang]);
@@ -52,8 +52,9 @@ const WeatherPage: React.FC = () => {
                 width="80"
                 color="lightblue"
                 ariaLabel="three-dots-loading"
-                wrapperStyle
-                wrapperClass
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
               />
             </div>
             )}

@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
     mode,
     target: 'web',
-    entry: path.join(__dirname, 'src', 'index.ts'),
+    entry: path.join(__dirname, 'src', 'index.tsx'),
     output: {
         filename: 'main.js',
         path: path.join(__dirname, 'public'),
@@ -30,7 +30,9 @@ module.exports = {
                     }
                 }
             },
-            { test: /\.tsx?$/, loader: "ts-loader" },
+            { test: /\.tsx?$/,
+              loader: "ts-loader",
+              exclude: /node_modules/, },
             { test: /\.js$/, loader: "source-map-loader" },
             {
                 test: /\.(c|s[ac])ss$/i,
@@ -63,6 +65,6 @@ module.exports = {
         new MiniCssExtractPlugin()
     ],
     resolve: {
-        extensions: ["*", ".js", ".jsx", "ts", "tsx"],
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
     },
 }

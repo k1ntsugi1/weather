@@ -42,8 +42,8 @@ const SearchField: React.FC = () => {
                 .split('')
                 .map((symbol, index) => index === 0 ? symbol.toUpperCase() : symbol)
                 .join('');
-            const data = { points: [point], typeOfRequest: values.typeOfRequest, typeOfPoints: 'userPoints', statusOfPoint: 'pending' }
-            handlerAsyncThunk(data, dispatch);
+            const data = { points: [point], typeOfRequest: values.typeOfRequest, typeOfPoints: 'userPoints', statusOfPoint: 'pending', dispatch}
+            handlerAsyncThunk(data);
             navigate("/weather");
         }
     });

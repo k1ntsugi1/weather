@@ -18,10 +18,10 @@ const CardWeatherSmall: React.FC<ICardWeatherSmall> = ({id, img}) => {
 
     const fulfilledDefaultPoinst = useAppSelector(selectorsDefaultPoints.selectEntities);
     const { city, weather, main } = fulfilledDefaultPoinst[id] as ParsedDataOutput;
-    const data = { points: [city], typeOfRequest: 'forecast', typeOfPoints:'userPoints', statusOfPoint: 'pending' }
+    const data = { points: [city], typeOfRequest: 'forecast', typeOfPoints:'userPoints', statusOfPoint: 'pending', dispatch }
     return (
         <div className="container-img rotate-container opacity-animation" key={id} onClick={() => {
-            handlerAsyncThunk(data, dispatch);
+            handlerAsyncThunk(data);
             navigate("/weather");
         }
         }>

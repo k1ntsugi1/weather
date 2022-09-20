@@ -7,15 +7,14 @@ import { actionsDataOfSearching } from '../../store/slices/uiSliceDataOfSearchin
 import { IHandler } from './handlerTimeouts';
 
 interface Mapping {
-  defaultPoints: void,
-  userPoints: void
+  [key: string]: () => void,
 }
 
 const handlerAsyncThunk = (data: IHandler) => {
   const {
     points, typeOfRequest, typeOfPoints, statusOfPoint, dispatch
   } = data;
-  const mappingTypeOfPoints = {
+  const mappingTypeOfPoints: Mapping = {
     defaultPoints: () => {
       statusOfPoint === 'rejected'
         ? dispatch(actionsDefaultPoints.removeDataRejectedDefaultPoints())

@@ -1,6 +1,12 @@
 import React from "react";
 
-const SpinnerCard: React.FC = ({style}) => {
+interface Props {
+    style: {
+        [key: string]: string
+    }
+}
+
+const SpinnerCard: React.FC<Props> = ({style}) => {
     return (
         <div className="container-spinner-main-weather container-glass b-rad-10" style={style}>
             <div className='back-face-of-glass b-rad-10'></div>

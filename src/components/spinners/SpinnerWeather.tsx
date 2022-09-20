@@ -6,14 +6,25 @@ import Img_4 from '../../assets/images/gismeteo-icons/d.svg';
 import Img_5 from '../../assets/images/gismeteo-icons/d_c2_r1.svg'
 import Img_6 from '../../assets/images/gismeteo-icons/d_c1_rs1.svg';
 
-const SpinnerWeather: React.FC = ({styles, size}) => {
-    const mapping_sizeOfCube = {
+interface Mapping {
+    [ket: string]: string
+}
+
+interface Props {
+    size: string,
+    styles: {
+        [key: string]: string,
+    }
+}
+
+const SpinnerWeather: React.FC<Props> = ({styles, size}) => {
+    const mappingSizeOfCube: Mapping = {
         "big": 'container-bigCube',
         'medium': 'container-mediumCube',
         'small': 'container-smallCube',
     }
     return (
-            <div className={mapping_sizeOfCube[size]} style={styles}>
+            <div className={mappingSizeOfCube[size]} style={styles}>
                 <div className='cube'>
                     <div className='side front bg-cube-side'>
                         <img src={Img_1} alt="Lightning" />

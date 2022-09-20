@@ -17,12 +17,12 @@ const uiSliceDataOfSearching = createSlice({
         },
         setCurrentLang(state, { payload: { currentLang } }: PayloadAction<{ currentLang: string }>) {
             const currentPoint = state.currentPoint;
-            const translit = new CyrillicToTranslit(); //@types undefined
+            //const translit = new CyrillicToTranslit(); //@types undefined
 
             state.currentLang = currentLang;
-            state.currentPoint = currentLang === 'en'
-                ? translit.transform(currentPoint)
-                : translit.reverse(currentPoint)
+            // state.currentPoint = currentLang === 'en'
+            //     ? translit.transform(currentPoint)
+            //     : translit.reverse(currentPoint)
         },
     },
 });

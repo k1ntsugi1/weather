@@ -1,7 +1,8 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation, withTranslation } from "react-i18next";
 
-function FooterApp({t}) {
+const FooterApp:React.FC = () => {
+    const { t } = useTranslation()
     return (
         <div className="container fixed-bottom bg-main color-additional" style={{"zIndex": "-1"}}>
             <div className="mx-3 row border-top border-dark">
