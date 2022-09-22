@@ -15,7 +15,7 @@
   - Redux (@toolkit)
   - GisMeteo API -> OpenWeather API
 
-[**Versel**](https://weather-k1ntsugi1.vercel.app/) - прод
+[**Versel**](https://weather-h55zzin6f-k1ntsugi1.vercel.app/) - прод
 
 #Задачи:
 - добавить префисы для transition, transform [для Safari] (не работает поворот карточки);
